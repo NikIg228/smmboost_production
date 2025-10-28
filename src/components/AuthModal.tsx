@@ -39,21 +39,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
       if (mode === 'register') {
         const { error } = await signUp(formData.email, formData.password, formData.name);
         if (error) throw error;
-        setSuccess('Отлично! Мы отправили письмо на вашу почту для подтверждения.');
+        setSuccess('Отлично! Мы отправили письмо с подтверждением на ваш адрес.');
       } else {
         const { error } = await signIn(formData.email, formData.password);
         if (error) throw error;
         onClose();
       }
     } catch (error: any) {
-      let errorMessage = 'Произошла ошибка';
+      let errorMessage = 'Произошла ошибка. Попробуйте еще раз.';
       
       if (error.message?.includes('Invalid login credentials')) {
         errorMessage = 'Неверный email или пароль';
       } else if (error.message?.includes('Email not confirmed')) {
         errorMessage = 'Подтвердите email перед входом';
       } else if (error.message?.includes('User already registered') || error.message?.includes('already been registered')) {
-        errorMessage = 'Пользователь с таким email уже зарегистрирован. Попробуйте войти в аккаунт.';
+        errorMessage = 'Пользователь с таким email уже существует';
         if (onModeChange) {
           setTimeout(() => {
             onModeChange('login');
@@ -79,7 +79,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
       if (error) throw error;
       // User will be redirected to Google, so we don't close the modal here
     } catch (error: any) {
-      let errorMessage = 'Ошибка при входе через Google';
+      let errorMessage = 'Ошибка входа через Google';
       if (error.message) {
         errorMessage = error.message;
       }
@@ -162,7 +162,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
               className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-              placeholder="Адрес вашей эл.почты"
+              placeholder="Ваш email"
               required
             />
           </div>
@@ -180,7 +180,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
               value={formData.password}
               onChange={(e) => setFormData({...formData, password: e.target.value})}
               className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-              placeholder="Введите пароль"
+              placeholder="Минимум 6 символов"
               required
             />
           </div>
@@ -219,7 +219,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
             onClick={() => onModeChange && onModeChange(mode === 'login' ? 'register' : 'login')}
             className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
           >
-            {mode === 'login' ? 'Нет аккаунта? Зарегистрироваться' : 'Уже есть аккаунт? Войти'}
+            {mode === 'login' ? 'Нет аккаунта?' : 'Уже есть аккаунт?'}
           </button>
         </div>
         </form>

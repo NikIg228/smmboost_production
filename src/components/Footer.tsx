@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Zap, Mail, Phone, MessageCircle } from 'lucide-react';
-import { Modal } from './Modal';
 
 export const Footer: React.FC = () => {
+  
   const handlePageChange = (page: string) => {
     // Scroll to top first
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -26,9 +26,14 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-gray-400">
-              Профессиональные услуги по продвижению в социальных сетях. 
-              Быстро, безопасно, эффективно.
+              Профессиональные услуги по продвижению в социальных сетях. Быстро, безопасно, эффективно.
             </p>
+            <div className="text-gray-400 text-sm space-y-1 pt-2">
+              <p className="text-gray-500 uppercase tracking-wider text-xs">Юридическая информация</p>
+              <p>ТОО "White Trade"</p>
+              <p>БИН 250140025178</p>
+              <p>Республика Казахстан, город Алматы, Бостандыкский район, Темирязева 69, почтовый индекс 050057</p>
+            </div>
           </div>
 
           {/* Services */}
@@ -87,7 +92,7 @@ export const Footer: React.FC = () => {
                   onClick={() => handlePageChange('faq')}
                   className="hover:text-white transition-colors text-left"
                 >
-                  Частые вопросы
+                  FAQ
                 </button>
               </li>
               <li>
@@ -129,10 +134,15 @@ export const Footer: React.FC = () => {
                 <Phone className="w-5 h-5" />
                 <span>+7 707 345 12 12</span>
               </div>
-              <div className="flex items-center space-x-3 text-gray-400">
+              <a
+                href="https://t.me/smmboost1bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors"
+              >
                 <MessageCircle className="w-5 h-5" />
-                <span>Telegram: @smm.boost.kz</span>
-              </div>
+                <span>Telegram: @smmboost1bot</span>
+              </a>
             </div>
           </div>
         </div>

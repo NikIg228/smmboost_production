@@ -1,7 +1,9 @@
 import React from 'react';
+import { t } from '../../lib/i18n';
 import { FileText, CheckCircle } from 'lucide-react';
 
 export const TermsPage: React.FC = () => {
+  
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
@@ -22,17 +24,25 @@ export const TermsPage: React.FC = () => {
       {/* Content */}
       <div className="space-y-8 text-gray-300">
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4">Юридическая информация</h2>
+          <div className="space-y-1 text-sm text-gray-300">
+            <p>ТОО "White Trade"</p>
+            <p>БИН 250140025178</p>
+            <p>Республика Казахстан, город Алматы, Бостандыкский район, Темирязева 69, почтовый индекс 050057</p>
+          </div>
+        </section>
+
+        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center">
             <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-            1. Общие положения
+            1. {t('terms.general')}
           </h2>
           <div className="space-y-3">
             <p>
-              Настоящее Пользовательское соглашение регулирует отношения между SMM Boost 
-              и пользователями сервиса по предоставлению услуг продвижения в социальных сетях.
+              {t('terms.generalText1')}
             </p>
             <p>
-              Используя наш сервис, вы соглашаетесь с условиями данного соглашения.
+              {t('terms.generalText2')}
             </p>
           </div>
         </section>
@@ -40,15 +50,15 @@ export const TermsPage: React.FC = () => {
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center">
             <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-            2. Описание услуг
+            2. {t('terms.services')}
           </h2>
           <div className="space-y-3">
-            <p>SMM Boost предоставляет следующие услуги:</p>
+            <p>{t('terms.servicesText')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Накрутка подписчиков в социальных сетях</li>
-              <li>Накрутка лайков на посты и видео</li>
-              <li>Увеличение просмотров контента</li>
-              <li>Другие услуги по продвижению в соцсетях</li>
+              <li>{t('terms.followersService')}</li>
+              <li>{t('terms.likesService')}</li>
+              <li>{t('terms.viewsService')}</li>
+              <li>{t('terms.otherServices')}</li>
             </ul>
           </div>
         </section>
@@ -120,7 +130,7 @@ export const TermsPage: React.FC = () => {
           </h2>
           <div className="space-y-2">
             <p><strong>Email:</strong> support.smm.boost.kz@gmail.com</p>
-            <p><strong>Telegram:</strong> @smm.boost.kz</p>
+            <p><strong>Telegram:</strong> @smmboost1bot</p>
             <p><strong>Телефон:</strong> +7 707 345 12 12</p>
           </div>
         </section>

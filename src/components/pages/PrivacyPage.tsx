@@ -1,7 +1,9 @@
 import React from 'react';
+import { t } from '../../lib/i18n';
 import { Shield, Lock, Eye, Database } from 'lucide-react';
 
 export const PrivacyPage: React.FC = () => {
+  
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
@@ -22,22 +24,31 @@ export const PrivacyPage: React.FC = () => {
       {/* Content */}
       <div className="space-y-8 text-gray-300">
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4">Юридическая информация</h2>
+          <div className="space-y-1 text-sm text-gray-300">
+            <p>ТОО "White Trade"</p>
+            <p>БИН 250140025178</p>
+            <p>Республика Казахстан, город Алматы, Бостандыкский район, Темирязева 69, почтовый индекс 050057</p>
+          </div>
+        </section>
+
+        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center">
             <Database className="w-5 h-5 text-blue-500 mr-2" />
-            1. Сбор информации
+            1. {t('privacy.dataCollection')}
           </h2>
           <div className="space-y-3">
             <p>
-              Мы собираем только необходимую информацию для предоставления услуг:
+              {t('privacy.dataCollectionText')}
             </p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Контактные данные (email, телефон, Telegram)</li>
-              <li>Ссылки на профили в социальных сетях</li>
-              <li>Информацию о заказах и платежах</li>
-              <li>Техническую информацию (IP-адрес, браузер)</li>
+              <li>{t('privacy.contactData')}</li>
+              <li>{t('privacy.socialLinks')}</li>
+              <li>{t('privacy.orderInfo')}</li>
+              <li>{t('privacy.technicalInfo')}</li>
             </ul>
             <p className="text-yellow-400 font-medium">
-              ⚠️ Мы НИКОГДА не запрашиваем пароли от ваших аккаунтов!
+              ⚠️ {t('privacy.noPasswords')}
             </p>
           </div>
         </section>
@@ -45,20 +56,20 @@ export const PrivacyPage: React.FC = () => {
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center">
             <Eye className="w-5 h-5 text-green-500 mr-2" />
-            2. Использование данных
+            2. {t('privacy.dataUsage')}
           </h2>
           <div className="space-y-3">
-            <p>Ваши данные используются исключительно для:</p>
+            <p>{t('privacy.dataUsageText')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Выполнения заказанных услуг</li>
-              <li>Связи с вами по вопросам заказов</li>
-              <li>Предоставления технической поддержки</li>
-              <li>Улучшения качества сервиса</li>
-              <li>Соблюдения законодательных требований</li>
+              <li>{t('privacy.serviceDelivery')}</li>
+              <li>{t('privacy.communication')}</li>
+              <li>{t('privacy.support')}</li>
+              <li>{t('privacy.qualityImprovement')}</li>
+              <li>{t('privacy.legalCompliance')}</li>
             </ul>
             <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4 mt-4">
               <p className="text-green-400 font-medium">
-                ✅ Мы НЕ передаем ваши данные третьим лицам для маркетинговых целей
+                ✅ {t('privacy.noThirdParty')}
               </p>
             </div>
           </div>
@@ -67,32 +78,32 @@ export const PrivacyPage: React.FC = () => {
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center">
             <Lock className="w-5 h-5 text-purple-500 mr-2" />
-            3. Защита данных
+            3. {t('privacy.dataProtection')}
           </h2>
           <div className="space-y-3">
-            <p>Для защиты ваших данных мы применяем:</p>
+            <p>{t('privacy.dataProtectionText')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>SSL-шифрование для всех соединений</li>
-              <li>Безопасное хранение данных на защищенных серверах</li>
-              <li>Ограниченный доступ сотрудников к персональным данным</li>
-              <li>Регулярные проверки безопасности системы</li>
-              <li>Соответствие международным стандартам защиты</li>
+              <li>{t('privacy.sslEncryption')}</li>
+              <li>{t('privacy.secureStorage')}</li>
+              <li>{t('privacy.limitedAccess')}</li>
+              <li>{t('privacy.securityChecks')}</li>
+              <li>{t('privacy.standardsCompliance')}</li>
             </ul>
           </div>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4">
-            4. Ваши права
+            4. {t('privacy.yourRights')}
           </h2>
           <div className="space-y-3">
-            <p>Вы имеете право:</p>
+            <p>{t('privacy.yourRightsText')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Запросить информацию о хранящихся данных</li>
-              <li>Потребовать исправления неточных данных</li>
-              <li>Запросить удаление ваших данных</li>
-              <li>Ограничить обработку данных</li>
-              <li>Отозвать согласие на обработку</li>
+              <li>{t('privacy.requestInfo')}</li>
+              <li>{t('privacy.correctData')}</li>
+              <li>{t('privacy.deleteData')}</li>
+              <li>{t('privacy.limitProcessing')}</li>
+              <li>{t('privacy.withdrawConsent')}</li>
             </ul>
           </div>
         </section>
@@ -132,15 +143,15 @@ export const PrivacyPage: React.FC = () => {
           <div className="space-y-2">
             <p>По вопросам конфиденциальности обращайтесь:</p>
             <p><strong>Email:</strong> support.smm.boost.kz@gmail.com</p>
-            <p><strong>Telegram:</strong> @smm.boost.kz</p>
+            <p><strong>Telegram:</strong> @smmboost1bot</p>
             <p><strong>Телефон:</strong> +7 707 345 12 12</p>
           </div>
         </section>
       </div>
 
-      <div className="text-center mt-8 text-sm text-gray-500">
-        Последнее обновление: 15 января 2024 года
-      </div>
+        <div className="text-center mt-8 text-sm text-gray-500">
+          {t('privacy.lastUpdate')}
+        </div>
     </div>
   );
 };

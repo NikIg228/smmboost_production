@@ -27,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
   const handleSignOut = async () => {
     try {
       await signOut();
-      alert('Вы успешно вышли из аккаунта');
+      alert('Вы успешно вышли из системы');
       setShowProfileMenu(false);
     } catch (error) {
       console.error('Error signing out:', error);
@@ -69,6 +69,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
               </button>
             ))}
           </nav>
+
 
           {/* Desktop Auth */}
           <div className="hidden md:flex items-center space-x-4">
@@ -155,6 +156,8 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                   <span>{item.label}</span>
                 </button>
               ))}
+              
+              
               <div className="pt-4 border-t border-gray-800 space-y-2">
                 {isAuthenticated ? (
                   <>

@@ -102,35 +102,35 @@ function App() {
   return (
     <ErrorBoundary>
       <div className="min-h-screen bg-gray-900 text-white relative">
-        {/* Анимированный фон */}
-        <AnimatedBackground />
-        
-        {/* Основной контент поверх фона */}
-        <div className="relative z-10">
-          <Header 
-            onPageChange={handlePageChange} 
-            currentPage={currentPage}
-            onAuthModal={setAuthModal}
-            onConsultation={() => setIsConsultationOpen(true)}
-          />
-          <main className="pt-14 sm:pt-16">
-            {renderContent()}
-          </main>
-          <Footer />
-        </div>
-        
-        {/* Global Modals */}
-        <AuthModal
-          isOpen={authModal.isOpen}
-          onClose={() => setAuthModal({ ...authModal, isOpen: false })}
-          mode={authModal.mode}
-          onModeChange={handleAuthModeChange}
+      {/* Анимированный фон */}
+      <AnimatedBackground />
+      
+      {/* Основной контент поверх фона */}
+      <div className="relative z-10">
+        <Header 
+          onPageChange={handlePageChange} 
+          currentPage={currentPage}
+          onAuthModal={setAuthModal}
+          onConsultation={() => setIsConsultationOpen(true)}
         />
-        
-        <ConsultationModal
-          isOpen={isConsultationOpen}
-          onClose={() => setIsConsultationOpen(false)}
-        />
+        <main className="pt-14 sm:pt-16">
+          {renderContent()}
+        </main>
+        <Footer />
+      </div>
+      
+      {/* Global Modals */}
+      <AuthModal
+        isOpen={authModal.isOpen}
+        onClose={() => setAuthModal({ ...authModal, isOpen: false })}
+        mode={authModal.mode}
+        onModeChange={handleAuthModeChange}
+      />
+      
+      <ConsultationModal
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+      />
       </div>
     </ErrorBoundary>
   );

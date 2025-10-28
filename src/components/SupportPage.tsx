@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { t } from '../lib/i18n';
 import { MessageCircle, Mail, Phone, Clock, Send, ChevronDown, ChevronUp } from 'lucide-react';
 
 const faqs = [
@@ -11,12 +12,12 @@ const faqs = [
     answer: 'Большинство заказов начинают выполняться в течение 0-30 минут после оплаты. Время может варьироваться в зависимости от типа услуги и текущей загрузки.'
   },
   {
-    question: 'Что делать если подписчики или лайки пропали?',
-    answer: 'У нас есть гарантия на все услуги. Если в течение гарантийного периода количество уменьшилось, мы бесплатно довосполним до заказанного объема. Обратитесь в поддержку с номером заказа.'
+    question: 'Что делать, если подписчики или лайки исчезли?',
+    answer: 'У нас есть гарантия на все услуги. Если количество уменьшилось в течение гарантийного периода, мы бесплатно пополним до заказанного объема. Обратитесь в поддержку с номером заказа.'
   },
   {
     question: 'Можно ли отменить заказ?',
-    answer: 'Отменить заказ можно только до начала его выполнения. Если работа уже началась, отмена невозможна. Рекомендуем внимательно проверять данные перед оплатой.'
+    answer: 'Отменить заказ можно только до начала выполнения. Если работа уже началась, отмена невозможна. Рекомендуем внимательно проверять данные перед оплатой.'
   },
   {
     question: 'Какие способы оплаты вы принимаете?',
@@ -36,11 +37,12 @@ export const SupportPage: React.FC = () => {
     subject: '',
     message: ''
   });
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Здесь была бы логика отправки формы
-    alert('Сообщение отправлено! Мы ответим вам в течение 24 часов.');
+    alert('Сообщение отправлено! Мы ответим в течение 24 часов.');
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
@@ -54,14 +56,14 @@ export const SupportPage: React.FC = () => {
           </span>
         </h1>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          Мы готовы помочь вам 24/7. Выберите удобный способ связи или найдите ответ в FAQ
+          Мы всегда готовы помочь вам с любыми вопросами
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Contact Methods */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-white mb-6">Связаться с нами</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">{t('support.contacts')}</h2>
           
           {/* Contact Cards */}
           <div className="space-y-4">
@@ -71,12 +73,12 @@ export const SupportPage: React.FC = () => {
                   <MessageCircle className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white">Telegram</h3>
-                  <p className="text-gray-400">Самый быстрый способ связи</p>
+                  <h3 className="text-lg font-semibold text-white">{t('support.telegram')}</h3>
+                  <p className="text-gray-400">{t('support.telegramDesc')}</p>
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="text-white">@smm.boost.kz</div>
+                <div className="text-white">@smmboost1bot</div>
                 <div className="text-sm text-gray-400">Ответ в течение 5 минут</div>
               </div>
             </div>
@@ -87,8 +89,8 @@ export const SupportPage: React.FC = () => {
                   <Mail className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white">Email</h3>
-                  <p className="text-gray-400">Для подробных вопросов</p>
+                  <h3 className="text-lg font-semibold text-white">{t('support.email')}</h3>
+                  <p className="text-gray-400">{t('support.emailDesc')}</p>
                 </div>
               </div>
               <div className="space-y-2">
@@ -103,8 +105,8 @@ export const SupportPage: React.FC = () => {
                   <Phone className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white">Телефон</h3>
-                  <p className="text-gray-400">Голосовая поддержка</p>
+                  <h3 className="text-lg font-semibold text-white">{t('support.phone')}</h3>
+                  <p className="text-gray-400">{t('support.phoneDesc')}</p>
                 </div>
               </div>
               <div className="space-y-2">
@@ -118,7 +120,7 @@ export const SupportPage: React.FC = () => {
           <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
             <div className="flex items-center space-x-3 mb-4">
               <Clock className="w-6 h-6 text-yellow-500" />
-              <h3 className="text-lg font-semibold text-white">Режим работы</h3>
+              <h3 className="text-lg font-semibold text-white">{t('support.workHours')}</h3>
             </div>
             <div className="space-y-2 text-gray-300">
               <div className="flex justify-between">
@@ -139,61 +141,61 @@ export const SupportPage: React.FC = () => {
 
         {/* Contact Form */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-white mb-6">Написать нам</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">{t('support.contactForm')}</h2>
           
           <form onSubmit={handleSubmit} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Имя
+                {t('support.name')}
               </label>
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                placeholder="Ваше имя"
+                placeholder={t('support.namePlaceholder')}
                 required
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Email
+                {t('support.email')}
               </label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                placeholder="Адрес вашей эл.почты"
+                placeholder={t('support.emailPlaceholder')}
                 required
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Тема
+                {t('support.subject')}
               </label>
               <input
                 type="text"
                 value={formData.subject}
                 onChange={(e) => setFormData({...formData, subject: e.target.value})}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                placeholder="Тема сообщения"
+                placeholder={t('support.subjectPlaceholder')}
                 required
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Сообщение
+                {t('support.message')}
               </label>
               <textarea
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
                 rows={5}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                placeholder="Опишите ваш вопрос или проблему..."
+                placeholder={t('support.messagePlaceholder')}
                 required
               />
             </div>
@@ -203,7 +205,7 @@ export const SupportPage: React.FC = () => {
               className="w-full flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-pink-500/25"
             >
               <Send className="w-5 h-5" />
-              <span>Отправить сообщение</span>
+              <span>{t('support.send')}</span>
             </button>
           </form>
         </div>
@@ -212,7 +214,7 @@ export const SupportPage: React.FC = () => {
       {/* FAQ Section */}
       <div className="mt-16">
         <h2 className="text-2xl font-bold text-white mb-8 text-center">
-          Часто задаваемые вопросы
+          {t('support.faq')}
         </h2>
         
         <div className="max-w-3xl mx-auto space-y-4">

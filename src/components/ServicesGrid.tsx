@@ -16,20 +16,16 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick }) =>
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    // Ленивая анимация заголовка без пересоздания input
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setIsVisible(true);
+    }, { threshold: 0.1 });
+    const current = sectionRef.current;
+    if (current) observer.observe(current);
+    return () => {
+      if (current) observer.unobserve(current);
+      observer.disconnect();
+    };
   }, []);
 
   const categories = [
@@ -63,24 +59,23 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick }) =>
         <p className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-800 delay-200 ${
           isVisible ? 'animate-slideInLeft' : 'opacity-0 -translate-x-8'
         }`}>
-          Выберите нужную услугу для продвижения в социальных сетях
+          Выберите подходящий пакет для продвижения вашего аккаунта
         </p>
       </div>
 
       {/* Filters */}
       <div className="mb-8 space-y-4">
-        {/* Search */}
-        <div className={`relative max-w-md mx-auto transition-all duration-600 ${
-          isVisible ? 'animate-scaleIn' : 'opacity-0 scale-90'
-        }`}
-        style={{ animationDelay: '0.4s' }}>
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+        {/* Search (упрощено, без анимаций) */}
+        <div className="relative max-w-md mx-auto">
+          <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input
             type="text"
             placeholder="Поиск услуг..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 glass-effect border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
+            className="w-full pl-10 pr-4 py-3 glass-effect border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+            autoComplete="off"
+            inputMode="search"
           />
         </div>
 
@@ -94,7 +89,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick }) =>
                 : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
           >
-            Все платформы
+Все платформы
           </button>
           {platforms.map(platform => (
             <button

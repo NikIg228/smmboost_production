@@ -1,7 +1,9 @@
 import React from 'react';
+import { t } from '../../lib/i18n';
 import { RefreshCw, AlertCircle, CheckCircle, Clock } from 'lucide-react';
 
 export const RefundPage: React.FC = () => {
+  
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
@@ -22,17 +24,26 @@ export const RefundPage: React.FC = () => {
       {/* Content */}
       <div className="space-y-8 text-gray-300">
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4">Юридическая информация</h2>
+          <div className="space-y-1 text-sm text-gray-300">
+            <p>ТОО "White Trade"</p>
+            <p>БИН 250140025178</p>
+            <p>Республика Казахстан, город Алматы, Бостандыкский район, Темирязева 69, почтовый индекс 050057</p>
+          </div>
+        </section>
+
+        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center">
             <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-            Когда возможен возврат
+            {t('refund.whenPossible')}
           </h2>
           <div className="space-y-3">
-            <p>Возврат средств возможен в следующих случаях:</p>
+            <p>{t('refund.whenPossibleText')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Услуга не была предоставлена в течение 24 часов без объяснения причин</li>
-              <li>Количество предоставленных услуг меньше заказанного на 20% и более</li>
-              <li>Техническая ошибка в системе привела к двойному списанию</li>
-              <li>Заказ был отменен до начала выполнения по инициативе клиента</li>
+              <li>{t('refund.notProvided')}</li>
+              <li>{t('refund.insufficientQuantity')}</li>
+              <li>{t('refund.technicalError')}</li>
+              <li>{t('refund.cancelledByClient')}</li>
             </ul>
           </div>
         </section>
@@ -63,7 +74,7 @@ export const RefundPage: React.FC = () => {
           <div className="space-y-4">
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
               <h3 className="text-lg font-semibold text-white mb-2">Шаг 1: Обращение в поддержку</h3>
-              <p>Напишите в Telegram @smm.boost.kz или на email support.smm.boost.kz@gmail.com</p>
+              <p>Напишите в Telegram @smmboost1bot или на email support.smm.boost.kz@gmail.com</p>
             </div>
             
             <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
@@ -123,7 +134,7 @@ export const RefundPage: React.FC = () => {
             Контакты для возврата
           </h2>
           <div className="space-y-2">
-            <p><strong>Telegram:</strong> @smm.boost.kz</p>
+            <p><strong>Telegram:</strong> @smmboost1bot</p>
             <p><strong>Email:</strong> support.smm.boost.kz@gmail.com</p>
             <p><strong>Телефон:</strong> +7 707 345 12 12</p>
             <p className="text-sm text-gray-400 mt-4">
@@ -140,12 +151,12 @@ export const RefundPage: React.FC = () => {
             который устроит обе стороны.
           </p>
           <a
-            href="https://t.me/smm.boost.kz"
+            href="https://t.me/smmboost1bot"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200"
           >
-            Связаться с поддержкой
+            {t('refund.contactSupport')}
           </a>
         </div>
       </div>

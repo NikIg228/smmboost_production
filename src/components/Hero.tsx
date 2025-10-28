@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowRight, Zap, Shield, Clock, Headphones } from 'lucide-react';
 import { SplineSection } from './SplineSection';
 import { SocialProofSection } from './SocialProofSection';
@@ -9,27 +9,26 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
-
   const benefits = [
     {
       icon: Zap,
       title: 'Мгновенный запуск',
-      description: 'Начинаем работу через несколько минут'
+      description: 'Результат через 0-30 минут после оплаты'
     },
     {
       icon: Shield,
       title: 'Анонимно и безопасно',
-      description: 'Никаких рисков для вашего аккаунта'
+      description: 'Никаких паролей, полная конфиденциальность'
     },
     {
       icon: Clock,
-      title: 'Без пароля',
-      description: 'Нужна только ссылка на профиль'
+      title: 'Без паролей',
+      description: 'Не требуем доступ к вашему аккаунту'
     },
     {
       icon: Headphones,
-      title: 'Техподдержка 24/7',
-      description: 'Всегда готовы помочь и ответить'
+      title: 'Поддержка 24/7',
+      description: 'Помогаем в любое время дня и ночи'
     }
   ];
 
@@ -39,26 +38,35 @@ export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/20 to-gray-900/40"></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20">
           <div className="text-center">
+            {/* New Hero Header */}
+            <div className="mb-8 animate-heroTitle">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-4">
+                <span className="gradient-flow-text text-glow">
+                  Продвижение аккаунтов по всему миру — лайки и подписчики без границ!
+                </span>
+              </h2>
+            </div>
+
             {/* Main Heading */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent text-glow">
-                Продвижение в
+                Продвижение
               </span>
               <br />
               <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                Instagram, TikTok
+                в социальных сетях
               </span>
               <br />
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent text-glow">
-                и других соцсетях
+                для вашего успеха
               </span>
             </h1>
             
             {/* Subtitle */}
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Быстрая и безопасная накрутка лайков, подписчиков и просмотров
+              Профессиональные услуги для роста вашего присутствия в соцсетях
             </p>
             
             {/* CTA Buttons */}
