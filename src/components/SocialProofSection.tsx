@@ -43,7 +43,7 @@ export const SocialProofSection: React.FC = () => {
     {
       icon: Clock,
       title: 'Быстрый старт',
-      description: 'Запуск заказов за 0-30 минут'
+      description: 'Запуск заказов за 30 минут'
     },
     {
       icon: Award,

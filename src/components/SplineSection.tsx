@@ -34,7 +34,7 @@ export const SplineSection: React.FC<SplineSectionProps> = ({ onPageChange }) =>
     {
       icon: Zap,
       title: 'Быстрый старт',
-      description: 'Результат через 0-30 минут'
+      description: 'Результат через 30 минут'
     },
     {
       icon: Shield,

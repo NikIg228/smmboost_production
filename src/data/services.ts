@@ -21,7 +21,7 @@ export const services: Service[] = [
     icon: 'Heart',
     minQuantity: 100,
     maxQuantity: 50000,
-    startTime: '0-30 минут',
+    startTime: 'в течение 30 минут',
     speed: '1000-5000 в час',
     guarantee: '30 дней'
   },
@@ -63,7 +63,7 @@ export const services: Service[] = [
     icon: 'PlayCircle',
     minQuantity: 500,
     maxQuantity: 1000000,
-    startTime: '0-30 минут',
+    startTime: 'в течение 30 минут',
     speed: '10000-50000 в час',
     guarantee: '30 дней'
   },
@@ -107,7 +107,7 @@ export const services: Service[] = [
     icon: 'Heart',
     minQuantity: 100,
     maxQuantity: 100000,
-    startTime: '0-30 минут',
+    startTime: 'в течение 30 минут',
     speed: '1000-10000 в час',
     guarantee: '30 дней'
   },
@@ -179,7 +179,7 @@ export const services: Service[] = [
     icon: 'ThumbsUp',
     minQuantity: 50,
     maxQuantity: 50000,
-    startTime: '0-30 минут',
+    startTime: 'в течение 30 минут',
     speed: '500-2000 в час',
     guarantee: '60 дней'
   },
@@ -195,7 +195,7 @@ export const services: Service[] = [
     icon: 'UserPlus',
     minQuantity: 100,
     maxQuantity: 50000,
-    startTime: '0-30 минут',
+    startTime: 'в течение 30 минут',
     speed: '1000-5000 в час',
     guarantee: '30 дней'
   },
@@ -225,7 +225,7 @@ export const services: Service[] = [
     icon: 'Heart',
     minQuantity: 100,
     maxQuantity: 50000,
-    startTime: '0-30 минут',
+    startTime: 'в течение 30 минут',
     speed: '1000-5000 в час',
     guarantee: '30 дней'
   },
@@ -283,7 +283,7 @@ export const services: Service[] = [
     icon: 'Heart',
     minQuantity: 100,
     maxQuantity: 50000,
-    startTime: '0-30 минут',
+    startTime: 'в течение 30 минут',
     speed: '1000-5000 в час',
     guarantee: '30 дней'
   },

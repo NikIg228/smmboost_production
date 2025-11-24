@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { t } from '../lib/i18n';
-import { MessageCircle, Mail, Phone, Clock, Send, ChevronDown, ChevronUp } from 'lucide-react';
+import { MessageCircle, Mail, Clock, Send, ChevronDown, ChevronUp } from 'lucide-react';
 
 const faqs = [
   {
@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     question: 'Как быстро начинается выполнение заказа?',
-    answer: 'Большинство заказов начинают выполняться в течение 0-30 минут после оплаты. Время может варьироваться в зависимости от типа услуги и текущей загрузки.'
+    answer: 'Большинство заказов начинают выполняться в течение 30 минут после оплаты. Время может варьироваться в зависимости от типа услуги и текущей загрузки.'
   },
   {
     question: 'Что делать, если подписчики или лайки исчезли?',
@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: 'Какие способы оплаты вы принимаете?',
-    answer: 'Мы принимаем оплату банковскими картами, электронными кошельками, криптовалютой и банковскими переводами. Все платежи проходят через защищенные платежные системы.'
+    answer: 'Мы принимаем оплату банковскими картами, электронными кошельками и банковскими переводами. Все платежи проходят через защищенные платежные системы.'
   },
   {
     question: 'Влияет ли накрутка на охваты и алгоритмы?',
@@ -99,21 +99,6 @@ export const SupportPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">{t('support.phone')}</h3>
-                  <p className="text-gray-400">{t('support.phoneDesc')}</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-white">+7 (707) 345 12 12</div>
-                <div className="text-sm text-gray-400">Ежедневно с 9:00 до 21:00</div>
-              </div>
-            </div>
           </div>
 
           {/* Working Hours */}
@@ -130,10 +115,6 @@ export const SupportPage: React.FC = () => {
               <div className="flex justify-between">
                 <span>Email поддержка:</span>
                 <span className="text-green-400">24/7</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Телефон:</span>
-                <span>09:00 - 21:00</span>
               </div>
             </div>
           </div>

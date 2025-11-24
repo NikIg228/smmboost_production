@@ -1,5 +1,29 @@
 import React from 'react';
-import { Zap, Mail, Phone, MessageCircle } from 'lucide-react';
+import { Zap, Mail } from 'lucide-react';
+
+const TelegramIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M21.5 4.5L18.5 19.5C18.5 19.5 18.1 20.5 17 20L10 15.5L7.5 17L6 11.5L16.5 6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10 15.5L9.5 20L12.2 16.9"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 export const Footer: React.FC = () => {
   
@@ -32,7 +56,7 @@ export const Footer: React.FC = () => {
               <p className="text-gray-500 uppercase tracking-wider text-xs">Юридическая информация</p>
               <p>ТОО "White Trade"</p>
               <p>БИН 250140025178</p>
-              <p>Республика Казахстан, город Алматы, Бостандыкский район, Темирязева 69, почтовый индекс 050057</p>
+              <p>Казахстан, г. Алматы, Бостандыкский район, Темирязева 69, 050057</p>
               <p>ТОО "Ворлд Трейд"</p>
               <p>БИН 240740019557</p>
               <p>Казахстан, г. Алматы, Турксибский район, ул. Дулатова 53, 050003</p>
@@ -129,21 +153,20 @@ export const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">Контакты</h3>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-gray-400">
-                <Mail className="w-5 h-5" />
-                <span>support.smm.boost.kz@gmail.com</span>
-              </div>
-              <div className="flex items-center space-x-3 text-gray-400">
-                <Phone className="w-5 h-5" />
-                <span>+7 707 345 12 12</span>
+              <div className="relative text-gray-400">
+                <Mail className="w-5 h-5 absolute -left-8 top-1/2 -translate-y-1/2" />
+                <div className="flex items-center space-x-2">
+                  <span>Email:</span>
+                  <span className="whitespace-nowrap">support.smm.boost.kz@gmail.com</span>
+                </div>
               </div>
               <a
                 href="https://t.me/smmboost1bot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors"
+                className="relative text-gray-400 hover:text-white transition-colors inline-block"
               >
-                <MessageCircle className="w-5 h-5" />
+                <TelegramIcon className="w-5 h-5 absolute -left-8 top-1/2 -translate-y-1/2" />
                 <span>Telegram: @smmboost1bot</span>
               </a>
             </div>

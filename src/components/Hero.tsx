@@ -13,7 +13,7 @@ export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
     {
       icon: Zap,
       title: 'Мгновенный запуск',
-      description: 'Результат через 0-30 минут после оплаты'
+      description: 'Результат через 30 минут после оплаты'
     },
     {
       icon: Shield,

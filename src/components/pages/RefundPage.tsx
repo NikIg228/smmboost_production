@@ -28,7 +28,10 @@ export const RefundPage: React.FC = () => {
           <div className="space-y-1 text-sm text-gray-300">
             <p>ТОО "White Trade"</p>
             <p>БИН 250140025178</p>
-            <p>Республика Казахстан, город Алматы, Бостандыкский район, Темирязева 69, почтовый индекс 050057</p>
+            <p>Казахстан, г. Алматы, Бостандыкский район, Темирязева 69, 050057</p>
+            <p>ТОО "Ворлд Трейд"</p>
+            <p>БИН 240740019557</p>
+            <p>Казахстан, г. Алматы, Турксибский район, ул. Дулатова 53, 050003</p>
           </div>
         </section>
 
@@ -106,8 +109,6 @@ export const RefundPage: React.FC = () => {
             <p>Возврат производится тем же способом, которым была произведена оплата:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li><strong>Банковская карта:</strong> 3-7 рабочих дней</li>
-              <li><strong>Kaspi Pay:</strong> 1-3 рабочих дня</li>
-              <li><strong>Криптовалюта:</strong> в течение 24 часов</li>
               <li><strong>Электронные кошельки:</strong> 1-3 рабочих дня</li>
             </ul>
           </div>
@@ -136,10 +137,6 @@ export const RefundPage: React.FC = () => {
           <div className="space-y-2">
             <p><strong>Telegram:</strong> @smmboost1bot</p>
             <p><strong>Email:</strong> support.smm.boost.kz@gmail.com</p>
-            <p><strong>Телефон:</strong> +7 707 345 12 12</p>
-            <p className="text-sm text-gray-400 mt-4">
-              Время работы поддержки: 24/7 (Telegram), 09:00-21:00 (телефон)
-            </p>
           </div>
         </section>
       </div>

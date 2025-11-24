@@ -28,7 +28,10 @@ export const PrivacyPage: React.FC = () => {
           <div className="space-y-1 text-sm text-gray-300">
             <p>ТОО "White Trade"</p>
             <p>БИН 250140025178</p>
-            <p>Республика Казахстан, город Алматы, Бостандыкский район, Темирязева 69, почтовый индекс 050057</p>
+            <p>Казахстан, г. Алматы, Бостандыкский район, Темирязева 69, 050057</p>
+            <p>ТОО "Ворлд Трейд"</p>
+            <p>БИН 240740019557</p>
+            <p>Казахстан, г. Алматы, Турксибский район, ул. Дулатова 53, 050003</p>
           </div>
         </section>
 
@@ -143,8 +146,7 @@ export const PrivacyPage: React.FC = () => {
           <div className="space-y-2">
             <p>По вопросам конфиденциальности обращайтесь:</p>
             <p><strong>Email:</strong> support.smm.boost.kz@gmail.com</p>
-            <p><strong>Telegram:</strong> @smmboost1bot</p>
-            <p><strong>Телефон:</strong> +7 707 345 12 12</p>
+            <p><strong>Telegram:</strong> @smmboost1bot</p>           
           </div>
         </section>
       </div>
