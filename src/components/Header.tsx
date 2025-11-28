@@ -108,21 +108,13 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                 )}
                 </div>
             ) : (
-              <>
-                <button 
-                  onClick={() => onAuthModal({ isOpen: true, mode: 'login' })}
-                  className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:text-white transition-colors"
-                >
-                  <LogIn className="w-4 h-4" />
-                  <span>Войти</span>
-                </button>
-                <button 
-                  onClick={() => onAuthModal({ isOpen: true, mode: 'register' })}
-                  className="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift glow-effect neon-button"
-                >
-                  Регистрация
-                </button>
-              </>
+              <button 
+                onClick={() => onAuthModal({ isOpen: true, mode: 'login' })}
+                className="flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift glow-effect neon-button"
+              >
+                <LogIn className="w-4 h-4" />
+                <span>Войти</span>
+              </button>
             )}
           </div>
 
@@ -185,27 +177,16 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                     </button>
                   </>
                 ) : (
-                  <>
-                    <button 
-                      onClick={() => {
-                        onAuthModal({ isOpen: true, mode: 'login' });
-                        setIsMenuOpen(false);
-                      }}
-                      className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-gray-300 hover:text-white transition-colors"
-                    >
-                      <LogIn className="w-4 h-4" />
-                      <span>Войти</span>
-                    </button>
-                    <button 
-                      onClick={() => {
-                        onAuthModal({ isOpen: true, mode: 'register' });
-                        setIsMenuOpen(false);
-                      }}
-                      className="w-full px-3 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200"
-                    >
-                      Регистрация
-                    </button>
-                  </>
+                  <button 
+                    onClick={() => {
+                      onAuthModal({ isOpen: true, mode: 'login' });
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full flex items-center justify-center space-x-2 px-3 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 shadow-lg"
+                  >
+                    <LogIn className="w-4 h-4" />
+                    <span>Войти</span>
+                  </button>
                 )}
               </div>
             </nav>
