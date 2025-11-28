@@ -25,13 +25,17 @@ export const RefundPage: React.FC = () => {
       <div className="space-y-8 text-gray-300">
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4">Юридическая информация</h2>
-          <div className="space-y-1 text-sm text-gray-300">
-            <p>ТОО "White Trade"</p>
-            <p>БИН 250140025178</p>
-            <p>Казахстан, г. Алматы, Бостандыкский район, Темирязева 69, 050057</p>
-            <p>ТОО "Ворлд Трейд"</p>
-            <p>БИН 240740019557</p>
-            <p>Казахстан, г. Алматы, Турксибский район, ул. Дулатова 53, 050003</p>
+          <div className="space-y-4 text-sm text-gray-300">
+            <div className="space-y-1">
+              <p>ТОО "White Trade"</p>
+              <p>БИН 250140025178</p>
+              <p>Казахстан, г. Алматы, Бостандыкский район, Темирязева 69, 050057</p>
+            </div>
+            <div className="pt-4 border-t border-gray-600 space-y-1">
+              <p>ТОО "Ворлд Трейд"</p>
+              <p>БИН 240740019557</p>
+              <p>Казахстан, г. Алматы, Турксибский район, ул. Дулатова 53, 050003</p>
+            </div>
           </div>
         </section>
 
