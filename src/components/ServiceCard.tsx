@@ -5,6 +5,7 @@ import { Service } from '../types';
 interface ServiceCardProps {
   service: Service;
   onServiceClick: (service: Service) => void;
+  onBuyClick: () => void;
 }
 
 const iconMap = {
@@ -31,12 +32,15 @@ const platformColors = {
   twitter: 'from-blue-400 to-blue-600'
 };
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClick }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClick, onBuyClick }) => {
   const IconComponent = iconMap[service.icon as keyof typeof iconMap];
   const platformGradient = platformColors[service.platform as keyof typeof platformColors];
   
   return (
-    <div className="group relative h-full glass-effect rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 overflow-hidden card-hover glow-effect">
+    <div 
+      className="group relative h-full glass-effect rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 overflow-hidden card-hover glow-effect cursor-pointer"
+      onClick={() => onServiceClick(service)}
+    >
       <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       
       <div className="relative z-10 p-4 sm:p-6 h-full flex flex-col">
@@ -82,7 +86,10 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClic
         
         {/* Action Button */}
         <button
-          onClick={() => onServiceClick(service)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onBuyClick();
+          }}
           className="w-full mt-auto py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift glow-effect neon-button"
         >
           Купить

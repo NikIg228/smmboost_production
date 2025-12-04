@@ -6,9 +6,10 @@ import { Service } from '../types';
 
 interface ServicesGridProps {
   onServiceClick: (service: Service) => void;
+  onBuyClick: () => void;
 }
 
-export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick }) => {
+export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick, onBuyClick }) => {
   const [selectedPlatform, setSelectedPlatform] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -130,6 +131,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick }) =>
             key={service.id}
             service={service}
             onServiceClick={onServiceClick}
+            onBuyClick={onBuyClick}
           />
         ))}
       </div>

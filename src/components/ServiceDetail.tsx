@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Check, Shield, Clock, Zap, Calculator } from 'lucide-react';
 import { Service } from '../types';
-import { PaymentModal } from './PaymentModal';
-import { useAuth } from '../hooks/useAuth';
 
 interface ServiceDetailProps {
   service: Service;
   onBack: () => void;
+  onPaymentClick: () => void;
 }
 
-export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
+export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, onPaymentClick }) => {
   const [url, setUrl] = useState('');
   const [quantity, setQuantity] = useState(1000);
   const [isCalculating, setIsCalculating] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const { isAuthenticated } = useAuth();
 
   const predefinedQuantities = [100, 500, 1000, 5000, 10000];
   
@@ -36,17 +33,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack })
   };
 
   const handleOrder = () => {
-    if (!url) {
-      alert('Пожалуйста, введите ссылку на профиль');
-      return;
-    }
-    
-    if (!isAuthenticated) {
-      alert('Пожалуйста, войдите в аккаунт для оформления заказа');
-      return;
-    }
-    
-    setShowPaymentModal(true);
+    onPaymentClick();
   };
 
   return (
@@ -227,16 +214,6 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack })
           </div>
         </div>
       </div>
-      
-      {/* Payment Modal */}
-      <PaymentModal
-        isOpen={showPaymentModal}
-        onClose={() => setShowPaymentModal(false)}
-        service={service}
-        quantity={quantity}
-        url={url}
-        totalPrice={totalPrice}
-      />
     </div>
   );
 };

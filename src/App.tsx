@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { AnimatedBackground } from './components/AnimatedBackground';
 import { Header } from './components/Header';
 import { AuthModal } from './components/AuthModal';
 import { ConsultationModal } from './components/ConsultationModal';
+import { PaymentUnavailableBanner } from './components/PaymentUnavailableBanner';
 import { Hero } from './components/Hero';
 import { ServicesGrid } from './components/ServicesGrid';
 import { ServiceDetail } from './components/ServiceDetail';
@@ -25,6 +26,8 @@ function App() {
     mode: 'login'
   });
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [showPaymentBanner, setShowPaymentBanner] = useState(false);
+  const [bannerType, setBannerType] = useState<'initial' | 'buy'>('initial');
 
   // Функция для плавного скролла к началу страницы
   const scrollToTop = () => {
@@ -53,10 +56,24 @@ function App() {
     };
   }, []);
 
+  // Show payment banner on site load (only if not shown before)
+  useEffect(() => {
+    const hasSeenBanner = localStorage.getItem('paymentBannerSeen');
+    if (!hasSeenBanner) {
+      setBannerType('initial');
+      setShowPaymentBanner(true);
+    }
+  }, []);
+
   const handleServiceClick = (service: Service) => {
     setSelectedService(service);
     setCurrentPage('service-detail');
     scrollToTop();
+  };
+
+  const handleBuyClick = () => {
+    setBannerType('buy');
+    setShowPaymentBanner(true);
   };
 
   const handleBackToServices = () => {
@@ -73,12 +90,19 @@ function App() {
       case 'home':
         return <Hero onPageChange={handlePageChange} onConsultation={() => setIsConsultationOpen(true)} />;
       case 'services':
-        return <ServicesGrid onServiceClick={handleServiceClick} />;
+        return <ServicesGrid onServiceClick={handleServiceClick} onBuyClick={handleBuyClick} />;
       case 'service-detail':
         return selectedService ? (
-          <ServiceDetail service={selectedService} onBack={handleBackToServices} />
+          <ServiceDetail 
+            service={selectedService} 
+            onBack={handleBackToServices}
+            onPaymentClick={() => {
+              setBannerType('buy');
+              setShowPaymentBanner(true);
+            }}
+          />
         ) : (
-          <ServicesGrid onServiceClick={handleServiceClick} />
+          <ServicesGrid onServiceClick={handleServiceClick} onBuyClick={handleBuyClick} />
         );
       case 'profile':
         return <ProfilePage />;
@@ -130,6 +154,25 @@ function App() {
       <ConsultationModal
         isOpen={isConsultationOpen}
         onClose={() => setIsConsultationOpen(false)}
+      />
+      
+      <PaymentUnavailableBanner
+        isOpen={showPaymentBanner}
+        onClose={() => {
+          setShowPaymentBanner(false);
+          if (bannerType === 'initial') {
+            localStorage.setItem('paymentBannerSeen', 'true');
+          }
+        }}
+        onGoToCatalog={bannerType === 'initial' ? () => handlePageChange('services') : undefined}
+        title={bannerType === 'buy' ? (
+          <>
+            Технические работы.<br />
+            Оплата временно недоступна.
+          </>
+        ) : 'Приём платежей временно недоступен'}
+        description={bannerType === 'initial' ? 'Пока что вы можете ознакомиться с каталогом' : undefined}
+        showCatalogButton={bannerType === 'initial'}
       />
       </div>
     </ErrorBoundary>
