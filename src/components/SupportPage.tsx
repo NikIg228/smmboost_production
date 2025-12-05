@@ -78,24 +78,15 @@ export const SupportPage: React.FC = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="text-white">@smmboost1bot</div>
+                <a 
+                  href="https://t.me/qmzp101" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-purple-400 transition-colors"
+                >
+                  @qmzp101
+                </a>
                 <div className="text-sm text-gray-400">Ответ в течение 5 минут</div>
-              </div>
-            </div>
-
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">{t('support.email')}</h3>
-                  <p className="text-gray-400">{t('support.emailDesc')}</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-white">support.smm.boost.kz@gmail.com</div>
-                <div className="text-sm text-gray-400">Ответ в течение 24 часов</div>
               </div>
             </div>
 
@@ -110,10 +101,6 @@ export const SupportPage: React.FC = () => {
             <div className="space-y-2 text-gray-300">
               <div className="flex justify-between">
                 <span>Telegram поддержка:</span>
-                <span className="text-green-400">24/7</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Email поддержка:</span>
                 <span className="text-green-400">24/7</span>
               </div>
             </div>

@@ -152,21 +152,14 @@ export const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">Контакты</h3>
             <div className="space-y-3">
-              <div className="relative text-gray-400">
-                <Mail className="w-5 h-5 absolute -left-8 top-1/2 -translate-y-1/2" />
-                <div className="flex items-center space-x-2">
-                  <span>Email:</span>
-                  <span className="whitespace-nowrap">support.smm.boost.kz@gmail.com</span>
-                </div>
-              </div>
               <a
-                href="https://t.me/smmboost1bot"
+                href="https://t.me/qmzp101"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative text-gray-400 hover:text-white transition-colors inline-block"
               >
                 <TelegramIcon className="w-5 h-5 absolute -left-8 top-1/2 -translate-y-1/2" />
-                <span>Telegram: @smmboost1bot</span>
+                <span>Telegram: @qmzp101</span>
               </a>
             </div>
           </div>

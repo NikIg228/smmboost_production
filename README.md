@@ -154,8 +154,7 @@ This project is proprietary software. All rights reserved.
 
 ## 📞 Support
 
-- **Telegram**: @smm.boost.kz
-- **Email**: support.smm.boost.kz@gmail.com
+- **Telegram**: @qmzp101
 - **Phone**: +7 707 345 12 12
 
 ## 🔄 Updates

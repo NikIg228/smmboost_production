@@ -74,7 +74,7 @@ export const RefundPage: React.FC = () => {
           <div className="space-y-4">
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
               <h3 className="text-lg font-semibold text-white mb-2">Шаг 1: Обращение в поддержку</h3>
-              <p>Напишите в Telegram @smmboost1bot или на email support.smm.boost.kz@gmail.com</p>
+              <p>Напишите в Telegram <a href="https://t.me/qmzp101" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 transition-colors">@qmzp101</a></p>
             </div>
             
             <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
@@ -132,27 +132,19 @@ export const RefundPage: React.FC = () => {
             Контакты для возврата
           </h2>
           <div className="space-y-2">
-            <p><strong>Telegram:</strong> @smmboost1bot</p>
-            <p><strong>Email:</strong> support.smm.boost.kz@gmail.com</p>
+            <p>
+              <strong>Telegram:</strong>{' '}
+              <a 
+                href="https://t.me/qmzp101" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-purple-400 hover:text-purple-300 transition-colors"
+              >
+                @qmzp101
+              </a>
+            </p>
           </div>
         </section>
-      </div>
-
-      <div className="text-center mt-8">
-        <div className="bg-gradient-to-r from-pink-500/10 to-purple-600/10 rounded-xl p-6 border border-purple-500/20">
-          <p className="text-gray-300 mb-4">
-            Мы стремимся решить все вопросы мирным путем и найти компромисс, 
-            который устроит обе стороны.
-          </p>
-          <a
-            href="https://t.me/smmboost1bot"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200"
-          >
-            {t('refund.contactSupport')}
-          </a>
-        </div>
       </div>
 
       <div className="text-center mt-8 text-sm text-gray-500">

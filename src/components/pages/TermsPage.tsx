@@ -129,8 +129,17 @@ export const TermsPage: React.FC = () => {
             6. Контактная информация
           </h2>
           <div className="space-y-2">
-            <p><strong>Email:</strong> support.smm.boost.kz@gmail.com</p>
-            <p><strong>Telegram:</strong> @smmboost1bot</p>
+            <p>
+              <strong>Telegram:</strong>{' '}
+              <a 
+                href="https://t.me/qmzp101" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-purple-400 hover:text-purple-300 transition-colors"
+              >
+                @qmzp101
+              </a>
+            </p>
           </div>
         </section>
       </div>
