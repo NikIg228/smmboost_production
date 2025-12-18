@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Search } from 'lucide-react';
 import { ServiceCard } from './ServiceCard';
 import { services, platforms } from '../data/services';
@@ -10,6 +11,7 @@ interface ServicesGridProps {
 }
 
 export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick, onBuyClick }) => {
+  const { t } = useTranslation();
   const [selectedPlatform, setSelectedPlatform] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,10 +32,10 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick, onBu
   }, []);
 
   const categories = [
-    { id: 'all', name: 'Все категории' },
-    { id: 'likes', name: 'Лайки' },
-    { id: 'followers', name: 'Подписчики' },
-    { id: 'views', name: 'Просмотры' },
+    { id: 'all', name: t('services.allCategories') },
+    { id: 'likes', name: t('services.categories.likes') },
+    { id: 'followers', name: t('services.categories.followers') },
+    { id: 'views', name: t('services.categories.views') },
   ];
 
   const filteredServices = services.filter(service => {
@@ -54,13 +56,13 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick, onBu
           isVisible ? 'animate-fadeInScale' : 'opacity-0 scale-95'
         }`}>
           <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent text-glow">
-            Наши услуги
+            {t('services.title')}
           </span>
         </h2>
         <p className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-800 delay-200 ${
           isVisible ? 'animate-slideInLeft' : 'opacity-0 -translate-x-8'
         }`}>
-          Выберите подходящий пакет для продвижения вашего аккаунта
+          {t('services.subtitle')}
         </p>
       </div>
 
@@ -71,7 +73,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick, onBu
           <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input
             type="text"
-            placeholder="Поиск услуг..."
+            placeholder={t('services.searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-3 glass-effect border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
@@ -90,7 +92,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick, onBu
                 : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
           >
-Все платформы
+{t('services.allPlatforms')}
           </button>
           {platforms.map(platform => (
             <button
@@ -140,7 +142,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick, onBu
       {filteredServices.length === 0 && (
         <div className="text-center py-12">
           <div className="text-gray-400 text-lg mb-4">
-            Услуги не найдены
+{t('services.noResults')}
           </div>
           <button
             onClick={() => {
@@ -150,7 +152,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onServiceClick, onBu
             }}
             className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200"
           >
-            Сбросить фильтры
+{t('services.resetFilters')}
           </button>
         </div>
       )}

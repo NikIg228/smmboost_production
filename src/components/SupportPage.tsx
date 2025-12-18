@@ -1,36 +1,37 @@
 import React, { useState } from 'react';
-import { t } from '../lib/i18n';
+import { useTranslation } from 'react-i18next';
 import { MessageCircle, Mail, Clock, Send, ChevronDown, ChevronUp } from 'lucide-react';
 
-const faqs = [
-  {
-    question: 'Безопасно ли использовать ваши услуги?',
-    answer: 'Да, все наши услуги полностью безопасны. Мы не запрашиваем пароли от аккаунтов и используем только официальные методы продвижения. Ваш аккаунт остается под вашим полным контролем.'
-  },
-  {
-    question: 'Как быстро начинается выполнение заказа?',
-    answer: 'Большинство заказов начинают выполняться в течение 30 минут после оплаты. Время может варьироваться в зависимости от типа услуги и текущей загрузки.'
-  },
-  {
-    question: 'Что делать, если подписчики или лайки исчезли?',
-    answer: 'У нас есть гарантия на все услуги. Если количество уменьшилось в течение гарантийного периода, мы бесплатно пополним до заказанного объема. Обратитесь в поддержку с номером заказа.'
-  },
-  {
-    question: 'Можно ли отменить заказ?',
-    answer: 'Отменить заказ можно только до начала выполнения. Если работа уже началась, отмена невозможна. Рекомендуем внимательно проверять данные перед оплатой.'
-  },
-  {
-    question: 'Какие способы оплаты вы принимаете?',
-    answer: 'Мы принимаем оплату банковскими картами, электронными кошельками и банковскими переводами. Все платежи проходят через защищенные платежные системы.'
-  },
-  {
-    question: 'Влияет ли накрутка на охваты и алгоритмы?',
-    answer: 'Наши услуги помогают улучшить показатели аккаунта, что положительно влияет на алгоритмы социальных сетей. Качественные подписчики и активность способствуют органическому росту.'
-  }
-];
-
 export const SupportPage: React.FC = () => {
+  const { t } = useTranslation();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  
+  const faqs = [
+    {
+      question: t('support.faqs.safe.question'),
+      answer: t('support.faqs.safe.answer')
+    },
+    {
+      question: t('support.faqs.speed.question'),
+      answer: t('support.faqs.speed.answer')
+    },
+    {
+      question: t('support.faqs.disappeared.question'),
+      answer: t('support.faqs.disappeared.answer')
+    },
+    {
+      question: t('support.faqs.cancel.question'),
+      answer: t('support.faqs.cancel.answer')
+    },
+    {
+      question: t('support.faqs.payment.question'),
+      answer: t('support.faqs.payment.answer')
+    },
+    {
+      question: t('support.faqs.algorithm.question'),
+      answer: t('support.faqs.algorithm.answer')
+    }
+  ];
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,7 +43,7 @@ export const SupportPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Здесь была бы логика отправки формы
-    alert('Сообщение отправлено! Мы ответим в течение 24 часов.');
+    alert(t('support.sendSuccess'));
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
@@ -52,11 +53,11 @@ export const SupportPage: React.FC = () => {
       <div className="text-center mb-12">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-            Поддержка
+            {t('support.title')}
           </span>
         </h1>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          Мы всегда готовы помочь вам с любыми вопросами
+          {t('support.subtitle')}
         </p>
       </div>
 
@@ -86,7 +87,7 @@ export const SupportPage: React.FC = () => {
                 >
                   @qmzp101
                 </a>
-                <div className="text-sm text-gray-400">Ответ в течение 5 минут</div>
+                <div className="text-sm text-gray-400">{t('support.responseTime')}</div>
               </div>
             </div>
 
@@ -100,7 +101,7 @@ export const SupportPage: React.FC = () => {
             </div>
             <div className="space-y-2 text-gray-300">
               <div className="flex justify-between">
-                <span>Telegram поддержка:</span>
+                <span>{t('support.telegramSupport')}:</span>
                 <span className="text-green-400">24/7</span>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Modal } from './Modal';
 import { Mail, Lock, User, Gift } from 'lucide-react';
 import { signUp, signIn, signInWithGoogle } from '../lib/supabase';
@@ -12,6 +13,7 @@ interface AuthModalProps {
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChange }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,7 +33,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
     setSuccess(null);
     
     if (mode === 'register' && formData.password !== formData.confirmPassword) {
-      setError('Пароли не совпадают');
+      setError(t('auth.register.passwordMismatch'));
       setLoading(false);
       return;
     }
@@ -40,21 +42,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
       if (mode === 'register') {
         const { error } = await signUp(formData.email, formData.password, formData.name);
         if (error) throw error;
-        setSuccess('Отлично! Мы отправили письмо с подтверждением на ваш адрес.');
+        setSuccess(t('auth.register.success'));
       } else {
         const { error } = await signIn(formData.email, formData.password);
         if (error) throw error;
         onClose();
       }
     } catch (error: any) {
-      let errorMessage = 'Произошла ошибка. Попробуйте еще раз.';
+      let errorMessage = t('auth.errors.generic');
       
       if (error.message?.includes('Invalid login credentials')) {
-        errorMessage = 'Неверный email или пароль';
+        errorMessage = t('auth.errors.invalidCredentials');
       } else if (error.message?.includes('Email not confirmed')) {
-        errorMessage = 'Подтвердите email перед входом';
+        errorMessage = t('auth.errors.emailNotConfirmed');
       } else if (error.message?.includes('User already registered') || error.message?.includes('already been registered')) {
-        errorMessage = 'Пользователь с таким email уже существует';
+        errorMessage = t('auth.errors.userExists');
         if (onModeChange) {
           setTimeout(() => {
             onModeChange('login');
@@ -80,7 +82,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
       if (error) throw error;
       // User will be redirected to Google, so we don't close the modal here
     } catch (error: any) {
-      let errorMessage = 'Ошибка входа через Google';
+      let errorMessage = t('auth.errors.googleError');
       if (error.message) {
         errorMessage = error.message;
       }
@@ -97,7 +99,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
     setSuccess(null);
   };
 
-  const title = mode === 'login' ? 'Вход в аккаунт' : 'Регистрация';
+  const title = mode === 'login' ? t('auth.login.title') : t('auth.register.title');
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} title={title}>
@@ -106,7 +108,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
         <GoogleButton
           onClick={handleGoogleSignIn}
           loading={googleLoading}
-          text={mode === 'login' ? 'Войти через Google' : 'Зарегистрироваться через Google'}
+          text={mode === 'login' ? t('auth.login.googleButton') : t('auth.register.googleButton')}
         />
 
         {/* Divider */}
@@ -115,7 +117,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
             <div className="w-full border-t border-gray-600"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-3 bg-gray-800 text-gray-400">или</span>
+            <span className="px-3 bg-gray-800 text-gray-400">{t('common.or')}</span>
           </div>
         </div>
 
@@ -136,7 +138,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
         {mode === 'register' && (
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Имя
+              {t('auth.register.name')}
             </label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -145,7 +147,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                 className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                placeholder="Ваше имя"
+                placeholder={t('auth.register.namePlaceholder')}
                 required
               />
             </div>
@@ -163,7 +165,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
               className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-              placeholder="Ваш email"
+              placeholder={mode === 'login' ? t('auth.login.emailPlaceholder') : t('auth.register.emailPlaceholder')}
               required={mode === 'register'}
             />
           </div>
@@ -172,7 +174,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
 
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Пароль
+            {t('profile.password')}
           </label>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -181,7 +183,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
               value={formData.password}
               onChange={(e) => setFormData({...formData, password: e.target.value})}
               className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-              placeholder="Минимум 6 символов"
+              placeholder={mode === 'login' ? t('auth.login.passwordPlaceholder') : t('auth.register.passwordPlaceholder')}
               required={mode === 'register'}
             />
           </div>
@@ -190,7 +192,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
         {mode === 'register' && (
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Подтвердите пароль
+              {t('auth.register.confirmPassword')}
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -199,7 +201,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
                 className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                placeholder="Повторите пароль"
+                placeholder={t('auth.register.confirmPasswordPlaceholder')}
                 required
               />
             </div>
@@ -216,7 +218,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
         {/* Referral Code Field */}
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Реферальный промокод
+            {t('auth.referralCode')}
           </label>
           <div className="relative">
             <Gift className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -225,7 +227,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
               value={formData.referralCode}
               onChange={(e) => setFormData({...formData, referralCode: e.target.value})}
               className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-              placeholder="Введите промокод (необязательно)"
+              placeholder={t('auth.referralCodePlaceholder')}
             />
           </div>
         </div>
@@ -242,7 +244,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
           disabled={loading}
           className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-pink-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
-          {loading ? 'Загрузка...' : (mode === 'login' ? 'Войти' : 'Зарегистрироваться')}
+          {loading ? t('common.loading') : (mode === 'login' ? t('auth.login.button') : t('auth.register.button'))}
         </button>
 
         <div className="text-center">
@@ -251,7 +253,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
             onClick={() => onModeChange && onModeChange(mode === 'login' ? 'register' : 'login')}
             className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
           >
-            {mode === 'login' ? 'Нет аккаунта?' : 'Уже есть аккаунт?'}
+            {mode === 'login' ? t('auth.login.noAccount') : t('auth.register.hasAccount')}
           </button>
         </div>
         </form>

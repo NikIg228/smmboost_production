@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Zap, Mail } from 'lucide-react';
 
 const TelegramIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -26,6 +27,7 @@ const TelegramIcon: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 export const Footer: React.FC = () => {
+  const { t } = useTranslation();
   
   const handlePageChange = (page: string) => {
     // Scroll to top first
@@ -50,10 +52,10 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-gray-400">
-              Профессиональные услуги по продвижению в социальных сетях. Быстро, безопасно, эффективно.
+              {t('footer.description')}
             </p>
             <div className="text-gray-400 text-sm space-y-1 pt-2">
-              <p className="text-gray-500 uppercase tracking-wider text-xs">Юридическая информация</p>
+              <p className="text-gray-500 uppercase tracking-wider text-xs">{t('footer.legalInfo')}</p>
               <div className="space-y-1">
                 <p>ТОО "White Trade"</p>
                 <p>БИН 250140025178</p>
@@ -64,7 +66,7 @@ export const Footer: React.FC = () => {
 
           {/* Services */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Услуги</h3>
+            <h3 className="text-lg font-semibold text-white">{t('footer.services')}</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <button 
@@ -111,14 +113,14 @@ export const Footer: React.FC = () => {
 
           {/* Support */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Поддержка</h3>
+            <h3 className="text-lg font-semibold text-white">{t('footer.support')}</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <button 
                   onClick={() => handlePageChange('faq')}
                   className="hover:text-white transition-colors text-left"
                 >
-                  FAQ
+                  {t('footer.faq')}
                 </button>
               </li>
               <li>
@@ -126,7 +128,7 @@ export const Footer: React.FC = () => {
                   onClick={() => handlePageChange('terms')}
                   className="hover:text-white transition-colors text-left"
                 >
-                  Пользовательское соглашение
+                  {t('footer.terms')}
                 </button>
               </li>
               <li>
@@ -134,7 +136,7 @@ export const Footer: React.FC = () => {
                   onClick={() => handlePageChange('privacy')}
                   className="hover:text-white transition-colors text-left"
                 >
-                  Политика конфиденциальности
+                  {t('footer.privacy')}
                 </button>
               </li>
               <li>
@@ -142,7 +144,7 @@ export const Footer: React.FC = () => {
                   onClick={() => handlePageChange('refund')}
                   className="hover:text-white transition-colors text-left"
                 >
-                  Возврат средств
+                  {t('footer.refund')}
                 </button>
               </li>
             </ul>
@@ -150,7 +152,7 @@ export const Footer: React.FC = () => {
 
           {/* Contact */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Контакты</h3>
+            <h3 className="text-lg font-semibold text-white">{t('footer.contacts')}</h3>
             <div className="space-y-3">
               <a
                 href="https://t.me/qmzp101"
@@ -166,7 +168,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 SMM Boost. Все права защищены.</p>
+          <p>{t('footer.copyright')}</p>
         </div>
       </div>
     </footer>

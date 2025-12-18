@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Heart, Eye, Users, TrendingUp, Zap, Shield } from 'lucide-react';
 
 interface SplineSectionProps {
@@ -6,25 +7,27 @@ interface SplineSectionProps {
 }
 
 export const SplineSection: React.FC<SplineSectionProps> = ({ onPageChange }) => {
+  const { t } = useTranslation();
+  
   const services = [
     {
       icon: Heart,
-      title: 'Лайки',
-      description: 'Увеличиваем количество лайков для повышения популярности контента',
+      title: t('spline.services.likes.title'),
+      description: t('spline.services.likes.description'),
       platforms: ['Instagram', 'TikTok', 'VK', 'YouTube'],
       color: 'from-pink-500 to-red-500'
     },
     {
       icon: Eye,
-      title: 'Просмотры',
-      description: 'Привлекаем просмотры для роста охватов и попадания в рекомендации',
+      title: t('spline.services.views.title'),
+      description: t('spline.services.views.description'),
       platforms: ['YouTube', 'TikTok', 'Instagram Reels'],
       color: 'from-blue-500 to-cyan-500'
     },
     {
       icon: Users,
-      title: 'Подписчики',
-      description: 'Наращиваем базу подписчиков для увеличения авторитета аккаунта',
+      title: t('spline.services.followers.title'),
+      description: t('spline.services.followers.description'),
       platforms: ['Instagram', 'TikTok', 'YouTube', 'Telegram'],
       color: 'from-purple-500 to-indigo-500'
     }
@@ -33,18 +36,18 @@ export const SplineSection: React.FC<SplineSectionProps> = ({ onPageChange }) =>
   const features = [
     {
       icon: Zap,
-      title: 'Быстрый старт',
-      description: 'Результат через 30 минут'
+      title: t('spline.features.quickStart.title'),
+      description: t('spline.features.quickStart.description')
     },
     {
       icon: Shield,
-      title: 'Безопасность',
-      description: 'Никаких рисков для аккаунта'
+      title: t('spline.features.security.title'),
+      description: t('spline.features.security.description')
     },
     {
       icon: TrendingUp,
-      title: 'Рост показателей',
-      description: 'Увеличение органических метрик'
+      title: t('spline.features.growth.title'),
+      description: t('spline.features.growth.description')
     }
   ];
 
@@ -61,15 +64,15 @@ export const SplineSection: React.FC<SplineSectionProps> = ({ onPageChange }) =>
             <div className="text-center lg:text-left">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
                 <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-                  Продвижение
+                  {t('spline.title1')}
                 </span>
                 <br />
                 <span className="text-white">
-                  в социальных сетях
+                  {t('spline.title2')}
                 </span>
               </h2>
               <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8">
-                Профессиональные услуги для роста вашего присутствия в соцсетях
+                {t('spline.description')}
               </p>
             </div>
 
@@ -137,7 +140,7 @@ export const SplineSection: React.FC<SplineSectionProps> = ({ onPageChange }) =>
                 onClick={() => onPageChange('services')}
                 className="group inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 neon-button button-hover-lift"
               >
-                <span>Посмотреть все услуги</span>
+                <span>{t('spline.viewAllServices')}</span>
                 <TrendingUp className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </div>
@@ -172,15 +175,15 @@ export const SplineSection: React.FC<SplineSectionProps> = ({ onPageChange }) =>
                           <div className="grid grid-cols-3 gap-4 text-center">
                             <div>
                               <div className="text-lg font-bold text-white">2.5K+</div>
-                              <div className="text-xs text-gray-300">Лайков</div>
+                              <div className="text-xs text-gray-300">{t('spline.stats.likes')}</div>
                             </div>
                             <div>
                               <div className="text-lg font-bold text-white">500+</div>
-                              <div className="text-xs text-gray-300">Подписчиков</div>
+                              <div className="text-xs text-gray-300">{t('spline.stats.followers')}</div>
                             </div>
                             <div>
                               <div className="text-lg font-bold text-white">10K+</div>
-                              <div className="text-xs text-gray-300">Просмотров</div>
+                              <div className="text-xs text-gray-300">{t('spline.stats.views')}</div>
                             </div>
                           </div>
                         </div>
@@ -228,14 +231,14 @@ export const SplineSection: React.FC<SplineSectionProps> = ({ onPageChange }) =>
               <div className="absolute top-12 -left-12 glass-effect rounded-xl p-3 border border-green-500/30 animate-float-triangle">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-xs text-green-400 font-semibold">Live</span>
+                  <span className="text-xs text-green-400 font-semibold">{t('spline.live')}</span>
                 </div>
               </div>
               
               <div className="absolute bottom-12 -right-16 glass-effect rounded-xl p-3 border border-purple-500/30 animate-float-triangle-reverse">
                 <div className="text-center">
                   <div className="text-sm font-bold text-white">100%</div>
-                  <div className="text-xs text-gray-400">Success</div>
+                  <div className="text-xs text-gray-400">{t('spline.success')}</div>
                 </div>
               </div>
             </div>

@@ -1,39 +1,41 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 
-const faqs = [
-  {
-    question: 'Как быстро запускается заказ?',
-    answer: 'От 0 до 30 минут в среднем. Зависит от загруженности системы и типа услуги. Лайки обычно начинают поступать быстрее всего, подписчики могут занять до часа.'
-  },
-  {
-    question: 'Будет ли подписка/лайк от живых аккаунтов?',
-    answer: 'Да, мы используем только проверенные источники трафика. Все подписчики имеют аватары, посты и выглядят как реальные пользователи.'
-  },
-  {
-    question: 'Можно ли вернуть деньги?',
-    answer: 'Если услуга не была оказана в полном объеме, возврат возможен. Подробности в разделе "Возврат средств".'
-  },
-  {
-    question: 'Безопасно ли это для моего аккаунта?',
-    answer: 'Полностью безопасно. Мы не запрашиваем пароли, используем только публичные ссылки. Все методы соответствуют правилам социальных сетей.'
-  },
-  {
-    question: 'Что делать если подписчики пропали?',
-    answer: 'У нас есть гарантия на все услуги. Если в течение гарантийного периода количество уменьшилось, мы бесплатно довосполним до заказанного объема.'
-  },
-  {
-    question: 'Можно ли заказать услуги для закрытого аккаунта?',
-    answer: 'Для большинства услуг аккаунт должен быть открытым. Исключение - подписчики, их можно накрутить и на закрытые профили.'
-  },
-  {
-    question: 'Есть ли скидки при больших заказах?',
-    answer: 'Да, при заказах от 50 000₸ предоставляем скидку 10%. При заказах от 100 000₸ - скидка 15%. Обращайтесь в поддержку.'
-  }
-];
-
 export const FAQPage: React.FC = () => {
+  const { t } = useTranslation();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  
+  const faqs = [
+    {
+      question: t('faq.questions.speed.question'),
+      answer: t('faq.questions.speed.answer')
+    },
+    {
+      question: t('faq.questions.realAccounts.question'),
+      answer: t('faq.questions.realAccounts.answer')
+    },
+    {
+      question: t('faq.questions.refund.question'),
+      answer: t('faq.questions.refund.answer')
+    },
+    {
+      question: t('faq.questions.safe.question'),
+      answer: t('faq.questions.safe.answer')
+    },
+    {
+      question: t('faq.questions.disappeared.question'),
+      answer: t('faq.questions.disappeared.answer')
+    },
+    {
+      question: t('faq.questions.closedAccount.question'),
+      answer: t('faq.questions.closedAccount.answer')
+    },
+    {
+      question: t('faq.questions.discounts.question'),
+      answer: t('faq.questions.discounts.answer')
+    }
+  ];
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -44,11 +46,11 @@ export const FAQPage: React.FC = () => {
         </div>
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-            Часто задаваемые вопросы
+            {t('faq.title')}
           </span>
         </h1>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          Ответы на самые популярные вопросы о наших услугах
+          {t('faq.subtitle')}
         </p>
       </div>
 

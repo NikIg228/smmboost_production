@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { AnimatedBackground } from './components/AnimatedBackground';
 import { Header } from './components/Header';
@@ -19,6 +20,7 @@ import { Footer } from './components/Footer';
 import { Service } from './types';
 
 function App() {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [authModal, setAuthModal] = useState<{ isOpen: boolean; mode: 'login' | 'register' }>({
@@ -167,11 +169,11 @@ function App() {
         onGoToCatalog={bannerType === 'initial' ? () => handlePageChange('services') : undefined}
         title={bannerType === 'buy' ? (
           <>
-            Технические работы.<br />
-            Оплата временно недоступна.
+            {t('payment.unavailable.technicalWork.title')}<br />
+            {t('payment.unavailable.technicalWork.subtitle')}
           </>
-        ) : 'Приём платежей временно недоступен'}
-        description={bannerType === 'initial' ? 'Пока что вы можете ознакомиться с каталогом' : undefined}
+        ) : t('payment.unavailable.title')}
+        description={bannerType === 'initial' ? t('payment.unavailable.description') : undefined}
         showCatalogButton={bannerType === 'initial'}
       />
       </div>

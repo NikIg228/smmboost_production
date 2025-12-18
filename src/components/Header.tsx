@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Menu, X, Zap, Users, MessageCircle, Settings, LogIn, LogOut, User as UserIcon, UserCircle } from 'lucide-react';
+import { Menu, X, Zap, Users, MessageCircle, Settings, LogIn, LogOut, User as UserIcon, UserCircle, Globe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { AuthModal } from './AuthModal';
 import { ConsultationModal } from './ConsultationModal';
 import { LogoutNotification } from './LogoutNotification';
@@ -14,17 +15,24 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAuthModal, onConsultation }) => {
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [showLogoutNotification, setShowLogoutNotification] = useState(false);
   const { user, isAuthenticated } = useAuth();
 
   const menuItems = [
-    { id: 'home', label: 'Главная', icon: Zap },
-    { id: 'services', label: 'Услуги', icon: Users },
-    { id: 'reviews', label: 'Отзывы', icon: MessageCircle },
-    { id: 'support', label: 'Поддержка', icon: Settings },
+    { id: 'home', label: t('header.menu.home'), icon: Zap },
+    { id: 'services', label: t('header.menu.services'), icon: Users },
+    { id: 'reviews', label: t('header.menu.reviews'), icon: MessageCircle },
+    { id: 'support', label: t('header.menu.support'), icon: Settings },
   ];
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setShowLanguageMenu(false);
+  };
 
   const handleSignOut = async () => {
     try {
@@ -90,8 +98,46 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
           </nav>
 
 
-          {/* Desktop Auth */}
+          {/* Desktop Auth & Language */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Language Selector */}
+            <div className="relative">
+              <button
+                onClick={() => setShowLanguageMenu(!showLanguageMenu)}
+                className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-800 transition-colors text-gray-300 hover:text-white"
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-sm font-medium">{i18n.language.toUpperCase()}</span>
+              </button>
+              
+              {showLanguageMenu && (
+                <div 
+                  className="absolute right-0 top-full mt-2 w-32 glass-effect rounded-lg shadow-lg border border-gray-700/50 py-2 z-50"
+                  style={{
+                    animation: 'fadeIn 0.2s ease-out'
+                  }}
+                  onMouseLeave={() => setShowLanguageMenu(false)}
+                >
+                  <button
+                    onClick={() => changeLanguage('ru')}
+                    className={`w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors ${
+                      i18n.language === 'ru' ? 'bg-gray-700/50' : ''
+                    }`}
+                  >
+                    Русский
+                  </button>
+                  <button
+                    onClick={() => changeLanguage('kz')}
+                    className={`w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors ${
+                      i18n.language === 'kz' ? 'bg-gray-700/50' : ''
+                    }`}
+                  >
+                    Қазақша
+                  </button>
+                </div>
+              )}
+            </div>
+
             {isAuthenticated ? (
               <div className="relative">
                 <button
@@ -112,6 +158,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                     style={{
                       animation: 'fadeIn 0.2s ease-out'
                     }}
+                    onMouseLeave={() => setShowProfileMenu(false)}
                   >
                     <button
                       onClick={() => {
@@ -120,13 +167,13 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                       }}
                       className="w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
                     >
-                      Профиль
+                      {t('header.profile')}
                     </button>
                     <button
                       onClick={handleSignOut}
                       className="w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
                     >
-                      Выйти
+                      {t('header.logout')}
                     </button>
                   </div>
                 )}
@@ -137,7 +184,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                 className="flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift glow-effect neon-button"
               >
                 <LogIn className="w-4 h-4" />
-                <span>Войти</span>
+                <span>{t('header.login')}</span>
               </button>
             )}
           </div>
@@ -197,7 +244,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                       className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-gray-300 hover:text-white transition-colors"
                     >
                       <LogOut className="w-4 h-4" />
-                      <span>Выйти</span>
+                      <span>{t('header.logout')}</span>
                     </button>
                   </>
                 ) : (
@@ -209,9 +256,35 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                     className="w-full flex items-center justify-center space-x-2 px-3 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 shadow-lg"
                   >
                     <LogIn className="w-4 h-4" />
-                    <span>Войти</span>
+                    <span>{t('header.login')}</span>
                   </button>
                 )}
+              </div>
+
+              {/* Mobile Language Selector */}
+              <div className="pt-2 border-t border-gray-800">
+                <div className="flex items-center justify-center space-x-4 px-3 py-2">
+                  <button
+                    onClick={() => changeLanguage('ru')}
+                    className={`px-4 py-2 rounded-lg transition-colors ${
+                      i18n.language === 'ru'
+                        ? 'bg-gradient-to-r from-pink-500/20 to-purple-600/20 text-white'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                    }`}
+                  >
+                    Русский
+                  </button>
+                  <button
+                    onClick={() => changeLanguage('kz')}
+                    className={`px-4 py-2 rounded-lg transition-colors ${
+                      i18n.language === 'kz'
+                        ? 'bg-gradient-to-r from-pink-500/20 to-purple-600/20 text-white'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                    }`}
+                  >
+                    Қазақша
+                  </button>
+                </div>
               </div>
             </nav>
           </div>

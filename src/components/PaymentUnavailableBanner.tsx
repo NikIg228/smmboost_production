@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { X, AlertCircle } from 'lucide-react';
 
 interface PaymentUnavailableBannerProps {
@@ -14,10 +15,14 @@ export const PaymentUnavailableBanner: React.FC<PaymentUnavailableBannerProps> =
   isOpen, 
   onClose, 
   onGoToCatalog,
-  title = 'Приём платежей временно недоступен',
+  title,
   description,
   showCatalogButton = true
 }) => {
+  const { t } = useTranslation();
+  
+  const defaultTitle = title || t('payment.unavailable.title');
+  const defaultDescription = description || t('payment.unavailable.description');
   if (!isOpen) return null;
 
   return (
@@ -53,12 +58,12 @@ export const PaymentUnavailableBanner: React.FC<PaymentUnavailableBannerProps> =
             </div>
             
             <h2 className="text-2xl font-bold text-white mb-3">
-              {title}
+              {typeof title === 'string' ? title : defaultTitle}
             </h2>
             
-            {description && (
+            {(description || defaultDescription) && (
               <p className="text-gray-300 mb-6">
-                {description}
+                {description || defaultDescription}
               </p>
             )}
 
@@ -71,7 +76,7 @@ export const PaymentUnavailableBanner: React.FC<PaymentUnavailableBannerProps> =
                 }}
                 className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift"
               >
-                к Каталогу
+                {t('payment.unavailable.toCatalog')}
               </button>
             )}
           </div>

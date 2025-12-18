@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Modal } from './Modal';
 import { CreditCard, Smartphone, Bitcoin, Wallet, AlertCircle, CheckCircle, Loader } from 'lucide-react';
 import { Service } from '../types';
@@ -22,6 +23,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
   url,
   totalPrice
 }) => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [selectedMethod, setSelectedMethod] = useState<'card'>('card');
   const [loading, setLoading] = useState(false);
@@ -41,13 +43,13 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
   const handlePayment = async () => {
     if (!user) {
       setPaymentStatus('error');
-      setPaymentMessage('Необходимо войти в аккаунт');
+      setPaymentMessage(t('payment.loginRequired'));
       return;
     }
 
     setLoading(true);
     setPaymentStatus('processing');
-    setPaymentMessage('Обработка платежа...');
+    setPaymentMessage(t('payment.processing'));
 
     try {
       const paymentData: PaymentRequest = {
@@ -120,7 +122,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     } catch (error) {
       console.error('Payment error:', error);
       setPaymentStatus('error');
-      setPaymentMessage('Ошибка соединения. Попробуйте позже.');
+      setPaymentMessage(t('payment.connectionError'));
     } finally {
       setLoading(false);
     }
@@ -139,7 +141,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
         return (
           <div className="text-center py-8">
             <Loader className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">Обработка платежа</h3>
+            <h3 className="text-xl font-bold text-white mb-2">{t('payment.processingTitle')}</h3>
             <p className="text-gray-300">{paymentMessage}</p>
           </div>
         );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, Zap, Shield, Clock, Headphones } from 'lucide-react';
 import { SplineSection } from './SplineSection';
 import { SocialProofSection } from './SocialProofSection';
@@ -9,26 +10,28 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
+  const { t } = useTranslation();
+  
   const benefits = [
     {
       icon: Zap,
-      title: 'Мгновенный запуск',
-      description: 'Результат через 30 минут после оплаты'
+      title: t('hero.benefits.instantStart.title'),
+      description: t('hero.benefits.instantStart.description')
     },
     {
       icon: Shield,
-      title: 'Анонимно и безопасно',
-      description: 'Никаких паролей, полная конфиденциальность'
+      title: t('hero.benefits.anonymous.title'),
+      description: t('hero.benefits.anonymous.description')
     },
     {
       icon: Clock,
-      title: 'Без паролей',
-      description: 'Не требуем доступ к вашему аккаунту'
+      title: t('hero.benefits.noPasswords.title'),
+      description: t('hero.benefits.noPasswords.description')
     },
     {
       icon: Headphones,
-      title: 'Поддержка 24/7',
-      description: 'Помогаем в любое время дня и ночи'
+      title: t('hero.benefits.support247.title'),
+      description: t('hero.benefits.support247.description')
     }
   ];
 
@@ -44,7 +47,7 @@ export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
             <div className="mb-8 animate-heroTitle">
               <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-4">
                 <span className="gradient-flow-text text-glow">
-                  Продвижение аккаунтов по всему миру — лайки и подписчики без границ!
+                  {t('hero.title')}
                 </span>
               </h2>
             </div>
@@ -52,21 +55,21 @@ export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
             {/* Main Heading */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent text-glow">
-                Продвижение
+                {t('hero.subtitle1')}
               </span>
               <br />
               <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                в социальных сетях
+                {t('hero.subtitle2')}
               </span>
               <br />
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent text-glow">
-                для вашего успеха
+                {t('hero.subtitle3')}
               </span>
             </h1>
             
             {/* Subtitle */}
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Профессиональные услуги для роста вашего присутствия в соцсетях
+              {t('hero.description')}
             </p>
             
             {/* CTA Buttons */}
@@ -76,7 +79,7 @@ export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
                 className="group relative px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift glow-effect neon-button"
               >
                 <span className="flex items-center space-x-2">
-                  <span>Выбрать услугу</span>
+                  <span>{t('hero.chooseService')}</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
@@ -85,7 +88,7 @@ export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
                 onClick={onConsultation}
                 className="px-8 py-4 glass-effect text-white font-semibold rounded-xl hover:bg-purple-500/20 transition-all duration-300 button-hover-lift border border-purple-500/30 hover:border-purple-400"
               >
-                Получить консультацию
+                {t('hero.getConsultation')}
               </button>
             </div>
           </div>

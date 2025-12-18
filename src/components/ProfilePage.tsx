@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { User, Mail, Edit2, Save, X, Gift, History, Copy, Check, Lock } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { updateUserProfile } from '../lib/supabase';
 import { PasswordChangeModal } from './PasswordChangeModal';
 
 export const ProfilePage: React.FC = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,9 +33,9 @@ export const ProfilePage: React.FC = () => {
       if (error) throw error;
       
       setIsEditing(false);
-      alert('Профиль успешно обновлен!');
+      alert(t('profile.updateSuccess'));
     } catch (error: any) {
-      alert('Ошибка при обновлении профиля: ' + error.message);
+      alert(t('profile.updateError') + ': ' + error.message);
     } finally {
       setLoading(false);
     }
@@ -64,10 +66,10 @@ export const ProfilePage: React.FC = () => {
           <User className="w-10 h-10 text-white" />
         </div>
         <h1 className="text-3xl font-bold text-white mb-2">
-          Личный кабинет
+          {t('profile.title')}
         </h1>
         <p className="text-gray-400">
-          Управляйте своим профилем и отслеживайте заказы
+          {t('profile.subtitle')}
         </p>
       </div>
 
@@ -75,14 +77,14 @@ export const ProfilePage: React.FC = () => {
         {/* Profile Info */}
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-            <h2 className="text-xl font-bold text-white">Информация профиля</h2>
+            <h2 className="text-xl font-bold text-white">{t('profile.profileInfo')}</h2>
             {!isEditing ? (
               <button
                 onClick={() => setIsEditing(true)}
                 className="flex items-center space-x-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex-shrink-0 whitespace-nowrap"
               >
                 <Edit2 className="w-4 h-4 flex-shrink-0" />
-                <span>Редактировать</span>
+                <span>{t('common.edit')}</span>
               </button>
             ) : (
               <div className="flex space-x-2 flex-shrink-0 flex-wrap gap-2">
@@ -92,14 +94,14 @@ export const ProfilePage: React.FC = () => {
                   className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 whitespace-nowrap"
                 >
                   <Save className="w-4 h-4 flex-shrink-0" />
-                  <span>{loading ? 'Сохранение...' : 'Сохранить'}</span>
+                  <span>{loading ? t('common.saving') : t('common.save')}</span>
                 </button>
                 <button
                   onClick={handleCancel}
                   className="flex items-center space-x-2 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors whitespace-nowrap"
                 >
                   <X className="w-4 h-4 flex-shrink-0" />
-                  <span>Отмена</span>
+                  <span>{t('common.cancel')}</span>
                 </button>
               </div>
             )}
@@ -108,7 +110,7 @@ export const ProfilePage: React.FC = () => {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Имя
+                {t('profile.name')}
               </label>
               {isEditing ? (
                 <input
@@ -119,26 +121,26 @@ export const ProfilePage: React.FC = () => {
                 />
               ) : (
                 <div className="px-4 py-3 bg-gray-700/50 rounded-lg text-white">
-                  {user?.user_metadata?.name || 'Не указано'}
+                  {user?.user_metadata?.name || t('profile.notSpecified')}
                 </div>
               )}
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Email
+                {t('profile.email')}
               </label>
               <div className="px-4 py-3 bg-gray-700/50 rounded-lg text-white">
                 {user?.email}
               </div>
               <p className="text-xs text-gray-400 mt-1">
-                Email нельзя изменить
+                {t('profile.emailCannotChange')}
               </p>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Пароль
+                {t('profile.password')}
               </label>
               <div className="flex items-center space-x-3">
                 <div className="flex-1 px-4 py-3 bg-gray-700/50 rounded-lg text-white">
@@ -149,11 +151,11 @@ export const ProfilePage: React.FC = () => {
                   className="flex items-center space-x-2 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors min-h-[44px]"
                 >
                   <Lock className="w-4 h-4" />
-                  <span>Изменить</span>
+                  <span>{t('profile.changePassword')}</span>
                 </button>
               </div>
               <p className="text-xs text-gray-400 mt-1">
-                Нажмите "Изменить" для смены пароля
+                {t('profile.changePasswordHint')}
               </p>
             </div>
           </div>
@@ -165,7 +167,7 @@ export const ProfilePage: React.FC = () => {
           <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
             <h3 className="text-lg font-bold text-white mb-4 flex items-center">
               <Gift className="w-5 h-5 text-pink-500 mr-2" />
-              Реферальный код
+              {t('profile.referralCode')}
             </h3>
             <div className="flex items-center space-x-3">
               <div className="flex-1 px-4 py-3 bg-gray-700 rounded-lg text-white font-mono text-lg">
@@ -176,24 +178,24 @@ export const ProfilePage: React.FC = () => {
                 className="flex items-center space-x-2 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
               >
                 {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                <span>{copied ? 'Скопировано!' : 'Копировать'}</span>
+                <span>{copied ? t('profile.copied') : t('profile.copy')}</span>
               </button>
             </div>
             <p className="text-sm text-gray-400 mt-2">
-              Поделитесь кодом с друзьями и получайте бонусы за каждый их заказ
+              {t('profile.referralCodeDescription')}
             </p>
           </div>
 
           {/* Coupon Counter */}
           <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
             <h3 className="text-lg font-bold text-white mb-4">
-              Использованные купоны
+              {t('profile.usedCoupons')}
             </h3>
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent mb-2">
                 0
               </div>
-              <p className="text-gray-400">купонов использовано</p>
+              <p className="text-gray-400">{t('profile.couponsUsed')}</p>
             </div>
           </div>
         </div>
@@ -203,25 +205,25 @@ export const ProfilePage: React.FC = () => {
       <div className="mt-8 bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
         <h2 className="text-xl font-bold text-white mb-6 flex items-center">
           <History className="w-5 h-5 text-blue-500 mr-2" />
-          История покупок
+          {t('profile.purchaseHistory')}
         </h2>
 
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-700">
-                <th className="text-left py-3 px-4 text-gray-300 font-medium">Услуга</th>
-                <th className="text-left py-3 px-4 text-gray-300 font-medium">Количество</th>
-                <th className="text-left py-3 px-4 text-gray-300 font-medium">Сумма</th>
-                <th className="text-left py-3 px-4 text-gray-300 font-medium">Дата</th>
-                <th className="text-left py-3 px-4 text-gray-300 font-medium">Статус</th>
+                <th className="text-left py-3 px-4 text-gray-300 font-medium">{t('profile.service')}</th>
+                <th className="text-left py-3 px-4 text-gray-300 font-medium">{t('profile.quantity')}</th>
+                <th className="text-left py-3 px-4 text-gray-300 font-medium">{t('profile.amount')}</th>
+                <th className="text-left py-3 px-4 text-gray-300 font-medium">{t('profile.date')}</th>
+                <th className="text-left py-3 px-4 text-gray-300 font-medium">{t('profile.status')}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td colSpan={5} className="py-8 text-center">
                   <History className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                  <p className="text-gray-400">Пусто</p>
+                  <p className="text-gray-400">{t('profile.empty')}</p>
                 </td>
               </tr>
             </tbody>

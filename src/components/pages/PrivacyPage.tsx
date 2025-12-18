@@ -1,8 +1,9 @@
 import React from 'react';
-import { t } from '../../lib/i18n';
+import { useTranslation } from 'react-i18next';
 import { Shield, Lock, Eye, Database } from 'lucide-react';
 
 export const PrivacyPage: React.FC = () => {
+  const { t } = useTranslation();
   
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -13,18 +14,18 @@ export const PrivacyPage: React.FC = () => {
         </div>
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-            Политика конфиденциальности
+            {t('privacy.title')}
           </span>
         </h1>
         <p className="text-gray-400 text-lg">
-          Как мы защищаем и используем ваши данные
+          {t('privacy.subtitle')}
         </p>
       </div>
 
       {/* Content */}
       <div className="space-y-8 text-gray-300">
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4">Юридическая информация</h2>
+          <h2 className="text-xl font-bold text-white mb-4">{t('privacy.legalInfo')}</h2>
           <div className="space-y-1 text-sm text-gray-300">
             <p>ТОО "White Trade"</p>
             <p>БИН 250140025178</p>

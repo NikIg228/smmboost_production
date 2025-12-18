@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Heart, UserPlus, Eye, PlayCircle, ThumbsUp, MessageCircle, Instagram, Video, Play, Users, Twitter, Tv } from 'lucide-react';
 import { Service } from '../types';
 
@@ -33,6 +34,7 @@ const platformColors = {
 };
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClick, onBuyClick }) => {
+  const { t } = useTranslation();
   const IconComponent = iconMap[service.icon as keyof typeof iconMap];
   const platformGradient = platformColors[service.platform as keyof typeof platformColors];
   
@@ -52,12 +54,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClic
             </div>
             
             <div className="text-right">
-              <div className="text-xs sm:text-sm text-gray-400">от</div>
+              <div className="text-xs sm:text-sm text-gray-400">{t('services.from')}</div>
               <div className="text-base sm:text-lg font-bold text-white">
                 {service.price.toLocaleString()}₸
               </div>
               <div className="text-xs text-gray-500">
-                {service.category === 'likes' || service.category === 'live' ? 'за 100' : 'за 1000'}
+                {service.category === 'likes' || service.category === 'live' ? t('services.per100') : t('services.per1000')}
               </div>
             </div>
           </div>
@@ -75,11 +77,11 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClic
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs text-gray-500 mb-3 sm:mb-4 space-y-1 sm:space-y-0">
             <div className="flex items-center space-x-1">
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full"></div>
-              <span className="text-xs">Запуск: {service.startTime}</span>
+              <span className="text-xs">{t('services.start')}: {service.startTime}</span>
             </div>
             <div className="flex items-center space-x-1">
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full"></div>
-              <span className="text-xs">Скорость: {service.speed}</span>
+              <span className="text-xs">{t('services.speedLabel')}: {service.speed}</span>
             </div>
           </div>
         </div>
@@ -92,7 +94,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClic
           }}
           className="w-full mt-auto py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift glow-effect neon-button"
         >
-          Купить
+{t('services.buy')}
         </button>
       </div>
     </div>

@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Eye, Heart, Users, Shield, Clock, Award } from 'lucide-react';
 import { useCountAnimation, useIntersectionObserver } from '../hooks/useCountAnimation';
 
 export const SocialProofSection: React.FC = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, 0.3);
 
@@ -11,7 +13,7 @@ export const SocialProofSection: React.FC = () => {
       icon: Eye,
       value: 100,
       suffix: 'M+',
-      label: 'просмотров',
+      label: t('socialProof.stats.views'),
       color: 'from-blue-500 to-cyan-500',
       isDecimal: false
     },
@@ -19,7 +21,7 @@ export const SocialProofSection: React.FC = () => {
       icon: Heart,
       value: 9,
       suffix: 'M+',
-      label: 'лайков',
+      label: t('socialProof.stats.likes'),
       color: 'from-pink-500 to-red-500',
       isDecimal: false
     },
@@ -27,7 +29,7 @@ export const SocialProofSection: React.FC = () => {
       icon: Users,
       value: 17, // Изменяем на 17, чтобы потом разделить на 10
       suffix: 'M+',
-      label: 'подписчиков',
+      label: t('socialProof.stats.followers'),
       color: 'from-purple-500 to-indigo-500',
       isDecimal: true,
       decimalPlaces: 1
@@ -37,18 +39,18 @@ export const SocialProofSection: React.FC = () => {
   const trustIndicators = [
     {
       icon: Shield,
-      title: 'Безопасность',
-      description: 'SSL шифрование и защита данных'
+      title: t('socialProof.trust.security.title'),
+      description: t('socialProof.trust.security.description')
     },
     {
       icon: Clock,
-      title: 'Быстрый старт',
-      description: 'Запуск заказов за 30 минут'
+      title: t('socialProof.trust.quickStart.title'),
+      description: t('socialProof.trust.quickStart.description')
     },
     {
       icon: Award,
-      title: 'Гарантия качества',
-      description: 'Возврат средств при невыполнении'
+      title: t('socialProof.trust.guarantee.title'),
+      description: t('socialProof.trust.guarantee.description')
     }
   ];
 
@@ -85,10 +87,10 @@ export const SocialProofSection: React.FC = () => {
         {/* Stats Section */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Наши достижения
+            {t('socialProof.title')}
           </h2>
           <p className="text-gray-400 text-lg mb-12">
-            Цифры, которые говорят о нашем опыте
+            {t('socialProof.subtitle')}
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
@@ -167,21 +169,21 @@ export const SocialProofSection: React.FC = () => {
           <div className="inline-flex items-center space-x-6 px-8 py-4 glass-effect rounded-full border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 glow-effect">
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
-              <span className="text-sm text-gray-300 hover:text-white transition-colors duration-300">Онлайн 24/7</span>
+              <span className="text-sm text-gray-300 hover:text-white transition-colors duration-300">{t('socialProof.indicators.online')}</span>
             </div>
             
             <div className="w-px h-6 bg-gray-600"></div>
             
             <div className="flex items-center space-x-2">
               <Shield className="w-4 h-4 text-green-500 drop-shadow-lg" />
-              <span className="text-sm text-gray-300 hover:text-white transition-colors duration-300">Безопасные платежи</span>
+              <span className="text-sm text-gray-300 hover:text-white transition-colors duration-300">{t('socialProof.indicators.securePayments')}</span>
             </div>
             
             <div className="w-px h-6 bg-gray-600"></div>
             
             <div className="flex items-center space-x-2">
               <Award className="w-4 h-4 text-yellow-500 drop-shadow-lg" />
-              <span className="text-sm text-gray-300 hover:text-white transition-colors duration-300">10,000+ довольных клиентов</span>
+              <span className="text-sm text-gray-300 hover:text-white transition-colors duration-300">{t('socialProof.indicators.satisfiedClients')}</span>
             </div>
           </div>
         </div>

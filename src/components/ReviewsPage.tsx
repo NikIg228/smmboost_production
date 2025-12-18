@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { t } from '../lib/i18n';
+import { useTranslation } from 'react-i18next';
 import { Star, User, CheckCircle, ArrowRight } from 'lucide-react';
 
 interface ReviewsPageProps {
@@ -415,6 +415,7 @@ const reviews = [
 ];
 
 export const ReviewsPage: React.FC<ReviewsPageProps> = ({ onPageChange }) => {
+  const { t } = useTranslation();
   const averageRating = 4.97;
   const totalReviews = 450;
   const perPage = 9;
@@ -539,7 +540,7 @@ export const ReviewsPage: React.FC<ReviewsPageProps> = ({ onPageChange }) => {
           disabled={page === 1}
           className="px-3 py-2 rounded-lg border border-gray-600 text-gray-300 hover:text-white hover:border-purple-500 disabled:opacity-50"
         >
-          Назад
+          {t('common.back')}
         </button>
         {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
           <button
@@ -555,7 +556,7 @@ export const ReviewsPage: React.FC<ReviewsPageProps> = ({ onPageChange }) => {
           disabled={page === totalPages}
           className="px-3 py-2 rounded-lg border border-gray-600 text-gray-300 hover:text-white hover:border-purple-500 disabled:opacity-50"
         >
-          Далее
+          {t('common.next')}
         </button>
       </div>
 

@@ -1,110 +1,33 @@
-// Простой хелпер локализации, пока без полноценного i18n
-// Возвращает ключ, если перевод не найден
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-export function t(key: string): string {
-  return translations[key] ?? key;
-}
+import ruTranslations from '../locales/ru.json';
+import kzTranslations from '../locales/kz.json';
 
-// Базовые заглушки, чтобы интерфейсы не падали
-const translations: Record<string, string> = {
-  'privacy.dataCollection': 'Сбор данных',
-  'privacy.dataCollectionText': 'Мы собираем только необходимые данные для оказания услуг.',
-  'privacy.contactData': 'Контактные данные (email, телефон)',
-  'privacy.socialLinks': 'Ссылки на аккаунты социальных сетей',
-  'privacy.orderInfo': 'Информация о заказах',
-  'privacy.technicalInfo': 'Техническая информация (IP, user-agent)',
-  'privacy.noPasswords': 'Мы никогда не запрашиваем пароли от ваших аккаунтов.',
-  'privacy.dataUsage': 'Использование данных',
-  'privacy.dataUsageText': 'Данные используются для выполнения заказов и поддержки.',
-  'privacy.serviceDelivery': 'Оказание услуг',
-  'privacy.communication': 'Коммуникация с клиентом',
-  'privacy.support': 'Техническая поддержка',
-  'privacy.qualityImprovement': 'Улучшение качества сервиса',
-  'privacy.legalCompliance': 'Соблюдение законодательства',
-  'privacy.noThirdParty': 'Мы не передаём данные третьим лицам без вашего согласия.',
-  'privacy.dataProtection': 'Защита данных',
-  'privacy.dataProtectionText': 'Мы используем технические и организационные меры защиты.',
-  'privacy.sslEncryption': 'SSL‑шифрование',
-  'privacy.secureStorage': 'Безопасное хранение данных',
-  'privacy.limitedAccess': 'Ограниченный доступ сотрудников',
-  'privacy.securityChecks': 'Регулярные проверки безопасности',
-  'privacy.standardsCompliance': 'Соответствие стандартам',
-  'privacy.yourRights': 'Ваши права',
-  'privacy.yourRightsText': 'Вы можете запросить, исправить или удалить свои данные.',
-  'privacy.requestInfo': 'Запросить информацию',
-  'privacy.correctData': 'Исправить данные',
-  'privacy.deleteData': 'Удалить данные',
-  'privacy.limitProcessing': 'Ограничить обработку',
-  'privacy.withdrawConsent': 'Отозвать согласие',
-  'privacy.lastUpdate': 'Последнее обновление: 15 января 2024 года',
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources: {
+      ru: {
+        translation: ruTranslations
+      },
+      kz: {
+        translation: kzTranslations
+      }
+    },
+    fallbackLng: 'ru',
+    defaultNS: 'translation',
+    debug: false,
+    interpolation: {
+      escapeValue: false
+    },
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage'],
+      lookupLocalStorage: 'i18nextLng'
+    }
+  });
 
-  'terms.general': 'Общие положения',
-  'terms.generalText1': 'Настоящее соглашение регулирует отношения между пользователем и SMM Boost.',
-  'terms.generalText2': 'Используя сайт, вы принимаете условия соглашения.',
-  'terms.services': 'Услуги',
-  'terms.servicesText': 'Мы предоставляем услуги продвижения в соцсетях.',
-  'terms.followersService': 'Подписчики',
-  'terms.likesService': 'Лайки',
-  'terms.viewsService': 'Просмотры',
-  'terms.otherServices': 'Другие услуги',
-
-  'refund.whenPossible': 'Когда возможен возврат',
-  'refund.whenPossibleText': 'Возврат возможен при невыполнении заказа по нашей вине.',
-  'refund.notProvided': 'Услуга не была предоставлена',
-  'refund.insufficientQuantity': 'Предоставлено недостаточное количество',
-  'refund.technicalError': 'Техническая ошибка',
-  'refund.cancelledByClient': 'Отмена по инициативе клиента до начала работ',
-  'refund.contactSupport': 'Связаться с поддержкой',
-
-  'support.contacts': 'Контакты',
-  'support.telegram': 'Telegram',
-  'support.telegramDesc': 'Быстрая связь с оператором',
-  'support.email': 'Email',
-  'support.emailDesc': 'Ответ в течение суток',
-  'support.phone': 'Телефон',
-  'support.phoneDesc': 'Консультации по телефону',
-  'support.workHours': 'График работы',
-  'support.contactForm': 'Форма обратной связи',
-  'support.name': 'Имя',
-  'support.namePlaceholder': 'Ваше имя',
-  'support.emailPlaceholder': 'Ваш email',
-  'support.subject': 'Тема сообщения',
-  'support.subjectPlaceholder': 'Коротко о сути',
-  'support.message': 'Сообщение',
-  'support.messagePlaceholder': 'Опишите вашу ситуацию',
-  'support.send': 'Отправить',
-  'support.faq': 'Частые вопросы',
-
-  'services.likes': 'Лайки',
-  'services.views': 'Просмотры',
-  'services.followers': 'Подписчики',
-
-  'reviews.title': 'Отзывы клиентов',
-  'reviews.subtitle': 'Реальные результаты и опыт наших клиентов',
-  'reviews.totalReviews': 'отзывов',
-  'reviews.joinClients': 'Присоединяйтесь к нашим клиентам',
-  'reviews.startPromotion': 'Начните продвижение уже сегодня',
-  'reviews.chooseService': 'Выбрать услугу',
-  'reviews.moreThan10000': 'Более 10 000 выполненных заказов',
-  'reviews.review2': 'Отличный сервис, всё быстро и честно.',
-  'reviews.review3': 'Видимый рост просмотров уже через день.',
-  'reviews.review4': 'Телеграм‑подписчики пришли качественные.',
-  'reviews.review5': 'Лайки пришли естественно, без скачков.',
-  'reviews.review6': 'Видео набрало хорошие просмотры.',
-  'reviews.review7': 'YouTube‑подписчики аккуратно докрутились.',
-  'reviews.review8': 'VK тоже ок, аккуратная работа.',
-  'reviews.review9': 'Reels пошли в рекомендации, супер!',
-  'reviews.review10': 'Быстрая поддержка и понятные условия.',
-  'reviews.review11': 'ТикТок ожил, доволен.',
-  'reviews.review12': 'Рост стабильный, без откатов.',
-  'reviews.review13': 'Телеграм прокачали грамотно.',
-  'reviews.review14': 'Инстаграм оживили лайками.',
-  'reviews.review15': 'ТикТок просмотры прилетели быстро.',
-  'reviews.review16': 'VK подписка пришла вовремя.',
-  'reviews.review17': 'Ютуб прокачали корректно.',
-  'reviews.review18': 'Стори начали смотреть чаще.',
-  'reviews.review19': 'ТикТок подписчики без отписок.',
-  'reviews.review20': 'VK лайки выглядят органично.'
-};
-
-
+export default i18n;

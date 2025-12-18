@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Check, Shield, Clock, Zap, Calculator } from 'lucide-react';
 import { Service } from '../types';
 
@@ -9,6 +10,7 @@ interface ServiceDetailProps {
 }
 
 export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, onPaymentClick }) => {
+  const { t } = useTranslation();
   const [url, setUrl] = useState('');
   const [quantity, setQuantity] = useState(1000);
   const [isCalculating, setIsCalculating] = useState(false);
@@ -44,7 +46,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
         className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors mb-8"
       >
         <ArrowLeft className="w-5 h-5" />
-        <span>Назад к услугам</span>
+        <span>{t('services.backToServices')}</span>
       </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -61,13 +63,13 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
 
           {/* Features */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white">Особенности услуги</h3>
+            <h3 className="text-xl font-semibold text-white">{t('services.serviceFeatures')}</h3>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg">
                 <Clock className="w-5 h-5 text-blue-500" />
                 <div>
-                  <div className="text-sm text-gray-400">Время запуска</div>
+                  <div className="text-sm text-gray-400">{t('services.startTime')}</div>
                   <div className="text-white font-medium">{service.startTime}</div>
                 </div>
               </div>
@@ -75,7 +77,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
               <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg">
                 <Zap className="w-5 h-5 text-yellow-500" />
                 <div>
-                  <div className="text-sm text-gray-400">Скорость</div>
+                  <div className="text-sm text-gray-400">{t('services.speed')}</div>
                   <div className="text-white font-medium">{service.speed}</div>
                 </div>
               </div>
@@ -83,7 +85,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
               <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg">
                 <Shield className="w-5 h-5 text-green-500" />
                 <div>
-                  <div className="text-sm text-gray-400">Гарантия</div>
+                  <div className="text-sm text-gray-400">{t('services.guarantee')}</div>
                   <div className="text-white font-medium">{service.guarantee}</div>
                 </div>
               </div>
@@ -92,7 +94,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
                 <Calculator className="w-5 h-5 text-purple-500" />
                 <div>
                   <div className="text-sm text-gray-400">
-                    Стоимость за {service.category === 'likes' ? '100' : '1000'}
+                    {t('services.pricePer')} {service.category === 'likes' ? t('services.per100') : t('services.per1000')}
                   </div>
                   <div className="text-white font-medium">
                     {service.price.toLocaleString()}₸
@@ -104,14 +106,14 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
 
           {/* How it works */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white">Как это работает</h3>
+            <h3 className="text-xl font-semibold text-white">{t('services.howItWorks')}</h3>
             
             <div className="space-y-3">
               {[
-                'Вставьте ссылку на ваш профиль или пост',
-                'Выберите желаемое количество',
-                'Произведите оплату любым удобным способом',
-                'Получите результат в указанные сроки'
+                t('services.step1'),
+                t('services.step2'),
+                t('services.step3'),
+                t('services.step4')
               ].map((step, index) => (
                 <div key={index} className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
@@ -126,19 +128,19 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
 
         {/* Order Form */}
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h3 className="text-xl font-semibold text-white mb-6">Оформить заказ</h3>
+          <h3 className="text-xl font-semibold text-white mb-6">{t('services.orderForm')}</h3>
           
           <div className="space-y-6">
             {/* URL Input */}
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Ссылка на профиль или пост
+                {t('services.profileLink')}
               </label>
               <input
                 type="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://instagram.com/yourusername"
+                placeholder={t('services.profileLinkPlaceholder')}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
               />
             </div>
@@ -146,7 +148,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
             {/* Quantity Selection */}
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
-                Количество ({service.minQuantity} - {service.maxQuantity})
+                {t('services.quantity')} ({service.minQuantity} - {service.maxQuantity})
               </label>
               
               {/* Predefined Quantities */}
@@ -180,14 +182,14 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
             {/* Price Calculator */}
             <div className="bg-gray-700/50 rounded-lg p-4 border border-gray-600">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-gray-300">Количество:</span>
+                <span className="text-gray-300">{t('services.quantity')}:</span>
                 <span className="text-white font-medium">
                   {isCalculating ? '...' : quantity.toLocaleString()}
                 </span>
               </div>
               
               <div className="flex items-center justify-between mb-2">
-                <span className="text-gray-300">Цена за 1000:</span>
+                <span className="text-gray-300">{t('services.pricePer1000')}:</span>
                 <span className="text-white font-medium">
                   {service.price.toLocaleString()}₸
                 </span>
@@ -195,9 +197,9 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
               
               <div className="border-t border-gray-600 pt-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-semibold text-white">Итого:</span>
+                  <span className="text-lg font-semibold text-white">{t('services.total')}:</span>
                   <span className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-                    {isCalculating ? '...' : `${Math.round(totalPrice).toLocaleString()}₸`}
+                    {isCalculating ? t('services.calculating') : `${Math.round(totalPrice).toLocaleString()}₸`}
                   </span>
                 </div>
               </div>
@@ -209,7 +211,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
               disabled={!url || isCalculating}
               className="w-full py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-pink-500/25"
             >
-              {isCalculating ? 'Расчёт...' : 'Перейти к оплате'}
+              {isCalculating ? t('services.calculating') : t('services.proceedToPayment')}
             </button>
           </div>
         </div>

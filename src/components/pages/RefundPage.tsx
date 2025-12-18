@@ -1,8 +1,9 @@
 import React from 'react';
-import { t } from '../../lib/i18n';
+import { useTranslation } from 'react-i18next';
 import { RefreshCw, AlertCircle, CheckCircle, Clock } from 'lucide-react';
 
 export const RefundPage: React.FC = () => {
+  const { t } = useTranslation();
   
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -13,18 +14,18 @@ export const RefundPage: React.FC = () => {
         </div>
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-            Возврат средств
+            {t('refund.title')}
           </span>
         </h1>
         <p className="text-gray-400 text-lg">
-          Условия и процедура возврата денежных средств
+          {t('refund.subtitle')}
         </p>
       </div>
 
       {/* Content */}
       <div className="space-y-8 text-gray-300">
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4">Юридическая информация</h2>
+          <h2 className="text-xl font-bold text-white mb-4">{t('refund.legalInfo')}</h2>
           <div className="space-y-1 text-sm text-gray-300">
             <p>ТОО "White Trade"</p>
             <p>БИН 250140025178</p>
@@ -51,17 +52,17 @@ export const RefundPage: React.FC = () => {
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center">
             <AlertCircle className="w-5 h-5 text-red-500 mr-2" />
-            Когда возврат невозможен
+            {t('refund.whenNotPossible')}
           </h2>
           <div className="space-y-3">
-            <p>Возврат средств НЕ производится в случаях:</p>
+            <p>{t('refund.whenNotPossibleText')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Услуга была предоставлена в полном объеме</li>
-              <li>Клиент изменил настройки приватности аккаунта после заказа</li>
-              <li>Аккаунт был заблокирован или удален после выполнения заказа</li>
-              <li>Естественное снижение показателей со временем</li>
-              <li>Клиент предоставил неверные данные для выполнения заказа</li>
-              <li>Прошло более 30 дней с момента выполнения заказа</li>
+              <li>{t('refund.notPossible1')}</li>
+              <li>{t('refund.notPossible2')}</li>
+              <li>{t('refund.notPossible3')}</li>
+              <li>{t('refund.notPossible4')}</li>
+              <li>{t('refund.notPossible5')}</li>
+              <li>{t('refund.notPossible6')}</li>
             </ul>
           </div>
         </section>
@@ -69,71 +70,69 @@ export const RefundPage: React.FC = () => {
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center">
             <Clock className="w-5 h-5 text-blue-500 mr-2" />
-            Процедура возврата
+            {t('refund.procedure')}
           </h2>
           <div className="space-y-4">
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-white mb-2">Шаг 1: Обращение в поддержку</h3>
-              <p>Напишите в Telegram <a href="https://t.me/qmzp101" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 transition-colors">@qmzp101</a></p>
+              <h3 className="text-lg font-semibold text-white mb-2">{t('refund.step1')}</h3>
+              <p>{t('refund.step1Text')} <a href="https://t.me/qmzp101" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 transition-colors">@qmzp101</a></p>
             </div>
             
             <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-white mb-2">Шаг 2: Предоставьте информацию</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">{t('refund.step2')}</h3>
               <ul className="list-disc list-inside space-y-1 ml-4">
-                <li>Номер заказа или чек об оплате</li>
-                <li>Описание проблемы</li>
-                <li>Скриншоты (если необходимо)</li>
+                <li>{t('refund.step2Item1')}</li>
+                <li>{t('refund.step2Item2')}</li>
+                <li>{t('refund.step2Item3')}</li>
               </ul>
             </div>
             
             <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-white mb-2">Шаг 3: Рассмотрение заявки</h3>
-              <p>Мы рассмотрим вашу заявку в течение 24 часов и дадим ответ</p>
+              <h3 className="text-lg font-semibold text-white mb-2">{t('refund.step3')}</h3>
+              <p>{t('refund.step3Text')}</p>
             </div>
             
             <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-white mb-2">Шаг 4: Возврат средств</h3>
-              <p>При положительном решении возврат происходит в течение 3-7 рабочих дней</p>
+              <h3 className="text-lg font-semibold text-white mb-2">{t('refund.step4')}</h3>
+              <p>{t('refund.step4Text')}</p>
             </div>
           </div>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4">
-            Способы возврата
+            {t('refund.methods')}
           </h2>
           <div className="space-y-3">
-            <p>Возврат производится тем же способом, которым была произведена оплата:</p>
+            <p>{t('refund.methodsText')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li><strong>Банковская карта:</strong> 3-7 рабочих дней</li>
-              <li><strong>Электронные кошельки:</strong> 1-3 рабочих дня</li>
+              <li><strong>{t('refund.card')}</strong> {t('refund.cardTime')}</li>
+              <li><strong>{t('refund.ewallet')}</strong> {t('refund.ewalletTime')}</li>
             </ul>
           </div>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4">
-            Частичный возврат
+            {t('refund.partial')}
           </h2>
           <div className="space-y-3">
             <p>
-              Если услуга была предоставлена частично, возможен частичный возврат средств 
-              пропорционально невыполненному объему.
+              {t('refund.partialText1')}
             </p>
             <p>
-              Например, если заказано 1000 подписчиков, а предоставлено только 700, 
-              возврат составит 30% от стоимости заказа.
+              {t('refund.partialText2')}
             </p>
           </div>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4">
-            Контакты для возврата
+            {t('refund.contacts')}
           </h2>
           <div className="space-y-2">
             <p>
-              <strong>Telegram:</strong>{' '}
+              <strong>{t('footer.telegram')}:</strong>{' '}
               <a 
                 href="https://t.me/qmzp101" 
                 target="_blank" 
@@ -148,7 +147,7 @@ export const RefundPage: React.FC = () => {
       </div>
 
       <div className="text-center mt-8 text-sm text-gray-500">
-        Последнее обновление: 15 января 2024 года
+        {t('refund.lastUpdate')}
       </div>
     </div>
   );

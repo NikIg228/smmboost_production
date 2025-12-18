@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CheckCircle } from 'lucide-react';
 
 interface LogoutNotificationProps {
@@ -7,6 +8,8 @@ interface LogoutNotificationProps {
 }
 
 export const LogoutNotification: React.FC<LogoutNotificationProps> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
+  
   if (!isOpen) return null;
 
   return (
@@ -33,18 +36,18 @@ export const LogoutNotification: React.FC<LogoutNotificationProps> = ({ isOpen, 
           </div>
           
           <h2 className="text-2xl font-bold text-white mb-3">
-            Вы успешно вышли из системы
+            {t('logout.title')}
           </h2>
           
           <p className="text-gray-300 mb-6">
-            До свидания! Мы будем рады видеть вас снова.
+            {t('logout.message')}
           </p>
 
           <button
             onClick={onClose}
             className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift"
           >
-            ОК
+            {t('common.ok')}
           </button>
         </div>
       </div>
