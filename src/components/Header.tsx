@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, Zap, Users, MessageCircle, Settings, LogIn, LogOut, User as UserIcon, UserCircle } from 'lucide-react';
 import { AuthModal } from './AuthModal';
 import { ConsultationModal } from './ConsultationModal';
+import { LogoutNotification } from './LogoutNotification';
 import { useAuth } from '../hooks/useAuth';
 import { signOut } from '../lib/supabase';
 
@@ -15,6 +16,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAuthModal, onConsultation }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showLogoutNotification, setShowLogoutNotification] = useState(false);
   const { user, isAuthenticated } = useAuth();
 
   const menuItems = [
@@ -26,11 +28,28 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
 
   const handleSignOut = async () => {
     try {
-      await signOut();
-      alert('Вы успешно вышли из системы');
+      const { error } = await signOut();
       setShowProfileMenu(false);
+      if (error) {
+        console.error('Error signing out:', error);
+        // Все равно очищаем локальное состояние
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
+      } else {
+        // Показываем уведомление в стиле сайта
+        setShowLogoutNotification(true);
+        // Перезагружаем страницу через 2 секунды
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
     } catch (error) {
       console.error('Error signing out:', error);
+      // В случае ошибки все равно перезагружаем страницу
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     }
   };
 
@@ -198,6 +217,12 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
           </div>
         )}
       </div>
+      
+      {/* Logout Notification */}
+      <LogoutNotification
+        isOpen={showLogoutNotification}
+        onClose={() => setShowLogoutNotification(false)}
+      />
     </header>
   );
 };

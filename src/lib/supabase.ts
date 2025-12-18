@@ -57,8 +57,19 @@ export const signInWithGoogle = async () => {
 }
 
 export const signOut = async () => {
-  const { error } = await supabase.auth.signOut()
-  return { error }
+  try {
+    const { error } = await supabase.auth.signOut({ scope: 'local' })
+    if (error) {
+      // Если локальный выход не работает, пробуем без scope
+      const { error: error2 } = await supabase.auth.signOut()
+      return { error: error2 }
+    }
+    return { error: null }
+  } catch (err: any) {
+    // В случае ошибки все равно очищаем локальную сессию
+    await supabase.auth.signOut({ scope: 'local' })
+    return { error: err }
+  }
 }
 
 export const getCurrentUser = async () => {
