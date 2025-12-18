@@ -88,7 +88,12 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                 </button>
                 
                 {showProfileMenu && (
-                  <div className="absolute right-0 mt-2 w-48 glass-effect rounded-lg shadow-lg border border-gray-700/50 py-2 animate-fadeInUp">
+                  <div 
+                    className="absolute right-0 top-full mt-2 w-48 glass-effect rounded-lg shadow-lg border border-gray-700/50 py-2 z-50"
+                    style={{
+                      animation: 'fadeIn 0.2s ease-out'
+                    }}
+                  >
                     <button
                       onClick={() => {
                         onPageChange('profile');

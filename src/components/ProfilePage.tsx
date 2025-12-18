@@ -74,31 +74,31 @@ export const ProfilePage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Profile Info */}
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
             <h2 className="text-xl font-bold text-white">Информация профиля</h2>
             {!isEditing ? (
               <button
                 onClick={() => setIsEditing(true)}
-                className="flex items-center space-x-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                className="flex items-center space-x-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex-shrink-0 whitespace-nowrap"
               >
-                <Edit2 className="w-4 h-4" />
+                <Edit2 className="w-4 h-4 flex-shrink-0" />
                 <span>Редактировать</span>
               </button>
             ) : (
-              <div className="flex space-x-2">
+              <div className="flex space-x-2 flex-shrink-0 flex-wrap gap-2">
                 <button
                   onClick={handleSave}
                   disabled={loading}
-                  className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
+                  className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 whitespace-nowrap"
                 >
-                  <Save className="w-4 h-4" />
+                  <Save className="w-4 h-4 flex-shrink-0" />
                   <span>{loading ? 'Сохранение...' : 'Сохранить'}</span>
                 </button>
                 <button
                   onClick={handleCancel}
-                  className="flex items-center space-x-2 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  className="flex items-center space-x-2 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors whitespace-nowrap"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-4 h-4 flex-shrink-0" />
                   <span>Отмена</span>
                 </button>
               </div>

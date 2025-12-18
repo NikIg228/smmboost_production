@@ -245,8 +245,11 @@ export const PasswordChangeModal: React.FC<PasswordChangeModalProps> = ({ isOpen
         aria-describedby="password-modal-description"
       >
         <div 
-          className="bg-gray-800 rounded-2xl border border-gray-700 shadow-2xl w-full max-w-md transform transition-all duration-300 animate-fadeInUp"
+          className="bg-gray-800 rounded-2xl border border-gray-700 shadow-2xl w-full max-w-md"
           onClick={(e) => e.stopPropagation()}
+          style={{
+            animation: 'fadeIn 0.3s ease-out'
+          }}
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-700">

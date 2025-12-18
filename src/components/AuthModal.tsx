@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from './Modal';
-import { Mail, Lock, User } from 'lucide-react';
+import { Mail, Lock, User, Gift } from 'lucide-react';
 import { signUp, signIn, signInWithGoogle } from '../lib/supabase';
 import { GoogleButton } from './GoogleButton';
 
@@ -16,7 +16,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    referralCode: ''
   });
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
@@ -91,7 +92,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
 
   const handleClose = () => {
     onClose();
-    setFormData({ name: '', email: '', password: '', confirmPassword: '' });
+    setFormData({ name: '', email: '', password: '', confirmPassword: '', referralCode: '' });
     setError(null);
     setSuccess(null);
   };
@@ -109,12 +110,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
         />
 
         {/* Divider */}
-        <div className="relative">
+        <div className="relative py-2">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-600"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-gray-800 text-gray-400">или</span>
+            <span className="px-3 bg-gray-800 text-gray-400">или</span>
           </div>
         </div>
 
@@ -163,7 +164,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
               onChange={(e) => setFormData({...formData, email: e.target.value})}
               className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
               placeholder="Ваш email"
-              required
+              required={mode === 'register'}
             />
           </div>
         </div>
@@ -181,7 +182,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
               onChange={(e) => setFormData({...formData, password: e.target.value})}
               className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
               placeholder="Минимум 6 символов"
-              required
+              required={mode === 'register'}
             />
           </div>
         </div>
@@ -204,6 +205,37 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onM
             </div>
           </div>
         )}
+
+        {/* Divider before promo code */}
+        <div className="relative py-2">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-600"></div>
+          </div>
+        </div>
+
+        {/* Referral Code Field */}
+        <div>
+          <label className="block text-sm font-medium text-gray-300 mb-2">
+            Реферальный промокод
+          </label>
+          <div className="relative">
+            <Gift className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              value={formData.referralCode}
+              onChange={(e) => setFormData({...formData, referralCode: e.target.value})}
+              className="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+              placeholder="Введите промокод (необязательно)"
+            />
+          </div>
+        </div>
+
+        {/* Divider before button */}
+        <div className="relative py-2">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-600"></div>
+          </div>
+        </div>
 
         <button
           type="submit"

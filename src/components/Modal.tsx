@@ -44,17 +44,23 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
   if (!isOpen) return null;
 
   return (
-    <>
+    <div 
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+      onClick={onClose}
+    >
       {/* Backdrop */}
       <div 
-        className="modal-backdrop"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
       />
       
       {/* Modal */}
       <div 
-        className="modal"
+        className="relative bg-gray-800 rounded-xl border border-gray-700 shadow-2xl w-full max-w-md p-6 overflow-y-auto max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
+        style={{
+          animation: 'fadeIn 0.3s ease-out'
+        }}
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
@@ -70,6 +76,6 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
         {/* Content */}
         {children}
       </div>
-    </>
+    </div>
   );
 };
