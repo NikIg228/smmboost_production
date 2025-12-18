@@ -17,6 +17,31 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
 
   const predefinedQuantities = [100, 500, 1000, 5000, 10000];
   
+  // Get translated service data
+  const serviceTranslation = t(`services.serviceItems.${service.id}`, { returnObjects: true }) as {
+    name?: string;
+    description?: string;
+    startTime?: string;
+    speed?: string;
+    guarantee?: string;
+  } | string;
+  
+  const serviceName = typeof serviceTranslation === 'object' && serviceTranslation?.name 
+    ? serviceTranslation.name 
+    : service.name;
+  const serviceDescription = typeof serviceTranslation === 'object' && serviceTranslation?.description 
+    ? serviceTranslation.description 
+    : service.description;
+  const serviceStartTime = typeof serviceTranslation === 'object' && serviceTranslation?.startTime 
+    ? serviceTranslation.startTime 
+    : service.startTime;
+  const serviceSpeed = typeof serviceTranslation === 'object' && serviceTranslation?.speed 
+    ? serviceTranslation.speed 
+    : service.speed;
+  const serviceGuarantee = typeof serviceTranslation === 'object' && serviceTranslation?.guarantee 
+    ? serviceTranslation.guarantee 
+    : service.guarantee;
+  
   const calculatePrice = (qty: number) => {
     if (service.category === 'likes') {
       return (qty / 100) * service.price;
@@ -54,10 +79,10 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
         <div className="space-y-6">
           <div>
             <h1 className="text-3xl font-bold text-white mb-4">
-              {service.name}
+              {serviceName}
             </h1>
             <p className="text-gray-400 text-lg">
-              {service.description}
+              {serviceDescription}
             </p>
           </div>
 
@@ -70,7 +95,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
                 <Clock className="w-5 h-5 text-blue-500" />
                 <div>
                   <div className="text-sm text-gray-400">{t('services.startTime')}</div>
-                  <div className="text-white font-medium">{service.startTime}</div>
+                  <div className="text-white font-medium">{serviceStartTime}</div>
                 </div>
               </div>
               
@@ -78,7 +103,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
                 <Zap className="w-5 h-5 text-yellow-500" />
                 <div>
                   <div className="text-sm text-gray-400">{t('services.speed')}</div>
-                  <div className="text-white font-medium">{service.speed}</div>
+                  <div className="text-white font-medium">{serviceSpeed}</div>
                 </div>
               </div>
               
@@ -86,7 +111,7 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
                 <Shield className="w-5 h-5 text-green-500" />
                 <div>
                   <div className="text-sm text-gray-400">{t('services.guarantee')}</div>
-                  <div className="text-white font-medium">{service.guarantee}</div>
+                  <div className="text-white font-medium">{serviceGuarantee}</div>
                 </div>
               </div>
               

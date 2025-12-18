@@ -56,10 +56,17 @@ export const Footer: React.FC = () => {
             </p>
             <div className="text-gray-400 text-sm space-y-1 pt-2">
               <p className="text-gray-500 uppercase tracking-wider text-xs">{t('footer.legalInfo')}</p>
-              <div className="space-y-1">
-                <p>ТОО "White Trade"</p>
-                <p>БИН 250140025178</p>
-                <p>Казахстан, г. Алматы, Бостандыкский район, Темирязева 69, 050057</p>
+              <div className="space-y-3">
+                <div className="space-y-1">
+                  <p>{t('footer.company1.name')}</p>
+                  <p>{t('footer.company1.bin')}</p>
+                  <p>{t('footer.company1.address')}</p>
+                </div>
+                <div className="space-y-1 pt-2 border-t border-gray-700/50">
+                  <p>{t('footer.company2.name')}</p>
+                  <p>{t('footer.company2.bin')}</p>
+                  <p>{t('footer.company2.address')}</p>
+                </div>
               </div>
             </div>
           </div>

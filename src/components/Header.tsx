@@ -112,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
               
               {showLanguageMenu && (
                 <div 
-                  className="absolute right-0 top-full mt-2 w-32 glass-effect rounded-lg shadow-lg border border-gray-700/50 py-2 z-50"
+                  className="absolute right-0 top-full mt-2 w-36 glass-effect rounded-lg shadow-lg border border-gray-700/50 py-2 z-50"
                   style={{
                     animation: 'fadeIn 0.2s ease-out'
                   }}
@@ -133,6 +133,14 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                     }`}
                   >
                     Қазақша
+                  </button>
+                  <button
+                    onClick={() => changeLanguage('en')}
+                    className={`w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors ${
+                      i18n.language === 'en' ? 'bg-gray-700/50' : ''
+                    }`}
+                  >
+                    English
                   </button>
                 </div>
               )}
@@ -283,6 +291,16 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                     }`}
                   >
                     Қазақша
+                  </button>
+                  <button
+                    onClick={() => changeLanguage('en')}
+                    className={`px-4 py-2 rounded-lg transition-colors ${
+                      i18n.language === 'en'
+                        ? 'bg-gradient-to-r from-pink-500/20 to-purple-600/20 text-white'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                    }`}
+                  >
+                    English
                   </button>
                 </div>
               </div>

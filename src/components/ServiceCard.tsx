@@ -38,6 +38,28 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClic
   const IconComponent = iconMap[service.icon as keyof typeof iconMap];
   const platformGradient = platformColors[service.platform as keyof typeof platformColors];
   
+  // Get translated service data
+  const serviceTranslation = t(`services.serviceItems.${service.id}`, { returnObjects: true }) as {
+    name?: string;
+    description?: string;
+    startTime?: string;
+    speed?: string;
+    guarantee?: string;
+  } | string;
+  
+  const serviceName = typeof serviceTranslation === 'object' && serviceTranslation?.name 
+    ? serviceTranslation.name 
+    : service.name;
+  const serviceDescription = typeof serviceTranslation === 'object' && serviceTranslation?.description 
+    ? serviceTranslation.description 
+    : service.description;
+  const serviceStartTime = typeof serviceTranslation === 'object' && serviceTranslation?.startTime 
+    ? serviceTranslation.startTime 
+    : service.startTime;
+  const serviceSpeed = typeof serviceTranslation === 'object' && serviceTranslation?.speed 
+    ? serviceTranslation.speed 
+    : service.speed;
+  
   return (
     <div 
       className="group relative h-full glass-effect rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 overflow-hidden card-hover glow-effect cursor-pointer"
@@ -66,22 +88,22 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClic
           
           {/* Content */}
           <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-glow transition-all duration-300">
-            {service.name}
+            {serviceName}
           </h3>
           
           <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 group-hover:text-gray-300 transition-colors duration-300">
-            {service.description}
+            {serviceDescription}
           </p>
           
           {/* Stats */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs text-gray-500 mb-3 sm:mb-4 space-y-1 sm:space-y-0">
             <div className="flex items-center space-x-1">
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full"></div>
-              <span className="text-xs">{t('services.start')}: {service.startTime}</span>
+              <span className="text-xs">{t('services.start')}: {serviceStartTime}</span>
             </div>
             <div className="flex items-center space-x-1">
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full"></div>
-              <span className="text-xs">{t('services.speedLabel')}: {service.speed}</span>
+              <span className="text-xs">{t('services.speedLabel')}: {serviceSpeed}</span>
             </div>
           </div>
         </div>

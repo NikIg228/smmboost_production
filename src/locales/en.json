@@ -1,0 +1,723 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "ok": "OK",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "or": "or"
+  },
+  "header": {
+    "menu": {
+      "home": "Home",
+      "services": "Services",
+      "reviews": "Reviews",
+      "support": "Support"
+    },
+    "login": "Sign In",
+    "profile": "Profile",
+    "logout": "Sign Out",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Promote accounts worldwide — likes and followers without borders!",
+    "subtitle1": "Promotion",
+    "subtitle2": "on social media",
+    "subtitle3": "for your success",
+    "description": "Professional services to grow your social media presence",
+    "chooseService": "Choose Service",
+    "getConsultation": "Get Consultation",
+    "benefits": {
+      "instantStart": {
+        "title": "Instant Start",
+        "description": "Results within 30 minutes after payment"
+      },
+      "anonymous": {
+        "title": "Anonymous & Safe",
+        "description": "No passwords, complete privacy"
+      },
+      "noPasswords": {
+        "title": "No Passwords",
+        "description": "We don't require access to your account"
+      },
+      "support247": {
+        "title": "24/7 Support",
+        "description": "We help anytime, day or night"
+      }
+    }
+  },
+  "footer": {
+    "description": "Professional social media promotion services. Fast, safe, effective.",
+    "legalInfo": "Legal Information",
+    "company1": {
+      "name": "LLP \"White Trade\"",
+      "bin": "BIN 250140025178",
+      "address": "Kazakhstan, Almaty, Bostandyk district, Temiryazeva 69, 050057"
+    },
+    "company2": {
+      "name": "LLP \"World Trade\"",
+      "bin": "BIN 240740019557",
+      "address": "Kazakhstan, Almaty, Turksib district, Dulatova st. 53, 050003"
+    },
+    "services": "Services",
+    "support": "Support",
+    "contacts": "Contacts",
+    "faq": "FAQ",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "refund": "Refund Policy",
+    "copyright": "© 2025 SMM Boost. All rights reserved.",
+    "telegram": "Telegram"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Choose the right package to promote your account",
+    "searchPlaceholder": "Search services...",
+    "allPlatforms": "All Platforms",
+    "allCategories": "All Categories",
+    "categories": {
+      "likes": "Likes",
+      "followers": "Followers",
+      "views": "Views",
+      "live": "Live Streams"
+    },
+    "noResults": "No services found",
+    "resetFilters": "Reset Filters",
+    "buy": "Buy",
+    "backToServices": "Back to Services",
+    "serviceFeatures": "Service Features",
+    "startTime": "Start Time",
+    "speed": "Speed",
+    "guarantee": "Guarantee",
+    "pricePer": "Price per",
+    "howItWorks": "How It Works",
+    "step1": "Paste the link to your profile or post",
+    "step2": "Select the desired quantity",
+    "step3": "Make payment using any convenient method",
+    "step4": "Get results within the specified time",
+    "orderForm": "Place Order",
+    "profileLink": "Profile or Post Link",
+    "profileLinkPlaceholder": "https://instagram.com/yourusername",
+    "quantity": "Quantity",
+    "pricePer1000": "Price per 1000",
+    "total": "Total",
+    "proceedToPayment": "Proceed to Payment",
+    "calculating": "Calculating...",
+    "per100": "per 100",
+    "per1000": "per 1000",
+    "from": "from",
+    "start": "Start",
+    "speedLabel": "Speed",
+    "serviceItems": {
+      "ig-likes": {
+        "name": "Instagram Likes",
+        "description": "Fast boosting of likes from live accounts",
+        "startTime": "within 30 minutes",
+        "speed": "1000-5000 per hour",
+        "guarantee": "30 days"
+      },
+      "ig-followers": {
+        "name": "Instagram Followers",
+        "description": "Live followers with avatars and posts",
+        "startTime": "0-60 minutes",
+        "speed": "500-2000 per day",
+        "guarantee": "60 days"
+      },
+      "ig-views": {
+        "name": "Instagram Stories Views",
+        "description": "Story views from active users",
+        "startTime": "0-15 minutes",
+        "speed": "5000-10000 per hour",
+        "guarantee": "7 days"
+      },
+      "ig-reels": {
+        "name": "Instagram Reels Views",
+        "description": "Quality views for your Reels",
+        "startTime": "within 30 minutes",
+        "speed": "10000-50000 per hour",
+        "guarantee": "30 days"
+      },
+      "ig-live-viewers": {
+        "name": "Instagram Live Viewers",
+        "description": "Active viewers for Instagram live streams",
+        "startTime": "0-5 minutes",
+        "speed": "30-150 per minute",
+        "guarantee": "During stream"
+      },
+      "tt-followers": {
+        "name": "TikTok Followers",
+        "description": "Fast boosting of TikTok followers",
+        "startTime": "0-60 minutes",
+        "speed": "1000-5000 per day",
+        "guarantee": "30 days"
+      },
+      "tt-likes": {
+        "name": "TikTok Likes",
+        "description": "Likes from active TikTok users",
+        "startTime": "within 30 minutes",
+        "speed": "1000-10000 per hour",
+        "guarantee": "30 days"
+      },
+      "tt-views": {
+        "name": "TikTok Views",
+        "description": "Video views with high retention",
+        "startTime": "0-15 minutes",
+        "speed": "50000-200000 per hour",
+        "guarantee": "30 days"
+      },
+      "tt-live-viewers": {
+        "name": "TikTok Live Viewers",
+        "description": "Live viewers for TikTok streams",
+        "startTime": "0-5 minutes",
+        "speed": "20-100 per minute",
+        "guarantee": "During stream"
+      },
+      "yt-subscribers": {
+        "name": "YouTube Subscribers",
+        "description": "Quality subscribers for channel",
+        "startTime": "0-120 minutes",
+        "speed": "200-1000 per day",
+        "guarantee": "90 days"
+      },
+      "yt-views": {
+        "name": "YouTube Views",
+        "description": "Video views with audience retention",
+        "startTime": "0-60 minutes",
+        "speed": "5000-20000 per hour",
+        "guarantee": "60 days"
+      },
+      "yt-likes": {
+        "name": "YouTube Likes",
+        "description": "Likes from real users",
+        "startTime": "within 30 minutes",
+        "speed": "500-2000 per hour",
+        "guarantee": "60 days"
+      },
+      "tg-subscribers": {
+        "name": "Telegram Subscribers",
+        "description": "Subscribers for channels and bots",
+        "startTime": "within 30 minutes",
+        "speed": "1000-5000 per hour",
+        "guarantee": "30 days"
+      },
+      "tg-views": {
+        "name": "Telegram Views",
+        "description": "Post views in channels",
+        "startTime": "0-15 minutes",
+        "speed": "10000-50000 per hour",
+        "guarantee": "30 days"
+      },
+      "vk-likes": {
+        "name": "VK Likes",
+        "description": "Likes from active VKontakte users",
+        "startTime": "within 30 minutes",
+        "speed": "1000-5000 per hour",
+        "guarantee": "30 days"
+      },
+      "vk-followers": {
+        "name": "VK Followers",
+        "description": "Followers for groups and pages",
+        "startTime": "0-60 minutes",
+        "speed": "1000-10000 per day",
+        "guarantee": "30 days"
+      },
+      "vk-live-viewers": {
+        "name": "VK Live Viewers",
+        "description": "Real viewers for VKontakte live streams",
+        "startTime": "0-5 minutes",
+        "speed": "50-200 per minute",
+        "guarantee": "During stream"
+      },
+      "tw-followers": {
+        "name": "Twitter Followers",
+        "description": "Quality Twitter followers",
+        "startTime": "0-120 minutes",
+        "speed": "500-2000 per day",
+        "guarantee": "60 days"
+      },
+      "tw-likes": {
+        "name": "Twitter Likes",
+        "description": "Likes for tweets from active users",
+        "startTime": "within 30 minutes",
+        "speed": "1000-5000 per hour",
+        "guarantee": "30 days"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "button": "Sign In",
+      "googleButton": "Sign in with Google",
+      "noAccount": "Don't have an account?",
+      "emailPlaceholder": "Your email",
+      "passwordPlaceholder": "Minimum 6 characters"
+    },
+    "register": {
+      "title": "Sign Up",
+      "button": "Sign Up",
+      "googleButton": "Sign up with Google",
+      "hasAccount": "Already have an account?",
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "Your email",
+      "passwordPlaceholder": "Minimum 6 characters",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "passwordMismatch": "Passwords do not match",
+      "success": "Great! We've sent a confirmation email to your address."
+    },
+    "errors": {
+      "generic": "An error occurred. Please try again.",
+      "invalidCredentials": "Invalid email or password",
+      "emailNotConfirmed": "Please confirm your email before signing in",
+      "userExists": "User with this email already exists",
+      "googleError": "Google sign-in error"
+    },
+    "referralCode": "Referral Promo Code",
+    "referralCodePlaceholder": "Enter promo code (optional)"
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Manage your profile and track orders",
+    "profileInfo": "Profile Information",
+    "name": "Name",
+    "email": "Email",
+    "emailCannotChange": "Email cannot be changed",
+    "password": "Password",
+    "changePassword": "Change",
+    "changePasswordHint": "Click \"Change\" to update password",
+    "notSpecified": "Not specified",
+    "referralCode": "Referral Code",
+    "referralCodeDescription": "Share the code with friends and get bonuses for each of their orders",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "usedCoupons": "Used Coupons",
+    "couponsUsed": "coupons used",
+    "purchaseHistory": "Purchase History",
+    "service": "Service",
+    "quantity": "Quantity",
+    "amount": "Amount",
+    "date": "Date",
+    "status": "Status",
+    "empty": "Empty"
+  },
+  "passwordChange": {
+    "title": "Change Password",
+    "subtitle": "Update your account password",
+    "currentPassword": "Current Password",
+    "currentPasswordPlaceholder": "Enter current password",
+    "currentPasswordHint": "Enter your current password to confirm",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Repeat new password",
+    "passwordStrength": "Password Strength",
+    "strength": {
+      "enterPassword": "Enter password",
+      "veryWeak": "Very Weak",
+      "weak": "Weak",
+      "medium": "Medium",
+      "good": "Good",
+      "strong": "Strong",
+      "veryStrong": "Very Strong"
+    },
+    "requirements": "Requirements",
+    "minChars": "Minimum 8 characters",
+    "lowercase": "Lowercase letters",
+    "uppercase": "Uppercase letters",
+    "numbers": "Numbers",
+    "specialChars": "Special characters",
+    "changeButton": "Change Password",
+    "changing": "Changing...",
+    "success": "Password Changed!",
+    "successMessage": "Your password has been successfully updated",
+    "errors": {
+      "enterCurrent": "Enter current password",
+      "minLength": "New password must contain at least 8 characters",
+      "mismatch": "Passwords do not match",
+      "tooWeak": "Password is too weak. Use a more complex password.",
+      "invalidCurrent": "Invalid current password",
+      "generic": "An error occurred while changing password"
+    },
+    "showPassword": "Show Password",
+    "hidePassword": "Hide Password"
+  },
+  "logout": {
+    "title": "You have successfully signed out",
+    "message": "Goodbye! We'll be happy to see you again."
+  },
+  "payment": {
+    "unavailable": {
+      "title": "Payment processing temporarily unavailable",
+      "description": "You can browse our catalog for now",
+      "toCatalog": "to Catalog",
+      "technicalWork": {
+        "title": "Technical maintenance.",
+        "subtitle": "Payment temporarily unavailable."
+      }
+    },
+    "loginRequired": "Please sign in to your account",
+    "processing": "Processing payment...",
+    "processingTitle": "Processing Payment",
+    "connectionError": "Connection error. Please try again later."
+  },
+  "consultation": {
+    "title": "Get Consultation",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "contact": "Telegram / WhatsApp",
+    "contactPlaceholder": "@username or +7XXXXXXXXXX",
+    "platform": "Platform",
+    "platformPlaceholder": "Select platform",
+    "message": "Message",
+    "messagePlaceholder": "Describe what interests you",
+    "submit": "Submit Request",
+    "success": "Request sent! We'll contact you within 30 minutes.",
+    "error": "Please fill in all required fields",
+    "benefits": {
+      "free": "Free Consultation",
+      "response": "Response within 30 minutes",
+      "strategy": "Individual Strategy"
+    }
+  },
+  "support": {
+    "title": "Support",
+    "subtitle": "We're always ready to help you with any questions",
+    "contacts": "Contacts",
+    "telegram": "Telegram",
+    "telegramDesc": "Quick contact with operator",
+    "email": "Email",
+    "emailDesc": "Response within 24 hours",
+    "phone": "Phone",
+    "phoneDesc": "Phone consultations",
+    "workHours": "Working Hours",
+    "telegramSupport": "Telegram Support",
+    "emailSupport": "Email Support",
+    "contactForm": "Contact Form",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "subject": "Subject",
+    "subjectPlaceholder": "Brief description",
+    "message": "Message",
+    "messagePlaceholder": "Describe your situation",
+    "send": "Send",
+    "sendSuccess": "Message sent! We'll respond within 24 hours.",
+    "responseTime": "Response within 5 minutes",
+    "faq": "Frequently Asked Questions",
+    "faqs": {
+      "safe": {
+        "question": "Is it safe to use your services?",
+        "answer": "Yes, all our services are completely safe. We don't request account passwords and use only official promotion methods. Your account remains under your full control."
+      },
+      "speed": {
+        "question": "How quickly does order execution start?",
+        "answer": "Most orders start executing within 30 minutes after payment. Time may vary depending on service type and current load."
+      },
+      "disappeared": {
+        "question": "What to do if followers or likes disappeared?",
+        "answer": "We have a guarantee on all services. If the quantity decreased during the warranty period, we'll top up to the ordered volume for free. Contact support with your order number."
+      },
+      "cancel": {
+        "question": "Can I cancel an order?",
+        "answer": "Orders can only be cancelled before execution starts. If work has already begun, cancellation is not possible. We recommend carefully checking data before payment."
+      },
+      "payment": {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept bank cards, e-wallets, and bank transfers. All payments go through secure payment systems."
+      },
+      "algorithm": {
+        "question": "Does promotion affect reach and algorithms?",
+        "answer": "Our services help improve account metrics, which positively affects social media algorithms. Quality followers and activity contribute to organic growth."
+      }
+    }
+  },
+  "reviews": {
+    "title": "Client Reviews",
+    "subtitle": "Real results and experiences from our clients",
+    "totalReviews": "reviews",
+    "joinClients": "Join Our Clients",
+    "startPromotion": "Start Promotion Today",
+    "chooseService": "Choose Service",
+    "moreThan10000": "More than 10,000 completed orders"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "How we protect and use your data",
+    "legalInfo": "Legal Information",
+    "company1": {
+      "name": "LLP \"White Trade\"",
+      "bin": "BIN 250140025178",
+      "address": "Kazakhstan, Almaty, Bostandyk district, Temiryazeva 69, 050057"
+    },
+    "company2": {
+      "name": "LLP \"World Trade\"",
+      "bin": "BIN 240740019557",
+      "address": "Kazakhstan, Almaty, Turksib district, Dulatova st. 53, 050003"
+    },
+    "dataCollection": "Data Collection",
+    "dataCollectionText": "We collect only necessary data to provide services.",
+    "contactData": "Contact data (email, phone)",
+    "socialLinks": "Social media account links",
+    "orderInfo": "Order information",
+    "technicalInfo": "Technical information (IP, user-agent)",
+    "noPasswords": "We never request passwords from your accounts.",
+    "dataUsage": "Data Usage",
+    "dataUsageText": "Data is used to fulfill orders and provide support.",
+    "serviceDelivery": "Service delivery",
+    "communication": "Client communication",
+    "support": "Technical support",
+    "qualityImprovement": "Service quality improvement",
+    "legalCompliance": "Legal compliance",
+    "noThirdParty": "We don't share data with third parties without your consent.",
+    "dataProtection": "Data Protection",
+    "dataProtectionText": "We use technical and organizational protection measures.",
+    "sslEncryption": "SSL encryption",
+    "secureStorage": "Secure data storage",
+    "limitedAccess": "Limited employee access",
+    "securityChecks": "Regular security checks",
+    "standardsCompliance": "Standards Compliance",
+    "yourRights": "Your Rights",
+    "yourRightsText": "You can request, correct, or delete your data.",
+    "requestInfo": "Request information",
+    "correctData": "Correct data",
+    "deleteData": "Delete data",
+    "limitProcessing": "Limit processing",
+    "withdrawConsent": "Withdraw consent",
+    "cookies": "Cookies and Analytics",
+    "cookiesText": "We use cookies to improve site functionality and analyze traffic. You can disable cookies in your browser settings.",
+    "cookiesAnonymous": "Anonymous data is used for traffic analysis, which doesn't allow identifying specific users.",
+    "policyChanges": "Policy Changes",
+    "policyChangesText": "We may update this privacy policy. We'll notify you of significant changes via email or site notifications.",
+    "contactTitle": "Contacts",
+    "contactText": "For privacy questions, contact:",
+    "lastUpdate": "Last updated: January 15, 2024"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "subtitle": "Terms of using SMM Boost services",
+    "legalInfo": "Legal Information",
+    "company1": {
+      "name": "LLP \"White Trade\"",
+      "bin": "BIN 250140025178",
+      "address": "Kazakhstan, Almaty, Bostandyk district, Temiryazeva 69, 050057"
+    },
+    "company2": {
+      "name": "LLP \"World Trade\"",
+      "bin": "BIN 240740019557",
+      "address": "Kazakhstan, Almaty, Turksib district, Dulatova st. 53, 050003"
+    },
+    "general": "General Provisions",
+    "generalText1": "This agreement governs the relationship between the user and SMM Boost.",
+    "generalText2": "By using the site, you accept the terms of the agreement.",
+    "services": "Services",
+    "servicesText": "We provide social media promotion services.",
+    "followersService": "Followers",
+    "likesService": "Likes",
+    "viewsService": "Views",
+    "otherServices": "Other services",
+    "obligations": "Party Obligations",
+    "ourObligations": "SMM Boost obligations:",
+    "ourObligation1": "Provide services according to description",
+    "ourObligation2": "Ensure client data confidentiality",
+    "ourObligation3": "Provide technical support",
+    "ourObligation4": "Comply with order fulfillment deadlines",
+    "clientObligations": "Client obligations:",
+    "clientObligation1": "Provide correct data for order fulfillment",
+    "clientObligation2": "Make payment according to tariffs",
+    "clientObligation3": "Not use services for illegal purposes",
+    "clientObligation4": "Comply with social media rules",
+    "payment": "Payment and Refunds",
+    "paymentText": "Payment is made before order execution begins. We accept bank cards, e-wallets, and cryptocurrencies.",
+    "refundText": "Refunds are only possible if the order is not fulfilled due to SMM Boost's fault. Details in the \"Refund Policy\" section.",
+    "restrictions": "Restrictions and Prohibitions",
+    "restrictionsText": "It is prohibited to use our services for:",
+    "restriction1": "Promoting illegal content",
+    "restriction2": "Copyright infringement",
+    "restriction3": "Spam and fraud",
+    "restriction4": "Discrimination and incitement to hatred",
+    "contactInfo": "Contact Information",
+    "lastUpdate": "Last updated: January 15, 2024"
+  },
+  "refund": {
+    "title": "Refund Policy",
+    "subtitle": "Terms and procedure for refunding funds",
+    "legalInfo": "Legal Information",
+    "company1": {
+      "name": "LLP \"White Trade\"",
+      "bin": "BIN 250140025178",
+      "address": "Kazakhstan, Almaty, Bostandyk district, Temiryazeva 69, 050057"
+    },
+    "company2": {
+      "name": "LLP \"World Trade\"",
+      "bin": "BIN 240740019557",
+      "address": "Kazakhstan, Almaty, Turksib district, Dulatova st. 53, 050003"
+    },
+    "whenPossible": "When Refund is Possible",
+    "whenPossibleText": "Refund is possible if the order is not fulfilled due to our fault.",
+    "notProvided": "Service was not provided",
+    "insufficientQuantity": "Insufficient quantity provided",
+    "technicalError": "Technical error",
+    "cancelledByClient": "Cancellation by client before work begins",
+    "whenNotPossible": "When Refund is Not Possible",
+    "whenNotPossibleText": "Refunds are NOT made in cases:",
+    "notPossible1": "Service was provided in full",
+    "notPossible2": "Client changed account privacy settings after order",
+    "notPossible3": "Account was blocked or deleted after order fulfillment",
+    "notPossible4": "Natural decrease in metrics over time",
+    "notPossible5": "Client provided incorrect data for order fulfillment",
+    "notPossible6": "More than 30 days have passed since order fulfillment",
+    "procedure": "Refund Procedure",
+    "step1": "Step 1: Contact Support",
+    "step1Text": "Write to Telegram",
+    "step2": "Step 2: Provide Information",
+    "step2Item1": "Order number or payment receipt",
+    "step2Item2": "Problem description",
+    "step2Item3": "Screenshots (if necessary)",
+    "step3": "Step 3: Application Review",
+    "step3Text": "We'll review your application within 24 hours and respond",
+    "step4": "Step 4: Refund",
+    "step4Text": "If approved, refund occurs within 3-7 business days",
+    "methods": "Refund Methods",
+    "methodsText": "Refund is made using the same method as payment:",
+    "card": "Bank Card:",
+    "cardTime": "3-7 business days",
+    "ewallet": "E-wallets:",
+    "ewalletTime": "1-3 business days",
+    "partial": "Partial Refund",
+    "partialText1": "If service was provided partially, partial refund is possible proportional to unfulfilled volume.",
+    "partialText2": "For example, if 1000 followers were ordered but only 700 were provided, refund will be 30% of order cost.",
+    "contacts": "Refund Contacts",
+    "lastUpdate": "Last updated: January 15, 2024"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to popular questions about our services",
+    "questions": {
+      "speed": {
+        "question": "How quickly does an order start?",
+        "answer": "From 0 to 30 minutes on average. Depends on system load and service type. Likes usually start coming fastest, followers may take up to an hour."
+      },
+      "realAccounts": {
+        "question": "Will subscription/like come from real accounts?",
+        "answer": "Yes, we use only verified traffic sources. All followers have avatars, posts and look like real users."
+      },
+      "refund": {
+        "question": "Can I get a refund?",
+        "answer": "If service was not provided in full, refund is possible. Details in the \"Refund Policy\" section."
+      },
+      "safe": {
+        "question": "Is it safe for my account?",
+        "answer": "Completely safe. We don't request passwords, use only public links. All methods comply with social media rules."
+      },
+      "disappeared": {
+        "question": "What to do if followers disappeared?",
+        "answer": "We have a guarantee on all services. If quantity decreased during the warranty period, we'll top up to ordered volume for free."
+      },
+      "closedAccount": {
+        "question": "Can I order services for a closed account?",
+        "answer": "For most services, account must be public. Exception - followers, they can be added to closed profiles too."
+      },
+      "discounts": {
+        "question": "Are there discounts for large orders?",
+        "answer": "Yes, for orders from 50,000₸ we provide 10% discount. For orders from 100,000₸ - 15% discount. Contact support."
+      }
+    }
+  },
+  "spline": {
+    "title1": "Promotion",
+    "title2": "on social media",
+    "description": "Professional services to grow your social media presence",
+    "services": {
+      "likes": {
+        "title": "Likes",
+        "description": "Increase likes to boost content popularity"
+      },
+      "views": {
+        "title": "Views",
+        "description": "Attract views to grow reach and get into recommendations"
+      },
+      "followers": {
+        "title": "Followers",
+        "description": "Build follower base to increase account authority"
+      }
+    },
+    "features": {
+      "quickStart": {
+        "title": "Quick Start",
+        "description": "Results in 30 minutes"
+      },
+      "security": {
+        "title": "Security",
+        "description": "No risks to your account"
+      },
+      "growth": {
+        "title": "Metrics Growth",
+        "description": "Increase organic metrics"
+      }
+    },
+    "viewAllServices": "View All Services",
+    "stats": {
+      "likes": "Likes",
+      "followers": "Followers",
+      "views": "Views"
+    },
+    "live": "Live",
+    "success": "Success"
+  },
+  "socialProof": {
+    "title": "Our Achievements",
+    "subtitle": "Numbers that speak about our experience",
+    "stats": {
+      "views": "views",
+      "likes": "likes",
+      "followers": "followers"
+    },
+    "trust": {
+      "security": {
+        "title": "Security",
+        "description": "SSL encryption and data protection"
+      },
+      "quickStart": {
+        "title": "Quick Start",
+        "description": "Order launch in 30 minutes"
+      },
+      "guarantee": {
+        "title": "Quality Guarantee",
+        "description": "Refund if not fulfilled"
+      }
+    },
+    "indicators": {
+      "online": "Online 24/7",
+      "securePayments": "Secure Payments",
+      "satisfiedClients": "10,000+ satisfied clients"
+    }
+  },
+  "paymentBanner": {
+    "initialTitle": "Payment processing temporarily unavailable",
+    "initialDescription": "You can browse our catalog for now",
+    "catalogButton": "to Catalog",
+    "buyTitleLine1": "Technical maintenance.",
+    "buyTitleLine2": "Payment temporarily unavailable."
+  },
+  "logoutNotification": {
+    "title": "You have successfully signed out",
+    "description": "Goodbye! We'll be happy to see you again.",
+    "message": "You have successfully signed out"
+  },
+  "profile": {
+    "updateSuccess": "Profile successfully updated!",
+    "updateError": "Error updating profile"
+  }
+}
+

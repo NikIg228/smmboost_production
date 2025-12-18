@@ -26,10 +26,17 @@ export const TermsPage: React.FC = () => {
       <div className="space-y-8 text-gray-300">
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4">{t('terms.legalInfo')}</h2>
-          <div className="space-y-1 text-sm text-gray-300">
-            <p>ТОО "White Trade"</p>
-            <p>БИН 250140025178</p>
-            <p>Казахстан, г. Алматы, Бостандыкский район, Темирязева 69, 050057</p>
+          <div className="space-y-4 text-sm text-gray-300">
+            <div className="space-y-1">
+              <p>{t('terms.company1.name')}</p>
+              <p>{t('terms.company1.bin')}</p>
+              <p>{t('terms.company1.address')}</p>
+            </div>
+            <div className="space-y-1 pt-3 border-t border-gray-700/50">
+              <p>{t('terms.company2.name')}</p>
+              <p>{t('terms.company2.bin')}</p>
+              <p>{t('terms.company2.address')}</p>
+            </div>
           </div>
         </section>
 
