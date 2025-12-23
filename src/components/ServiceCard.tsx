@@ -112,7 +112,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onServiceClic
         <button
           onClick={(e) => {
             e.stopPropagation();
-            onBuyClick();
+            onServiceClick(service);
           }}
           className="w-full mt-auto py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift glow-effect neon-button"
         >

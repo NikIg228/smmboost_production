@@ -30,20 +30,64 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
   const [paymentStatus, setPaymentStatus] = useState<'idle' | 'processing' | 'success' | 'error'>('idle');
   const [paymentMessage, setPaymentMessage] = useState('');
   const [transactionId, setTransactionId] = useState('');
+  
+  // Form fields
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardHolder, setCardHolder] = useState('');
+  const [expiryMonth, setExpiryMonth] = useState('');
+  const [expiryYear, setExpiryYear] = useState('');
+  const [cvv, setCvv] = useState('');
 
   const paymentMethods = [
     {
       id: 'card' as const,
       name: 'Банковская карта',
       icon: CreditCard,
-      description: 'Visa, MasterCard, МИР'
+      description: 'Visa, MasterCard'
     }
   ];
+
+  // Format card number with spaces
+  const formatCardNumber = (value: string) => {
+    const cleaned = value.replace(/\s+/g, '');
+    const formatted = cleaned.match(/.{1,4}/g)?.join(' ') || cleaned;
+    return formatted.slice(0, 19); // Max 16 digits + 3 spaces
+  };
+
+  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatCardNumber(e.target.value);
+    setCardNumber(formatted);
+  };
+
+  // Validate form
+  const validateForm = () => {
+    if (!cardNumber.replace(/\s/g, '').match(/^\d{16}$/)) {
+      return 'Введите корректный номер карты (16 цифр)';
+    }
+    if (!cardHolder.trim() || cardHolder.trim().length < 3) {
+      return 'Введите ФИО держателя карты';
+    }
+    if (!expiryMonth || !expiryYear) {
+      return 'Введите срок действия карты';
+    }
+    if (!cvv.match(/^\d{3}$/)) {
+      return 'Введите корректный CVV код (3 цифры)';
+    }
+    return null;
+  };
 
   const handlePayment = async () => {
     if (!user) {
       setPaymentStatus('error');
       setPaymentMessage(t('payment.loginRequired'));
+      return;
+    }
+
+    // Validate form
+    const validationError = validateForm();
+    if (validationError) {
+      setPaymentStatus('error');
+      setPaymentMessage(validationError);
       return;
     }
 
@@ -132,6 +176,12 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     setPaymentStatus('idle');
     setPaymentMessage('');
     setTransactionId('');
+    // Reset form fields
+    setCardNumber('');
+    setCardHolder('');
+    setExpiryMonth('');
+    setExpiryYear('');
+    setCvv('');
     onClose();
   };
 
@@ -258,6 +308,93 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                 ))}
               </div>
             </div>
+
+            {/* Payment Form */}
+            {selectedMethod === 'card' && (
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-white">Данные карты</h3>
+                
+                {/* Card Number */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Номер карты
+                  </label>
+                  <input
+                    type="text"
+                    value={cardNumber}
+                    onChange={handleCardNumberChange}
+                    placeholder="0000 0000 0000 0000"
+                    maxLength={19}
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                  />
+                </div>
+
+                {/* Card Holder */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    ФИО держателя карты
+                  </label>
+                  <input
+                    type="text"
+                    value={cardHolder}
+                    onChange={(e) => setCardHolder(e.target.value.toUpperCase())}
+                    placeholder="IVANOV IVAN IVANOVICH"
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                  />
+                </div>
+
+                {/* Expiry Date and CVV */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Срок действия
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <select
+                        value={expiryMonth}
+                        onChange={(e) => setExpiryMonth(e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                      >
+                        <option value="">ММ</option>
+                        {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                          <option key={month} value={month.toString().padStart(2, '0')}>
+                            {month.toString().padStart(2, '0')}
+                          </option>
+                        ))}
+                      </select>
+                      <select
+                        value={expiryYear}
+                        onChange={(e) => setExpiryYear(e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                      >
+                        <option value="">ГГ</option>
+                        {Array.from({ length: 15 }, (_, i) => new Date().getFullYear() + i).map((year) => (
+                          <option key={year} value={year.toString().slice(-2)}>
+                            {year.toString().slice(-2)}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      CVV
+                    </label>
+                    <input
+                      type="text"
+                      value={cvv}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, '').slice(0, 3);
+                        setCvv(value);
+                      }}
+                      placeholder="000"
+                      maxLength={3}
+                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Payment Button */}
             <button

@@ -6,7 +6,7 @@ import { Service } from '../types';
 interface ServiceDetailProps {
   service: Service;
   onBack: () => void;
-  onPaymentClick: () => void;
+  onPaymentClick: (service: Service, quantity: number, url: string, totalPrice: number) => void;
 }
 
 export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, onPaymentClick }) => {
@@ -60,7 +60,25 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
   };
 
   const handleOrder = () => {
-    onPaymentClick();
+    if (!url || !url.trim()) {
+      // Визуальная индикация ошибки
+      const urlInput = document.querySelector('input[type="url"]') as HTMLInputElement;
+      if (urlInput) {
+        urlInput.focus();
+        urlInput.style.borderColor = '#ef4444';
+        setTimeout(() => {
+          urlInput.style.borderColor = '';
+        }, 2000);
+      }
+      return;
+    }
+    
+    if (!service) {
+      console.error('Service is not defined');
+      return;
+    }
+    
+    onPaymentClick(service, quantity, url.trim(), totalPrice);
   };
 
   return (
@@ -232,8 +250,12 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
 
             {/* Order Button */}
             <button
-              onClick={handleOrder}
-              disabled={!url || isCalculating}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleOrder();
+              }}
+              disabled={!url || !url.trim() || isCalculating}
               className="w-full py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-pink-500/25"
             >
               {isCalculating ? t('services.calculating') : t('services.proceedToPayment')}

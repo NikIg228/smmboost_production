@@ -5,7 +5,7 @@ import { AnimatedBackground } from './components/AnimatedBackground';
 import { Header } from './components/Header';
 import { AuthModal } from './components/AuthModal';
 import { ConsultationModal } from './components/ConsultationModal';
-import { PaymentUnavailableBanner } from './components/PaymentUnavailableBanner';
+import { PaymentModal } from './components/PaymentModal';
 import { Hero } from './components/Hero';
 import { ServicesGrid } from './components/ServicesGrid';
 import { ServiceDetail } from './components/ServiceDetail';
@@ -28,8 +28,19 @@ function App() {
     mode: 'login'
   });
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-  const [showPaymentBanner, setShowPaymentBanner] = useState(false);
-  const [bannerType, setBannerType] = useState<'initial' | 'buy'>('initial');
+  const [paymentModal, setPaymentModal] = useState<{
+    isOpen: boolean;
+    service: Service | null;
+    quantity: number;
+    url: string;
+    totalPrice: number;
+  }>({
+    isOpen: false,
+    service: null,
+    quantity: 0,
+    url: '',
+    totalPrice: 0
+  });
 
   // Функция для плавного скролла к началу страницы
   const scrollToTop = () => {
@@ -58,24 +69,17 @@ function App() {
     };
   }, []);
 
-  // Show payment banner on site load (only if not shown before)
-  useEffect(() => {
-    const hasSeenBanner = localStorage.getItem('paymentBannerSeen');
-    if (!hasSeenBanner) {
-      setBannerType('initial');
-      setShowPaymentBanner(true);
-    }
-  }, []);
-
   const handleServiceClick = (service: Service) => {
     setSelectedService(service);
     setCurrentPage('service-detail');
     scrollToTop();
   };
 
-  const handleBuyClick = () => {
-    setBannerType('buy');
-    setShowPaymentBanner(true);
+  const handleBuyClick = (service?: Service) => {
+    // If service is provided, open its detail page
+    if (service) {
+      handleServiceClick(service);
+    }
   };
 
   const handleBackToServices = () => {
@@ -98,9 +102,14 @@ function App() {
           <ServiceDetail 
             service={selectedService} 
             onBack={handleBackToServices}
-            onPaymentClick={() => {
-              setBannerType('buy');
-              setShowPaymentBanner(true);
+            onPaymentClick={(service, quantity, url, totalPrice) => {
+              setPaymentModal({
+                isOpen: true,
+                service,
+                quantity,
+                url,
+                totalPrice
+              });
             }}
           />
         ) : (
@@ -158,24 +167,24 @@ function App() {
         onClose={() => setIsConsultationOpen(false)}
       />
       
-      <PaymentUnavailableBanner
-        isOpen={showPaymentBanner}
-        onClose={() => {
-          setShowPaymentBanner(false);
-          if (bannerType === 'initial') {
-            localStorage.setItem('paymentBannerSeen', 'true');
-          }
-        }}
-        onGoToCatalog={bannerType === 'initial' ? () => handlePageChange('services') : undefined}
-        title={bannerType === 'buy' ? (
-          <>
-            {t('payment.unavailable.technicalWork.title')}<br />
-            {t('payment.unavailable.technicalWork.subtitle')}
-          </>
-        ) : t('payment.unavailable.title')}
-        description={bannerType === 'initial' ? t('payment.unavailable.description') : undefined}
-        showCatalogButton={bannerType === 'initial'}
-      />
+      {paymentModal.service && (
+        <PaymentModal
+          isOpen={paymentModal.isOpen}
+          onClose={() => {
+            setPaymentModal({ 
+              isOpen: false,
+              service: null,
+              quantity: 0,
+              url: '',
+              totalPrice: 0
+            });
+          }}
+          service={paymentModal.service}
+          quantity={paymentModal.quantity}
+          url={paymentModal.url}
+          totalPrice={paymentModal.totalPrice}
+        />
+      )}
       </div>
     </ErrorBoundary>
   );
