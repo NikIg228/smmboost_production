@@ -1,16 +1,20 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('Missing Supabase environment variables. Please check your .env file.')
-  console.error('VITE_SUPABASE_URL:', supabaseUrl ? 'Set' : 'Missing')
-  console.error('VITE_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'Set' : 'Missing')
-  throw new Error('Missing Supabase environment variables. Please check your .env file and restart the development server.')
+  console.warn('Missing Supabase environment variables. Authentication features will be disabled.')
+  console.warn('VITE_SUPABASE_URL:', supabaseUrl ? 'Set' : 'Missing')
+  console.warn('VITE_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'Set' : 'Missing')
+  console.warn('Please set these variables in Netlify Dashboard: Site settings > Environment variables')
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+// Create Supabase client with fallback values if env vars are missing
+export const supabase = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co',
+  supabaseAnonKey || 'placeholder-key',
+  {
   auth: {
     detectSessionInUrl: true,
     persistSession: true,

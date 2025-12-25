@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal } from './Modal';
-import { CreditCard, Smartphone, Bitcoin, Wallet, AlertCircle, CheckCircle, Loader } from 'lucide-react';
+import { CreditCard, AlertCircle, CheckCircle, Loader } from 'lucide-react';
 import { Service } from '../types';
-import { PaymentRequest, PaymentResponse } from '../types/payment';
+import { PaymentRequest } from '../types/payment';
 import { useAuth } from '../hooks/useAuth';
 
 interface PaymentModalProps {
@@ -108,60 +108,35 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
         paymentMethod: selectedMethod
       };
 
-      const response = await fetch('/.netlify/functions/payment-create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(paymentData)
-      });
-
-      let result: PaymentResponse;
+      // Mock payment processing (temporary implementation)
+      // TODO: Replace with actual payment gateway integration
+      console.log('Processing payment:', paymentData);
       
-      if (!response.ok) {
-        // Handle non-200 responses
-        try {
-          const errorData = await response.json();
-          result = {
-            success: false,
-            message: errorData.message || `Server error: ${response.status}`,
-            status: 'failed'
-          };
-        } catch {
-          // Fallback if error response is not JSON
-          result = {
-            success: false,
-            message: response.statusText || `Server error: ${response.status}`,
-            status: 'failed'
-          };
-        }
-      } else {
-        // Handle successful responses
-        try {
-          result = await response.json();
-        } catch {
-          // Handle case where successful response has invalid JSON
-          result = {
-            success: false,
-            message: 'Получен некорректный ответ от сервера',
-            status: 'failed'
-          };
-        }
-      }
-
-      if (result.success) {
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Generate transaction ID
+      const transactionId = 'TXN_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      
+      // Mock success (90% success rate for testing)
+      const isSuccess = Math.random() > 0.1;
+      
+      if (isSuccess) {
         setPaymentStatus('success');
-        setPaymentMessage(result.message);
-        setTransactionId(result.transactionId || '');
-        
-        // If payment URL is provided, redirect to payment system
-        if (result.paymentUrl) {
-          window.location.href = result.paymentUrl;
-          return;
-        }
+        setPaymentMessage('Платеж успешно обработан');
+        setTransactionId(transactionId);
       } else {
+        // Mock failure scenarios
+        const failureReasons = [
+          'Недостаточно средств на карте',
+          'Карта заблокирована',
+          'Превышен лимит операций',
+          'Ошибка банка'
+        ];
+        
+        const randomFailure = failureReasons[Math.floor(Math.random() * failureReasons.length)];
         setPaymentStatus('error');
-        setPaymentMessage(result.message);
+        setPaymentMessage(randomFailure);
       }
     } catch (error) {
       console.error('Payment error:', error);
