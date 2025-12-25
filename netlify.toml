@@ -5,16 +5,10 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirect all routes to index.html for SPA routing
+# Redirect all routes to index.html for SPA routing (exclude functions and assets)
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-
-# API routes for serverless functions
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
   status = 200
 
 # Security headers
@@ -36,3 +30,5 @@
 # Environment variables (set these in Netlify dashboard)
 # VITE_SUPABASE_URL = "your-supabase-url"
 # VITE_SUPABASE_ANON_KEY = "your-supabase-anon-key"
+# PAYMENT_API_URL = "https://your-payment-api-url.com" (optional, defaults to http://api.box:5001)
+# PAYMENT_API_AUTH = "Basic your-auth-token" (optional)
