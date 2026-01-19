@@ -154,7 +154,6 @@ This project is proprietary software. All rights reserved.
 
 ## 📞 Support
 
-- **Telegram**: @qmzp101
 - **Phone**: +7 707 345 12 12
 
 ## 🔄 Updates

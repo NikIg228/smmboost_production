@@ -1,30 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Zap, Mail } from 'lucide-react';
-
-const TelegramIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M21.5 4.5L18.5 19.5C18.5 19.5 18.1 20.5 17 20L10 15.5L7.5 17L6 11.5L16.5 6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M10 15.5L9.5 20L12.2 16.9"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+import { Zap } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -40,7 +16,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -155,22 +131,6 @@ export const Footer: React.FC = () => {
                 </button>
               </li>
             </ul>
-          </div>
-
-          {/* Contact */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">{t('footer.contacts')}</h3>
-            <div className="space-y-3">
-              <a
-                href="https://t.me/qmzp101"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative text-gray-400 hover:text-white transition-colors inline-block"
-              >
-                <TelegramIcon className="w-5 h-5 absolute -left-8 top-1/2 -translate-y-1/2" />
-                <span>Telegram: @qmzp101</span>
-              </a>
-            </div>
           </div>
         </div>
 

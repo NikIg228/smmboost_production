@@ -134,19 +134,6 @@ export const TermsPage: React.FC = () => {
             <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
             6. {t('terms.contactInfo')}
           </h2>
-          <div className="space-y-2">
-            <p>
-              <strong>{t('footer.telegram')}:</strong>{' '}
-              <a 
-                href="https://t.me/qmzp101" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-300 transition-colors"
-              >
-                @qmzp101
-              </a>
-            </p>
-          </div>
         </section>
       </div>
 

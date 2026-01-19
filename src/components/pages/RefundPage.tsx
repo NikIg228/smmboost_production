@@ -82,7 +82,7 @@ export const RefundPage: React.FC = () => {
           <div className="space-y-4">
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
               <h3 className="text-lg font-semibold text-white mb-2">{t('refund.step1')}</h3>
-              <p>{t('refund.step1Text')} <a href="https://t.me/qmzp101" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 transition-colors">@qmzp101</a></p>
+              <p>{t('refund.step1Text')}</p>
             </div>
             
             <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
@@ -137,19 +137,6 @@ export const RefundPage: React.FC = () => {
           <h2 className="text-xl font-bold text-white mb-4">
             {t('refund.contacts')}
           </h2>
-          <div className="space-y-2">
-            <p>
-              <strong>{t('footer.telegram')}:</strong>{' '}
-              <a 
-                href="https://t.me/qmzp101" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-300 transition-colors"
-              >
-                @qmzp101
-              </a>
-            </p>
-          </div>
         </section>
       </div>
 

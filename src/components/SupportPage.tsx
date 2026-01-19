@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageCircle, Mail, Clock, Send, ChevronDown, ChevronUp } from 'lucide-react';
+import { Send, ChevronDown, ChevronUp } from 'lucide-react';
 
 export const SupportPage: React.FC = () => {
   const { t } = useTranslation();
@@ -61,53 +61,7 @@ export const SupportPage: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Contact Methods */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-white mb-6">{t('support.contacts')}</h2>
-          
-          {/* Contact Cards */}
-          <div className="space-y-4">
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center">
-                  <MessageCircle className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">{t('support.telegram')}</h3>
-                  <p className="text-gray-400">{t('support.telegramDesc')}</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <a 
-                  href="https://t.me/qmzp101" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-purple-400 transition-colors"
-                >
-                  @qmzp101
-                </a>
-                <div className="text-sm text-gray-400">{t('support.responseTime')}</div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Working Hours */}
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-            <div className="flex items-center space-x-3 mb-4">
-              <Clock className="w-6 h-6 text-yellow-500" />
-              <h3 className="text-lg font-semibold text-white">{t('support.workHours')}</h3>
-            </div>
-            <div className="space-y-2 text-gray-300">
-              <div className="flex justify-between">
-                <span>{t('support.telegramSupport')}:</span>
-                <span className="text-green-400">24/7</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div className="max-w-2xl mx-auto">
         {/* Contact Form */}
         <div className="space-y-6">
           <h2 className="text-2xl font-bold text-white mb-6">{t('support.contactForm')}</h2>

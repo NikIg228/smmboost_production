@@ -149,18 +149,7 @@ export const PrivacyPage: React.FC = () => {
             7. Контакты
           </h2>
           <div className="space-y-2">
-            <p>По вопросам конфиденциальности обращайтесь:</p>
-            <p>
-              <strong>Telegram:</strong>{' '}
-              <a 
-                href="https://t.me/qmzp101" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-300 transition-colors"
-              >
-                @qmzp101
-              </a>
-            </p>           
+            <p>По вопросам конфиденциальности обращайтесь через форму обратной связи на сайте.</p>
           </div>
         </section>
       </div>
