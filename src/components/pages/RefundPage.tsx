@@ -32,11 +32,6 @@ export const RefundPage: React.FC = () => {
               <p>{t('refund.company1.bin')}</p>
               <p>{t('refund.company1.address')}</p>
             </div>
-            <div className="space-y-1 pt-3 border-t border-gray-700/50">
-              <p>{t('refund.company2.name')}</p>
-              <p>{t('refund.company2.bin')}</p>
-              <p>{t('refund.company2.address')}</p>
-            </div>
           </div>
         </section>
 
@@ -137,6 +132,20 @@ export const RefundPage: React.FC = () => {
           <h2 className="text-xl font-bold text-white mb-4">
             {t('refund.contacts')}
           </h2>
+          <div className="space-y-2">
+            <p>
+              {t('refund.contactText')}{' '}
+              <button
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  window.dispatchEvent(new CustomEvent('pageChange', { detail: 'support' }));
+                }}
+                className="text-pink-500 hover:text-pink-400 underline transition-colors"
+              >
+                {t('refund.contactTextLink')}
+              </button>
+            </p>
+          </div>
         </section>
       </div>
 

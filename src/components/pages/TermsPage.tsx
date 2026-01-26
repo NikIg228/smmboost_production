@@ -32,11 +32,6 @@ export const TermsPage: React.FC = () => {
               <p>{t('terms.company1.bin')}</p>
               <p>{t('terms.company1.address')}</p>
             </div>
-            <div className="space-y-1 pt-3 border-t border-gray-700/50">
-              <p>{t('terms.company2.name')}</p>
-              <p>{t('terms.company2.bin')}</p>
-              <p>{t('terms.company2.address')}</p>
-            </div>
           </div>
         </section>
 
@@ -134,6 +129,20 @@ export const TermsPage: React.FC = () => {
             <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
             6. {t('terms.contactInfo')}
           </h2>
+          <div className="space-y-2">
+            <p>
+              {t('terms.contactText')}{' '}
+              <button
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  window.dispatchEvent(new CustomEvent('pageChange', { detail: 'support' }));
+                }}
+                className="text-pink-500 hover:text-pink-400 underline transition-colors"
+              >
+                {t('terms.contactTextLink')}
+              </button>
+            </p>
+          </div>
         </section>
       </div>
 

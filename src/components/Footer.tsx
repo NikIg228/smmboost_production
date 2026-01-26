@@ -38,11 +38,6 @@ export const Footer: React.FC = () => {
                   <p>{t('footer.company1.bin')}</p>
                   <p>{t('footer.company1.address')}</p>
                 </div>
-                <div className="space-y-1 pt-2 border-t border-gray-700/50">
-                  <p>{t('footer.company2.name')}</p>
-                  <p>{t('footer.company2.bin')}</p>
-                  <p>{t('footer.company2.address')}</p>
-                </div>
               </div>
             </div>
           </div>

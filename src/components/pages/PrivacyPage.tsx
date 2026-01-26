@@ -32,11 +32,6 @@ export const PrivacyPage: React.FC = () => {
               <p>{t('privacy.company1.bin')}</p>
               <p>{t('privacy.company1.address')}</p>
             </div>
-            <div className="space-y-1 pt-3 border-t border-gray-700/50">
-              <p>{t('privacy.company2.name')}</p>
-              <p>{t('privacy.company2.bin')}</p>
-              <p>{t('privacy.company2.address')}</p>
-            </div>
           </div>
         </section>
 
@@ -146,10 +141,21 @@ export const PrivacyPage: React.FC = () => {
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <h2 className="text-xl font-bold text-white mb-4">
-            7. Контакты
+            7. {t('privacy.contactTitle')}
           </h2>
           <div className="space-y-2">
-            <p>По вопросам конфиденциальности обращайтесь через форму обратной связи на сайте.</p>
+            <p>
+              {t('privacy.contactText')}{' '}
+              <button
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  window.dispatchEvent(new CustomEvent('pageChange', { detail: 'support' }));
+                }}
+                className="text-pink-500 hover:text-pink-400 underline transition-colors"
+              >
+                {t('privacy.contactTextLink')}
+              </button>
+            </p>
           </div>
         </section>
       </div>

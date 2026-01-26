@@ -63,11 +63,6 @@
       "bin": "BIN 250140025178",
       "address": "Kazakhstan, Almaty, Bostandyk district, Temiryazeva 69, 050057"
     },
-    "company2": {
-      "name": "LLP \"Ворлд Трейд\"",
-      "bin": "BIN 240740019557",
-      "address": "Kazakhstan, Almaty, Turksib district, Dulatova st. 53, 050003"
-    },
     "services": "Services",
     "support": "Support",
     "contacts": "Contacts",
@@ -460,11 +455,6 @@
       "bin": "BIN 250140025178",
       "address": "Kazakhstan, Almaty, Bostandyk district, Temiryazeva 69, 050057"
     },
-    "company2": {
-      "name": "LLP \"Ворлд Трейд\"",
-      "bin": "BIN 240740019557",
-      "address": "Kazakhstan, Almaty, Turksib district, Dulatova st. 53, 050003"
-    },
     "dataCollection": "Data Collection",
     "dataCollectionText": "We collect only necessary data to provide services.",
     "contactData": "Contact data (email, phone)",
@@ -500,7 +490,8 @@
     "policyChanges": "Policy Changes",
     "policyChangesText": "We may update this privacy policy. We'll notify you of significant changes via email or site notifications.",
     "contactTitle": "Contacts",
-    "contactText": "For privacy questions, contact:",
+    "contactText": "For privacy questions, contact us through the feedback form on the",
+    "contactTextLink": "Support",
     "lastUpdate": "Last updated: January 15, 2024"
   },
   "terms": {
@@ -511,11 +502,6 @@
       "name": "LLP \"White Trade\"",
       "bin": "BIN 250140025178",
       "address": "Kazakhstan, Almaty, Bostandyk district, Temiryazeva 69, 050057"
-    },
-    "company2": {
-      "name": "LLP \"Ворлд Трейд\"",
-      "bin": "BIN 240740019557",
-      "address": "Kazakhstan, Almaty, Turksib district, Dulatova st. 53, 050003"
     },
     "general": "General Provisions",
     "generalText1": "This agreement governs the relationship between the user and SMM Boost.",
@@ -547,6 +533,8 @@
     "restriction3": "Spam and fraud",
     "restriction4": "Discrimination and incitement to hatred",
     "contactInfo": "Contact Information",
+    "contactText": "For privacy questions, contact us through the feedback form on the",
+    "contactTextLink": "Support",
     "lastUpdate": "Last updated: January 15, 2024"
   },
   "refund": {
@@ -557,11 +545,6 @@
       "name": "LLP \"White Trade\"",
       "bin": "BIN 250140025178",
       "address": "Kazakhstan, Almaty, Bostandyk district, Temiryazeva 69, 050057"
-    },
-    "company2": {
-      "name": "LLP \"Ворлд Трейд\"",
-      "bin": "BIN 240740019557",
-      "address": "Kazakhstan, Almaty, Turksib district, Dulatova st. 53, 050003"
     },
     "whenPossible": "When Refund is Possible",
     "whenPossibleText": "Refund is possible if the order is not fulfilled due to our fault.",
@@ -598,6 +581,8 @@
     "partialText1": "If service was provided partially, partial refund is possible proportional to unfulfilled volume.",
     "partialText2": "For example, if 1000 followers were ordered but only 700 were provided, refund will be 30% of order cost.",
     "contacts": "Refund Contacts",
+    "contactText": "For privacy questions, contact us through the feedback form on the",
+    "contactTextLink": "Support",
     "lastUpdate": "Last updated: January 15, 2024"
   },
   "faq": {
