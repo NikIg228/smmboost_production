@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="bg-gray-900 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4 lg:gap-6">
           {/* Company Info */}
           <div className="space-y-4">
@@ -114,7 +114,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-6 pt-8 text-center text-gray-400">
+        <div className="border-t border-gray-800 mt-6 pt-4 text-center text-gray-400">
           <p>{t('footer.copyright')}</p>
         </div>
       </div>
