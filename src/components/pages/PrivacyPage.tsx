@@ -1,10 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Shield, Lock, Eye, Database } from 'lucide-react';
+import { Shield } from 'lucide-react';
 
 export const PrivacyPage: React.FC = () => {
-  const { t } = useTranslation();
-  
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
@@ -14,155 +11,163 @@ export const PrivacyPage: React.FC = () => {
         </div>
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-            {t('privacy.title')}
+            ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ И ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ
           </span>
         </h1>
-        <p className="text-gray-400 text-lg">
-          {t('privacy.subtitle')}
-        </p>
       </div>
 
       {/* Content */}
-      <div className="space-y-8 text-gray-300">
+      <div className="space-y-6 text-gray-300 prose prose-invert max-w-none">
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4">{t('privacy.legalInfo')}</h2>
-          <div className="space-y-4 text-sm text-gray-300">
-            <div className="space-y-1">
-              <p>{t('privacy.company1.name')}</p>
-              <p>{t('privacy.company1.bin')}</p>
-              <p>{t('privacy.company1.address')}</p>
-            </div>
-          </div>
+          <p className="text-white font-semibold mb-2">Оператор персональных данных:</p>
+          <p className="mb-1">ТОО «White Trade», БИН 250140025178</p>
+          <p className="mb-1">Республика Казахстан, г. Алматы, Бостандыкский район, ул. Тимирязева 69, 050057</p>
+          <p className="mt-4">Контакты по вопросам персональных данных: <a href="mailto:privacy@smm-boost.kz" className="text-pink-500 hover:text-pink-400">privacy@smm-boost.kz</a></p>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4 flex items-center">
-            <Database className="w-5 h-5 text-blue-500 mr-2" />
-            1. {t('privacy.dataCollection')}
-          </h2>
-          <div className="space-y-3">
-            <p>
-              {t('privacy.dataCollectionText')}
-            </p>
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>{t('privacy.contactData')}</li>
-              <li>{t('privacy.socialLinks')}</li>
-              <li>{t('privacy.orderInfo')}</li>
-              <li>{t('privacy.technicalInfo')}</li>
+          <h2 className="text-xl font-bold text-white mb-4">1. Общие положения</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>1.1. Настоящая Политика конфиденциальности и обработки персональных данных (далее — «Политика») определяет порядок и условия сбора, записи, систематизации, накопления, хранения, уточнения, использования, передачи, обезличивания, блокирования и уничтожения персональных данных Пользователей при использовании сайта и/или сервисов smm-boost.kz (далее — «Сервис»).</p>
+            <p>1.2. Политика разработана в соответствии с законодательством Республики Казахстан, включая:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4">
+              <li>Закон РК «О персональных данных и их защите» от 21.05.2013 № 94-V (далее — «Закон о персональных данных»).</li>
+              <li>Гражданский кодекс РК (далее — «ГК РК»).</li>
             </ul>
-            <p className="text-yellow-400 font-medium">
-              ⚠️ {t('privacy.noPasswords')}
-            </p>
+            <p>1.3. Используя Сервис, Пользователь подтверждает, что ознакомился с настоящей Политикой, понимает ее условия и выражает согласие на обработку своих персональных данных в объеме, целях и способами, предусмотренными Политикой и законодательством РК. Правовой базой обработки является согласие субъекта персональных данных и иные основания, предусмотренные Законом о персональных данных.</p>
+            <p>1.4. Если Пользователь не согласен с условиями Политики, он обязан прекратить использование Сервиса.</p>
           </div>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4 flex items-center">
-            <Eye className="w-5 h-5 text-green-500 mr-2" />
-            2. {t('privacy.dataUsage')}
-          </h2>
-          <div className="space-y-3">
-            <p>{t('privacy.dataUsageText')}</p>
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>{t('privacy.serviceDelivery')}</li>
-              <li>{t('privacy.communication')}</li>
-              <li>{t('privacy.support')}</li>
-              <li>{t('privacy.qualityImprovement')}</li>
-              <li>{t('privacy.legalCompliance')}</li>
+          <h2 className="text-xl font-bold text-white mb-4">2. Термины</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>2.1. «Персональные данные» — сведения, относящиеся к определенному или определяемому субъекту персональных данных (Пользователю) в понимании Закона о персональных данных.</p>
+            <p>2.2. «Оператор» — ТОО «White Trade», самостоятельно организующее и/или осуществляющее обработку персональных данных, а также определяющее цели обработки, состав персональных данных и действия (операции), совершаемые с персональными данными.</p>
+            <p>2.3. «Пользователь» — любое физическое лицо, использующее Сервис.</p>
+            <p>2.4. «Обработка» — любое действие (операция) или совокупность действий (операций) с персональными данными.</p>
+          </div>
+        </section>
+
+        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4">3. Состав обрабатываемых персональных данных</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>3.1. Оператор может обрабатывать следующие категории персональных данных:</p>
+            <p>3.1.1. Идентификационные и контактные данные: имя/ФИО (если предоставлено), адрес электронной почты, номер телефона.</p>
+            <p>3.1.2. Данные, предоставленные для оказания услуг: ссылки на аккаунты/страницы в социальных сетях, параметры заказа, комментарии и иные сведения, добровольно указанные Пользователем в заявке/переписке с поддержкой.</p>
+            <p>3.1.3. Платежно-учетные данные: информация о факте оплаты, сумме, времени и статусе платежа, идентификаторы платежа/заказа (без доступа к полным реквизитам банковской карты). Правовые аспекты платежей регулируются Законом РК «О платежах и платежных системах».</p>
+            <p>3.1.4. Технические данные: IP-адрес, cookies, сведения о браузере и устройстве, дата/время доступа, логи и события безопасности.</p>
+            <p>3.2. Оператор не запрашивает и не обрабатывает (и не требует предоставления):</p>
+            <ul className="list-disc list-inside space-y-1 ml-4">
+              <li>пароли Пользователей от социальных сетей и иных сторонних сервисов;</li>
+              <li>CVV/CVC-коды и полные реквизиты банковских карт;</li>
+              <li>специальные категории персональных данных, если иное прямо не требуется законом и не оформлено отдельным правовым основанием.</li>
             </ul>
-            <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4 mt-4">
-              <p className="text-green-400 font-medium">
-                ✅ {t('privacy.noThirdParty')}
-              </p>
-            </div>
+            <p>3.3. Если Пользователь по собственной инициативе передал избыточные сведения (например, пароль), Оператор вправе удалить такие сведения как не соответствующие целям обработки и требованиям безопасности.</p>
           </div>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4 flex items-center">
-            <Lock className="w-5 h-5 text-purple-500 mr-2" />
-            3. {t('privacy.dataProtection')}
-          </h2>
-          <div className="space-y-3">
-            <p>{t('privacy.dataProtectionText')}</p>
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>{t('privacy.sslEncryption')}</li>
-              <li>{t('privacy.secureStorage')}</li>
-              <li>{t('privacy.limitedAccess')}</li>
-              <li>{t('privacy.securityChecks')}</li>
-              <li>{t('privacy.standardsCompliance')}</li>
+          <h2 className="text-xl font-bold text-white mb-4">4. Цели обработки персональных данных</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>4.1. Оператор обрабатывает персональные данные исключительно в законных и определенных целях, включая:</p>
+            <p>4.1.1. Заключение и исполнение договора (оферты) и оказание услуг Сервиса: прием заявок, формирование и выполнение заказов, предоставление результата услуг.</p>
+            <p>4.1.2. Коммуникация с Пользователем: направление уведомлений о статусе заказа, ответы на обращения, предоставление консультаций и поддержки.</p>
+            <p>4.1.3. Проведение расчетов и учет операций: подтверждение платежа, формирование документов учета, обработка возвратов.</p>
+            <p>4.1.4. Обеспечение безопасности и предотвращение злоупотреблений: антифрод-проверки, выявление подозрительной активности, защита от атак.</p>
+            <p>4.1.5. Соблюдение требований законодательства РК и исполнение законных запросов уполномоченных органов в пределах компетенции и при наличии надлежащих оснований.</p>
+            <p>4.2. Оператор не использует персональные данные для целей, несовместимых с указанными в настоящей Политике.</p>
+          </div>
+        </section>
+
+        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4">5. Правовые основания обработки</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>5.1. Правовыми основаниями обработки являются:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4">
+              <li>согласие субъекта персональных данных на обработку в соответствии с Законом о персональных данных;</li>
+              <li>необходимость обработки для заключения и исполнения договора (ГК РК);</li>
+              <li>необходимость исполнения обязанностей, возложенных на Оператора законодательством РК.</li>
+            </ul>
+            <p>5.2. Согласие выражается путем совершения Пользователем действий, свидетельствующих о принятии условий Политики (например, отправка заявки/формы, оформление заказа, обращение в поддержку, использование Сервиса).</p>
+          </div>
+        </section>
+
+        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4">6. Условия обработки, хранение и сроки</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>6.1. Обработка персональных данных осуществляется с использованием средств автоматизации и/или без их использования, с соблюдением принципов законности, минимизации и соразмерности.</p>
+            <p>6.2. Сроки хранения определяются исходя из целей обработки, сроков оказания услуг, сроков рассмотрения обращений, а также требований законодательства РК. Данные хранятся не дольше, чем это необходимо для достижения целей обработки, если иной срок не установлен законом.</p>
+            <p>6.3. По достижении целей обработки либо при отзыве согласия (при отсутствии иных законных оснований) персональные данные подлежат уничтожению или обезличиванию.</p>
+          </div>
+        </section>
+
+        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4">7. Передача персональных данных третьим лицам</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>7.1. Оператор не продает и не передает персональные данные третьим лицам в маркетинговых целях.</p>
+            <p>7.2. Передача может осуществляться только в случаях:</p>
+            <p>7.2.1. Платежным организациям/провайдерам и банкам — в объеме, необходимом для приема оплаты и возвратов (без раскрытия Оператору полных реквизитов карты), в рамках законодательства о платежах.</p>
+            <p>7.2.2. Подрядчикам (хостинг, облачная инфраструктура, сервисы мониторинга) — при наличии договорных обязательств конфиденциальности и ограничении доступа по принципу необходимости.</p>
+            <p>7.2.3. Государственным органам — по законному, надлежащим образом оформленному запросу в пределах компетенции.</p>
+          </div>
+        </section>
+
+        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4">8. Меры защиты персональных данных</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>8.1. Оператор принимает необходимые правовые, организационные и технические меры для защиты персональных данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения и иных незаконных действий. Обязанность обеспечивать защиту данных предусмотрена Законом о персональных данных.</p>
+            <p>8.2. В частности, применяются:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4">
+              <li>шифрование соединений (TLS/SSL);</li>
+              <li>разграничение прав доступа;</li>
+              <li>контроль и журналирование действий;</li>
+              <li>резервирование и восстановление (при наличии и необходимости);</li>
+              <li>регулярное обновление компонентов и устранение уязвимостей.</li>
+            </ul>
+            <p>8.3. Пользователь обязуется обеспечивать безопасность своей электронной почты и устройств, поскольку доступ к ним может позволить третьим лицам получить доступ к уведомлениям Сервиса.</p>
+          </div>
+        </section>
+
+        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+          <h2 className="text-xl font-bold text-white mb-4">9. Права субъекта персональных данных</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>9.1. Пользователь вправе реализовать права, предусмотренные Законом о персональных данных, включая получение информации о своих персональных данных, требование уточнения/исправления, блокирования/уничтожения при незаконной обработке, а также отзыв согласия, если иное не препятствует законной обработке.</p>
+            <p>9.2. Для реализации прав Пользователь направляет запрос на <a href="mailto:privacy@smm-boost.kz" className="text-pink-500 hover:text-pink-400">privacy@smm-boost.kz</a> с указанием:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4">
+              <li>ФИО (если предоставлялось), e-mail и/или телефона, использованных в Сервисе;</li>
+              <li>сути запроса;</li>
+              <li>подтверждения принадлежности учетных данных (при необходимости) в целях предотвращения разглашения третьим лицам.</li>
             </ul>
           </div>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4">
-            4. {t('privacy.yourRights')}
-          </h2>
-          <div className="space-y-3">
-            <p>{t('privacy.yourRightsText')}</p>
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>{t('privacy.requestInfo')}</li>
-              <li>{t('privacy.correctData')}</li>
-              <li>{t('privacy.deleteData')}</li>
-              <li>{t('privacy.limitProcessing')}</li>
-              <li>{t('privacy.withdrawConsent')}</li>
-            </ul>
+          <h2 className="text-xl font-bold text-white mb-4">10. Cookies и аналитика</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>10.1. Сервис использует cookies и аналогичные технологии для обеспечения работоспособности, безопасности и улучшения пользовательского опыта.</p>
+            <p>10.2. Пользователь может ограничить использование cookies в настройках браузера, однако это может повлиять на корректность работы отдельных функций Сервиса.</p>
           </div>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4">
-            5. Cookies и аналитика
-          </h2>
-          <div className="space-y-3">
-            <p>
-              Мы используем cookies для улучшения работы сайта и анализа трафика. 
-              Вы можете отключить cookies в настройках браузера.
-            </p>
-            <p>
-              Для анализа посещаемости используются анонимные данные, которые не позволяют 
-              идентифицировать конкретного пользователя.
-            </p>
+          <h2 className="text-xl font-bold text-white mb-4">11. Изменения Политики</h2>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <p>11.1. Оператор вправе изменять Политику. Актуальная редакция размещается на сайте и вступает в силу с даты публикации, если не указано иное.</p>
+            <p>11.2. При существенных изменениях Оператор вправе дополнительно уведомить Пользователя через интерфейс Сервиса или по e-mail (при наличии).</p>
           </div>
         </section>
 
         <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4">
-            6. Изменения в политике
-          </h2>
-          <div className="space-y-3">
-            <p>
-              Мы можем обновлять данную политику конфиденциальности. О существенных 
-              изменениях мы уведомим вас по email или через уведомления на сайте.
-            </p>
-          </div>
-        </section>
-
-        <section className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h2 className="text-xl font-bold text-white mb-4">
-            7. {t('privacy.contactTitle')}
-          </h2>
-          <div className="space-y-2">
-            <p>
-              {t('privacy.contactText')}{' '}
-              <button
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                  window.dispatchEvent(new CustomEvent('pageChange', { detail: 'support' }));
-                }}
-                className="text-pink-500 hover:text-pink-400 underline transition-colors"
-              >
-                {t('privacy.contactTextLink')}
-              </button>
-            </p>
+          <h2 className="text-xl font-bold text-white mb-4">12. Контакты</h2>
+          <div className="space-y-2 text-sm leading-relaxed">
+            <p>12.1. По вопросам обработки персональных данных: <a href="mailto:privacy@smm-boost.kz" className="text-pink-500 hover:text-pink-400">privacy@smm-boost.kz</a></p>
+            <p>12.2. Поддержка пользователей и вопросы по заказам: <a href="mailto:support@smm-boost.kz" className="text-pink-500 hover:text-pink-400">support@smm-boost.kz</a></p>
+            <p>12.3. Телефон: <a href="tel:+77789836436" className="text-pink-500 hover:text-pink-400">+7 (778) 983 64 36</a></p>
+            <p>12.4. Юридические вопросы: <a href="mailto:legal@smm-boost.kz" className="text-pink-500 hover:text-pink-400">legal@smm-boost.kz</a></p>
           </div>
         </section>
       </div>
-
-        <div className="text-center mt-8 text-sm text-gray-500">
-          {t('privacy.lastUpdate')}
-        </div>
     </div>
   );
 };

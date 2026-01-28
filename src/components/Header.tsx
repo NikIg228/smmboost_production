@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Zap, Users, MessageCircle, Settings, LogIn, LogOut, User as UserIcon, UserCircle, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,8 @@ export const Header: React.FC<HeaderProps> = ({ onAuthModal }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [showLogoutNotification, setShowLogoutNotification] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const { user, isAuthenticated } = useAuth();
 
   const menuItems = [
@@ -28,6 +30,28 @@ export const Header: React.FC<HeaderProps> = ({ onAuthModal }) => {
     { id: 'reviews', path: '/reviews', label: t('header.menu.reviews'), icon: MessageCircle },
     { id: 'support', path: '/support', label: t('header.menu.support'), icon: Settings },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Показываем header в начале страницы
+      if (currentScrollY < 10) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Скрываем при прокрутке вниз (после 100px)
+        setIsHeaderVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Показываем при прокрутке вверх
+        setIsHeaderVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -72,7 +96,12 @@ export const Header: React.FC<HeaderProps> = ({ onAuthModal }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-gray-700/50 shadow-lg" style={{ backdropFilter: 'blur(20px)' }}>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 glass-effect border-b border-gray-700/50 shadow-lg transition-transform duration-300 ease-in-out ${
+        isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
+      style={{ backdropFilter: 'blur(20px)' }}
+    >
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
