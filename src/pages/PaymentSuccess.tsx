@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CheckCircle, ArrowRight, Copy, Check } from 'lucide-react';
 
 export const PaymentSuccess: React.FC = () => {
+  const navigate = useNavigate();
   const [orderId, setOrderId] = useState<string>('');
   const [copied, setCopied] = useState(false);
 
@@ -23,7 +25,7 @@ export const PaymentSuccess: React.FC = () => {
   };
 
   const goToHome = () => {
-    window.location.href = '/';
+    navigate('/');
   };
 
   return (

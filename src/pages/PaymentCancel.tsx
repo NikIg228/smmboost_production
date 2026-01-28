@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { XCircle, ArrowLeft, RefreshCw } from 'lucide-react';
 
 export const PaymentCancel: React.FC = () => {
+  const navigate = useNavigate();
   const [orderId, setOrderId] = useState<string>('');
 
   useEffect(() => {
@@ -14,11 +16,11 @@ export const PaymentCancel: React.FC = () => {
   }, []);
 
   const goToHome = () => {
-    window.location.href = '/';
+    navigate('/');
   };
 
   const tryAgain = () => {
-    window.location.href = '/services';
+    navigate('/services');
   };
 
   return (

@@ -278,6 +278,15 @@
       "userExists": "User with this email already exists",
       "googleError": "Google sign-in error"
     },
+    "forgotPassword": {
+      "link": "Forgot password?",
+      "title": "Reset password",
+      "description": "Enter the email associated with your account. We will send you an email with a link to reset your password.",
+      "button": "Send reset link",
+      "emailRequired": "Enter your email to reset password",
+      "success": "Password reset instructions have been sent to your email",
+      "error": "Error sending email. Please try again."
+    },
     "referralCode": "Referral Promo Code",
     "referralCodePlaceholder": "Enter promo code (optional)"
   },
@@ -291,6 +300,7 @@
     "password": "Password",
     "changePassword": "Change",
     "changePasswordHint": "Click \"Change\" to update password",
+    "changeEmail": "Change email",
     "notSpecified": "Not specified",
     "referralCode": "Referral Code",
     "referralCodeDescription": "Share the code with friends and get bonuses for each of their orders",
@@ -346,6 +356,25 @@
     },
     "showPassword": "Show Password",
     "hidePassword": "Hide Password"
+  },
+  "emailChange": {
+    "title": "Change email",
+    "description": "Enter your old and new email address. A confirmation email will be sent to your new email address.",
+    "oldEmail": "Old email",
+    "oldEmailPlaceholder": "Enter current email",
+    "oldEmailHint": "Enter your current email address",
+    "newEmail": "New email",
+    "newEmailPlaceholder": "Enter new email",
+    "button": "Change email",
+    "success": "A confirmation email has been sent to your new email address. Please check your email and confirm the email change.",
+    "errors": {
+      "oldEmailRequired": "Enter old email",
+      "newEmailRequired": "Enter new email",
+      "sameEmail": "New email must be different from old email",
+      "invalidEmail": "Enter a valid email address",
+      "oldEmailMismatch": "Old email does not match current email",
+      "generic": "Error changing email. Please try again."
+    }
   },
   "logout": {
     "title": "You have successfully signed out",
@@ -703,6 +732,47 @@
   "profile": {
     "updateSuccess": "Profile successfully updated!",
     "updateError": "Error updating profile"
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "description": "Enter a new password for your account",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Repeat new password",
+    "minLengthHint": "Minimum 8 characters",
+    "button": "Change Password",
+    "backToHome": "Back to Home",
+    "checking": "Checking session...",
+    "success": "Password successfully changed! Redirecting...",
+    "errors": {
+      "sessionError": "Session check error",
+      "invalidLink": "Invalid or expired link",
+      "noSession": "Session not found. Please use the link from the email.",
+      "minLength": "Password must contain at least 8 characters",
+      "mismatch": "Passwords do not match",
+      "sessionExpired": "Session expired. Please request a new password reset link.",
+      "generic": "An error occurred while resetting password"
+    }
+  },
+  "authCallback": {
+    "loading": "Processing request...",
+    "loadingDescription": "Please wait",
+    "successTitle": "Success!",
+    "errorTitle": "Error",
+    "redirecting": "Redirecting...",
+    "backToHome": "Back to Home",
+    "success": {
+      "signup": "Email successfully confirmed! Welcome!",
+      "recovery": "Password reset link confirmed. You can now set a new password.",
+      "emailChange": "Email successfully changed!",
+      "generic": "Operation completed successfully!"
+    },
+    "errors": {
+      "invalidCode": "Invalid or expired confirmation code",
+      "noSession": "Session not found. Please use the link from the email.",
+      "generic": "An error occurred"
+    }
   }
 }
 

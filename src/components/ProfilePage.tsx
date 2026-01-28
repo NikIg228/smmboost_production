@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { User, Mail, Edit2, Save, X, Gift, History, Copy, Check, Lock } from 'lucide-react';
+import { User, Edit2, Save, X, Gift, History, Copy, Check } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { updateUserProfile } from '../lib/supabase';
 import { PasswordChangeModal } from './PasswordChangeModal';
+import { EmailChangeModal } from './EmailChangeModal';
 
 export const ProfilePage: React.FC = () => {
   const { t } = useTranslation();
@@ -13,18 +14,23 @@ export const ProfilePage: React.FC = () => {
   const [referralCode, setReferralCode] = useState('');
   const [copied, setCopied] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
   const [formData, setFormData] = useState({
     name: user?.user_metadata?.name || '',
     email: user?.email || ''
   });
 
-  // Generate referral code
+  // Generate static referral code based on user ID
   useEffect(() => {
-    if (user) {
-      const code = 'REF' + Math.floor(10000 + Math.random() * 90000);
+    if (user?.id) {
+      // Generate deterministic code from user ID
+      const hash = user.id.split('').reduce((acc, char) => {
+        return ((acc << 5) - acc) + char.charCodeAt(0);
+      }, 0);
+      const code = 'REF' + String(Math.abs(hash)).slice(0, 5).padStart(5, '0');
       setReferralCode(code);
     }
-  }, [user]);
+  }, [user?.id]);
 
   const handleSave = async () => {
     setLoading(true);
@@ -78,30 +84,22 @@ export const ProfilePage: React.FC = () => {
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
           <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
             <h2 className="text-xl font-bold text-white">{t('profile.profileInfo')}</h2>
-            {!isEditing ? (
-              <button
-                onClick={() => setIsEditing(true)}
-                className="flex items-center space-x-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex-shrink-0 whitespace-nowrap"
-              >
-                <Edit2 className="w-4 h-4 flex-shrink-0" />
-                <span>{t('common.edit')}</span>
-              </button>
-            ) : (
-              <div className="flex space-x-2 flex-shrink-0 flex-wrap gap-2">
+            {isEditing && (
+              <div className="flex space-x-2 flex-shrink-0">
                 <button
                   onClick={handleSave}
                   disabled={loading}
-                  className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 whitespace-nowrap"
+                  className="flex items-center px-2.5 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
+                  title={loading ? t('common.saving') : t('common.save')}
                 >
-                  <Save className="w-4 h-4 flex-shrink-0" />
-                  <span>{loading ? t('common.saving') : t('common.save')}</span>
+                  <Save className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleCancel}
-                  className="flex items-center space-x-2 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors whitespace-nowrap"
+                  className="flex items-center px-2.5 py-1.5 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  title={t('common.cancel')}
                 >
-                  <X className="w-4 h-4 flex-shrink-0" />
-                  <span>{t('common.cancel')}</span>
+                  <X className="w-4 h-4" />
                 </button>
               </div>
             )}
@@ -112,51 +110,65 @@ export const ProfilePage: React.FC = () => {
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 {t('profile.name')}
               </label>
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
-                />
-              ) : (
-                <div className="px-4 py-3 bg-gray-700/50 rounded-lg text-white">
-                  {user?.user_metadata?.name || t('profile.notSpecified')}
-                </div>
-              )}
+              <div className="flex items-center space-x-2">
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="flex-1 px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                  />
+                ) : (
+                  <div className="flex-1 px-4 py-3 bg-gray-700/50 rounded-lg text-white">
+                    {user?.user_metadata?.name || t('profile.notSpecified')}
+                  </div>
+                )}
+                {!isEditing && (
+                  <button
+                    onClick={() => setIsEditing(true)}
+                    className="flex items-center px-2.5 py-1.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                    title={t('common.edit')}
+                  >
+                    <Edit2 className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 {t('profile.email')}
               </label>
-              <div className="px-4 py-3 bg-gray-700/50 rounded-lg text-white">
-                {user?.email}
+              <div className="flex items-center space-x-2">
+                <div className="flex-1 px-4 py-3 bg-gray-700/50 rounded-lg text-white">
+                  {user?.email}
+                </div>
+                <button
+                  onClick={() => setShowEmailModal(true)}
+                  className="flex items-center px-2.5 py-1.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                  title={t('profile.changeEmail')}
+                >
+                  <Edit2 className="w-4 h-4" />
+                </button>
               </div>
-              <p className="text-xs text-gray-400 mt-1">
-                {t('profile.emailCannotChange')}
-              </p>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 {t('profile.password')}
               </label>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2">
                 <div className="flex-1 px-4 py-3 bg-gray-700/50 rounded-lg text-white">
                   ••••••••••••
                 </div>
                 <button
                   onClick={() => setShowPasswordModal(true)}
-                  className="flex items-center space-x-2 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors min-h-[44px]"
+                  className="flex items-center px-2.5 py-1.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                  title={t('profile.changePassword')}
                 >
-                  <Lock className="w-4 h-4" />
-                  <span>{t('profile.changePassword')}</span>
+                  <Edit2 className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-xs text-gray-400 mt-1">
-                {t('profile.changePasswordHint')}
-              </p>
             </div>
           </div>
         </div>
@@ -169,19 +181,19 @@ export const ProfilePage: React.FC = () => {
               <Gift className="w-5 h-5 text-pink-500 mr-2" />
               {t('profile.referralCode')}
             </h3>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
               <div className="flex-1 px-4 py-3 bg-gray-700 rounded-lg text-white font-mono text-lg">
                 {referralCode}
               </div>
               <button
                 onClick={copyReferralCode}
-                className="flex items-center space-x-2 px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                className="flex items-center px-2.5 py-1.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                title={copied ? t('profile.copied') : t('profile.copy')}
               >
                 {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                <span>{copied ? t('profile.copied') : t('profile.copy')}</span>
               </button>
             </div>
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-xs text-gray-400 mt-2">
               {t('profile.referralCodeDescription')}
             </p>
           </div>
@@ -236,6 +248,15 @@ export const ProfilePage: React.FC = () => {
         isOpen={showPasswordModal}
         onClose={() => setShowPasswordModal(false)}
       />
+
+      {/* Email Change Modal */}
+      {user?.email && (
+        <EmailChangeModal
+          isOpen={showEmailModal}
+          onClose={() => setShowEmailModal(false)}
+          currentEmail={user.email}
+        />
+      )}
     </div>
   );
 };

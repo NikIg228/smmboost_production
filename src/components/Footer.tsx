@@ -1,17 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Zap } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
-  
-  const handlePageChange = (page: string) => {
-    // Scroll to top first
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Then trigger page change
-    window.dispatchEvent(new CustomEvent('pageChange', { detail: page }));
-  };
 
   return (
     <footer className="bg-gray-900 border-t border-gray-800">
@@ -94,36 +87,36 @@ export const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold text-white">{t('footer.support')}</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <button 
-                  onClick={() => handlePageChange('faq')}
-                  className="hover:text-white transition-colors text-left"
+                <Link 
+                  to="/faq"
+                  className="hover:text-white transition-colors block"
                 >
                   {t('footer.faq')}
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handlePageChange('terms')}
-                  className="hover:text-white transition-colors text-left"
+                <Link 
+                  to="/terms"
+                  className="hover:text-white transition-colors block"
                 >
                   {t('footer.terms')}
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handlePageChange('privacy')}
-                  className="hover:text-white transition-colors text-left"
+                <Link 
+                  to="/privacy"
+                  className="hover:text-white transition-colors block"
                 >
                   {t('footer.privacy')}
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handlePageChange('refund')}
-                  className="hover:text-white transition-colors text-left"
+                <Link 
+                  to="/refund"
+                  className="hover:text-white transition-colors block"
                 >
                   {t('footer.refund')}
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

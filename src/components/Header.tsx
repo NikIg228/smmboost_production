@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Zap, Users, MessageCircle, Settings, LogIn, LogOut, User as UserIcon, UserCircle, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { AuthModal } from './AuthModal';
@@ -8,13 +9,12 @@ import { useAuth } from '../hooks/useAuth';
 import { signOut } from '../lib/supabase';
 
 interface HeaderProps {
-  onPageChange: (page: string) => void;
-  currentPage: string;
   onAuthModal: (modal: { isOpen: boolean; mode: 'login' | 'register' }) => void;
-  onConsultation: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAuthModal, onConsultation }) => {
+export const Header: React.FC<HeaderProps> = ({ onAuthModal }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -23,11 +23,18 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
   const { user, isAuthenticated } = useAuth();
 
   const menuItems = [
-    { id: 'home', label: t('header.menu.home'), icon: Zap },
-    { id: 'services', label: t('header.menu.services'), icon: Users },
-    { id: 'reviews', label: t('header.menu.reviews'), icon: MessageCircle },
-    { id: 'support', label: t('header.menu.support'), icon: Settings },
+    { id: 'home', path: '/', label: t('header.menu.home'), icon: Zap },
+    { id: 'services', path: '/services', label: t('header.menu.services'), icon: Users },
+    { id: 'reviews', path: '/reviews', label: t('header.menu.reviews'), icon: MessageCircle },
+    { id: 'support', path: '/support', label: t('header.menu.support'), icon: Settings },
   ];
+
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(path);
+  };
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -42,6 +49,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
         console.error('Error signing out:', error);
         // Все равно очищаем локальное состояние
         setTimeout(() => {
+          navigate('/');
           window.location.reload();
         }, 100);
       } else {
@@ -49,6 +57,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
         setShowLogoutNotification(true);
         // Перезагружаем страницу через 2 секунды
         setTimeout(() => {
+          navigate('/');
           window.location.reload();
         }, 2000);
       }
@@ -56,6 +65,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
       console.error('Error signing out:', error);
       // В случае ошибки все равно перезагружаем страницу
       setTimeout(() => {
+        navigate('/');
         window.location.reload();
       }, 100);
     }
@@ -66,9 +76,9 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <div 
+          <Link 
+            to="/"
             className="flex items-center space-x-1.5 sm:space-x-2 cursor-pointer button-hover-lift"
-            onClick={() => onPageChange('home')}
           >
             <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center glow-effect">
               <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -77,23 +87,23 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
               <span className="hidden xs:inline">SMM Boost</span>
               <span className="xs:hidden">SMM Boost</span>
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {menuItems.map(item => (
-              <button
+              <Link
                 key={item.id}
-                onClick={() => onPageChange(item.id)}
+                to={item.path}
                 className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-200 ${
-                  currentPage === item.id
+                  isActive(item.path)
                     ? 'bg-gradient-to-r from-pink-500/20 to-purple-600/20 text-white'
                     : 'text-gray-300 hover:text-white hover:bg-gray-800'
                 }`}
               >
                 <item.icon className="w-4 h-4" />
                 <span>{item.label}</span>
-              </button>
+              </Link>
             ))}
           </nav>
 
@@ -170,7 +180,7 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
                   >
                     <button
                       onClick={() => {
-                        onPageChange('profile');
+                        navigate('/profile');
                         setShowProfileMenu(false);
                       }}
                       className="w-full text-left px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
@@ -211,39 +221,35 @@ export const Header: React.FC<HeaderProps> = ({ onPageChange, currentPage, onAut
           <div className="md:hidden py-4 border-t border-gray-800">
             <nav className="flex flex-col space-y-2">
               {menuItems.map(item => (
-                <button
+                <Link
                   key={item.id}
-                  onClick={() => {
-                    onPageChange(item.id);
-                    setIsMenuOpen(false);
-                  }}
+                  to={item.path}
+                  onClick={() => setIsMenuOpen(false)}
                   className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
-                    currentPage === item.id
+                    isActive(item.path)
                       ? 'bg-gradient-to-r from-pink-500/20 to-purple-600/20 text-white'
                       : 'text-gray-300 hover:text-white hover:bg-gray-800'
                   }`}
                 >
                   <item.icon className="w-4 h-4" />
                   <span>{item.label}</span>
-                </button>
+                </Link>
               ))}
               
               
               <div className="pt-4 border-t border-gray-800 space-y-2">
                 {isAuthenticated ? (
                   <>
-                    <button
-                      onClick={() => {
-                        onPageChange('profile');
-                        setIsMenuOpen(false);
-                      }}
+                    <Link
+                      to="/profile"
+                      onClick={() => setIsMenuOpen(false)}
                       className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-gray-300 hover:text-white transition-colors"
                     >
                       <UserCircle className="w-4 h-4" />
                       <span className="text-sm">
                         {user?.user_metadata?.name || user?.email?.split('@')[0]}
                       </span>
-                    </button>
+                    </Link>
                     <button 
                       onClick={() => {
                         handleSignOut();

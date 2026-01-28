@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Star, User, CheckCircle, ArrowRight } from 'lucide-react';
+import { Star, User, CheckCircle, ArrowRight, Send, Sparkles } from 'lucide-react';
+import { Modal } from './Modal';
+import { services } from '../data/services';
+import { addReview, getApprovedReviews, StoredReview } from '../lib/reviewsStorage';
 
-interface ReviewsPageProps {
-  onPageChange: (page: string) => void;
-}
-
-const reviews = [
+const baseReviews = [
   {
     id: 1,
     name: 'Ерлан К.',
@@ -414,13 +414,34 @@ const reviews = [
   }
 ];
 
-export const ReviewsPage: React.FC<ReviewsPageProps> = ({ onPageChange }) => {
+export const ReviewsPage: React.FC = () => {
   const { t } = useTranslation();
+  const approvedDynamic: StoredReview[] = getApprovedReviews();
+  const dynamicAsBase = approvedDynamic.map((r, index) => ({
+    id: 1000 + index,
+    name: r.name,
+    service: r.serviceName,
+    rating: r.rating,
+    text: r.text,
+    date: r.date,
+    verified: false,
+  }));
+  const reviews = [...dynamicAsBase, ...baseReviews];
   const averageRating = 4.97;
-  const totalReviews = 450;
+  const totalReviews = 450 + approvedDynamic.length;
   const perPage = 9;
   const totalPages = Math.ceil(reviews.length / perPage);
   const [page, setPage] = useState(1);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formLoading, setFormLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    serviceId: '',
+    rating: 0,
+    text: '',
+  });
   const topRef = useRef<HTMLDivElement>(null);
   const paginated = reviews.slice((page - 1) * perPage, page * perPage);
 
@@ -429,6 +450,45 @@ export const ReviewsPage: React.FC<ReviewsPageProps> = ({ onPageChange }) => {
     setPage(next);
     // скролл к началу секции
     topRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleSubmitReview = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormError(null);
+
+    if (!formData.name.trim()) {
+      setFormError('Пожалуйста, укажите ваше имя.');
+      return;
+    }
+    if (!formData.serviceId) {
+      setFormError('Пожалуйста, выберите услугу.');
+      return;
+    }
+    if (!formData.rating || formData.rating < 1) {
+      setFormError('Пожалуйста, поставьте оценку.');
+      return;
+    }
+    if (formData.text.trim().length < 20) {
+      setFormError('Пожалуйста, опишите ваш опыт более подробно (минимум 20 символов).');
+      return;
+    }
+
+    setFormLoading(true);
+    try {
+      const service = services.find(s => s.id === formData.serviceId);
+      addReview({
+        name: formData.name.trim(),
+        serviceId: formData.serviceId,
+        serviceName: service ? service.name : 'Другая услуга',
+        rating: formData.rating,
+        text: formData.text.trim(),
+      });
+      setIsFormOpen(false);
+      setFormData({ name: '', serviceId: '', rating: 0, text: '' });
+      setIsSuccessOpen(true);
+    } finally {
+      setFormLoading(false);
+    }
   };
 
   return (
@@ -534,61 +594,173 @@ export const ReviewsPage: React.FC<ReviewsPageProps> = ({ onPageChange }) => {
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-center gap-2 mt-10">
-        <button
-          onClick={() => goToPage(page - 1)}
-          disabled={page === 1}
-          className="px-3 py-2 rounded-lg border border-gray-600 text-gray-300 hover:text-white hover:border-purple-500 disabled:opacity-50"
-        >
-          {t('common.back')}
-        </button>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+      <div className="flex flex-col items-center justify-center gap-3 mt-10">
+        <div className="text-sm text-gray-400">
+          Страница <span className="text-white font-semibold">{page}</span> из{' '}
+          <span className="text-white font-semibold">{totalPages}</span>
+        </div>
+        <div className="flex items-center gap-2">
           <button
-            key={p}
-            onClick={() => goToPage(p)}
-            className={`${p === page ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white' : 'border border-gray-600 text-gray-300 hover:text-white hover:border-purple-500'} px-3 py-2 rounded-lg`}
+            onClick={() => goToPage(page - 1)}
+            disabled={page === 1}
+            className="px-3 py-2 rounded-full border border-gray-600 text-gray-300 hover:text-white hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {p}
+            ‹
           </button>
-        ))}
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => {
+            if (p === 1 || p === totalPages || Math.abs(p - page) <= 1) {
+              return (
+                <button
+                  key={p}
+                  onClick={() => goToPage(p)}
+                  className={`w-9 h-9 rounded-full text-sm font-medium ${
+                    p === page
+                      ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg'
+                      : 'border border-gray-600 text-gray-300 hover:text-white hover:border-purple-500'
+                  }`}
+                >
+                  {p}
+                </button>
+              );
+            }
+            if (p === page - 2 || p === page + 2) {
+              return (
+                <span key={p} className="px-1 text-gray-500">
+                  ...
+                </span>
+              );
+            }
+            return null;
+          })}
+          <button
+            onClick={() => goToPage(page + 1)}
+            disabled={page === totalPages}
+            className="px-3 py-2 rounded-full border border-gray-600 text-gray-300 hover:text-white hover:border-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            ›
+          </button>
+        </div>
+      </div>
+
+      {/* CTA: Leave Review */}
+      <div className="text-center mt-12">
         <button
-          onClick={() => goToPage(page + 1)}
-          disabled={page === totalPages}
-          className="px-3 py-2 rounded-lg border border-gray-600 text-gray-300 hover:text-white hover:border-purple-500 disabled:opacity-50"
+          onClick={() => setIsFormOpen(true)}
+          className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 neon-button button-hover-lift"
         >
-          {t('common.next')}
+          <Send className="w-5 h-5" />
+          <span>Оставить отзыв</span>
         </button>
       </div>
 
-      {/* CTA Section */}
-      <div className="text-center mt-12">
-        <div className="relative glass-effect rounded-xl p-8 border border-purple-500/30 hover:border-purple-500/50 transition-all duration-300 glow-effect">
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-purple-600/10 rounded-xl opacity-80"></div>
-          
-          <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 text-glow">
-              {t('reviews.joinClients')}
-            </h3>
-            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-              {t('reviews.startPromotion')}
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button 
-                onClick={() => onPageChange('services')}
-                className="group inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 neon-button button-hover-lift"
-              >
-                <span>{t('reviews.chooseService')}</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-              
-              <div className="text-sm text-gray-400 sm:ml-4">
-                ⭐ {t('reviews.moreThan10000')}
-              </div>
+      {/* Review Form Modal */}
+      <Modal
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+        title="Оставить отзыв"
+      >
+        <form onSubmit={handleSubmitReview} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Имя
+            </label>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={e => setFormData({ ...formData, name: e.target.value })}
+              className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+              placeholder="Ваше имя"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Вид услуги
+            </label>
+            <select
+              value={formData.serviceId}
+              onChange={e => setFormData({ ...formData, serviceId: e.target.value })}
+              className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+            >
+              <option value="">Выберите услугу</option>
+              {services.map(service => (
+                <option key={service.id} value={service.id}>
+                  {service.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Оценка
+            </label>
+            <div className="flex items-center space-x-2">
+              {[1, 2, 3, 4, 5].map(value => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setFormData({ ...formData, rating: value })}
+                  className="focus:outline-none"
+                >
+                  <Star
+                    className={`w-7 h-7 ${
+                      value <= formData.rating
+                        ? 'text-yellow-400 fill-current'
+                        : 'text-gray-600'
+                    }`}
+                  />
+                </button>
+              ))}
             </div>
           </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Отзыв
+            </label>
+            <textarea
+              value={formData.text}
+              onChange={e => setFormData({ ...formData, text: e.target.value })}
+              rows={4}
+              className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+              placeholder="Опишите ваш опыт использования услуги"
+            />
+          </div>
+
+          {formError && (
+            <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-3">
+              <p className="text-red-400 text-sm">{formError}</p>
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={formLoading}
+            className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-lg hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-pink-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          >
+            {formLoading ? 'Отправка...' : 'Отправить отзыв'}
+          </button>
+        </form>
+      </Modal>
+
+      {/* Success Modal */}
+      <Modal
+        isOpen={isSuccessOpen}
+        onClose={() => setIsSuccessOpen(false)}
+        title="Спасибо за ваш отзыв!"
+      >
+        <div className="space-y-4 text-center">
+          <div className="flex justify-center">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center shadow-lg">
+              <Sparkles className="w-10 h-10 text-white" />
+            </div>
+          </div>
+          <p className="text-gray-200 text-sm">
+            Он будет проверен модераторами и опубликован на странице совсем скоро.
+          </p>
         </div>
-      </div>
+      </Modal>
     </div>
   );
 };

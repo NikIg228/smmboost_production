@@ -31,7 +31,8 @@ export const signUp = async (email: string, password: string, name: string) => {
     options: {
       data: {
         name: name,
-      }
+      },
+      emailRedirectTo: `${window.location.origin}/auth/callback?type=signup`,
     }
   })
   return { data, error }
@@ -50,7 +51,7 @@ export const signInWithGoogle = async () => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `${window.location.origin}`,
+      redirectTo: `${window.location.origin}/auth/callback`,
       queryParams: {
         access_type: 'offline',
         prompt: 'consent',
@@ -84,6 +85,25 @@ export const updateUserProfile = async (updates: { name?: string; email?: string
   const { data, error } = await supabase.auth.updateUser({
     email: updates.email,
     data: { name: updates.name }
+  })
+  return { data, error }
+}
+
+// Password reset
+export const resetPassword = async (email: string) => {
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/reset-password`,
+  })
+  return { data, error }
+}
+
+// Email change
+export const updateUserEmail = async (newEmail: string) => {
+  // При изменении email Supabase автоматически отправляет письмо с подтверждением
+  // Redirect URL берется из настроек проекта (Site URL в Dashboard)
+  // Убедитесь, что Site URL настроен на ваш домен + /auth/callback
+  const { data, error } = await supabase.auth.updateUser({
+    email: newEmail
   })
   return { data, error }
 }

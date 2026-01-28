@@ -1,15 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, Zap, Shield, Clock, Headphones } from 'lucide-react';
 import { SplineSection } from './SplineSection';
 import { SocialProofSection } from './SocialProofSection';
 
 interface HeroProps {
-  onPageChange: (page: string) => void;
   onConsultation?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
+export const Hero: React.FC<HeroProps> = ({ onConsultation }) => {
   const { t } = useTranslation();
   
   const benefits = [
@@ -74,15 +74,15 @@ export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <button 
-                onClick={() => onPageChange('services')}
+              <Link 
+                to="/services"
                 className="group relative px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 button-hover-lift glow-effect neon-button"
               >
                 <span className="flex items-center space-x-2">
                   <span>{t('hero.chooseService')}</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-              </button>
+              </Link>
               
               <button 
                 onClick={onConsultation}
@@ -123,7 +123,7 @@ export const Hero: React.FC<HeroProps> = ({ onPageChange, onConsultation }) => {
       </div>
       
       {/* Spline 3D Section */}
-      <SplineSection onPageChange={onPageChange} />
+      <SplineSection />
       
       {/* Social Proof Section */}
       <SocialProofSection />

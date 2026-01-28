@@ -14,13 +14,16 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add('modal-open');
+      document.documentElement.classList.add('modal-open');
     } else {
       document.body.classList.remove('modal-open');
+      document.documentElement.classList.remove('modal-open');
     }
     
     // Cleanup on unmount
     return () => {
       document.body.classList.remove('modal-open');
+      document.documentElement.classList.remove('modal-open');
     };
   }, [isOpen]);
   

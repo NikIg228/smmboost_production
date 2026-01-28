@@ -1,12 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Heart, Eye, Users, TrendingUp, Zap, Shield } from 'lucide-react';
 
-interface SplineSectionProps {
-  onPageChange: (page: string) => void;
-}
-
-export const SplineSection: React.FC<SplineSectionProps> = ({ onPageChange }) => {
+export const SplineSection: React.FC = () => {
   const { t } = useTranslation();
   
   const services = [
@@ -136,13 +133,13 @@ export const SplineSection: React.FC<SplineSectionProps> = ({ onPageChange }) =>
 
             {/* CTA Button */}
             <div className="text-center lg:text-left">
-              <button
-                onClick={() => onPageChange('services')}
+              <Link
+                to="/services"
                 className="group inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 neon-button button-hover-lift"
               >
                 <span>{t('spline.viewAllServices')}</span>
                 <TrendingUp className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
+              </Link>
             </div>
           </div>
 
